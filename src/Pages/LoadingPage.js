@@ -1,26 +1,22 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,FlatList} from 'react-native';
-import {connect} from 'react-redux';
-import {getUsersData} from "../Service/fetchApi/fetchAction";
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {createSwitchNavigator,createAppContainer} from 'react-navigation' ;
+import AddTodo from "./AddTodo";
+
 class LoadingPage extends Component {
-    componentDidMount(){
-        this.props.getUsersData();
+    
+    componentDidMount() {
+        this.navigate();
     }
     
+    navigate=()=>{
+        setTimeout(()=>this.props.navigation.navigate('AddTodo'),4000)
+    };
+    
     render() {
-        let todoList = this.props.todo.todoData;
         return (
             <View style={styles.className}>
-                <Text>List</Text>
-                <FlatList
-                    data={todoList}
-                    keyExtractor={(item)=>item.id.toString()}
-                    renderItem={({item})=>
-                        <View style={styles.todoView}>
-                            <Text>{item.name}</Text>
-                        </View>
-                    }
-                />
+                <Text style={{fontSize:30,color:'#000'}}>Loading</Text>
             </View>
         );
     }
@@ -28,15 +24,15 @@ class LoadingPage extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-    },
-    todoView:{
-        flex:1,
-        backgroundColor:'pink'
     }
 });
-const mapStateToProps =(state)=>{
-    return{
-        todo:state.getDataReducer
+const RootSwitch = createSwitchNavigator(
+    {
+        LoadingPage:LoadingPage,
+        AddTodo:AddTodo
+    },
+    {
+        initialRouteName:'LoadingPage'
     }
-};
-export default connect(mapStateToProps,{getUsersData})(LoadingPage)
+);
+export default createAppContainer(RootSwitch);

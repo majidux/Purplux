@@ -16,6 +16,8 @@ class AddTodo extends Component {
         let todoList = this.props.todo.todoData;
         return (
             <View style={styles.className}>
+                
+                
                 {data.map((_, i) => (
                     <View key={i} style={[styles.backGround,
                         {
@@ -24,16 +26,25 @@ class AddTodo extends Component {
                         }]}
                     />
                 ))}
-                <Text>List</Text>
-                <FlatList
-                    data={todoList}
-                    keyExtractor={(item)=>item.id.toString()}
-                    renderItem={({item})=>
-                        <View style={styles.todoView}>
-                            <Text>{item.name}</Text>
-                        </View>
-                    }
-                />
+                
+                
+                <Text>CheckList</Text>
+                <View style={styles.flatListView}>
+                    <FlatList
+                        data={todoList}
+                        keyExtractor={(item)=>item.id.toString()}
+                        renderItem={({item})=>
+                            <View style={styles.todoView}>
+                                <View>
+                                    <Text style={styles.textTodo}>{item.name}</Text>
+                                </View>
+                                <View>
+                                    <Text>DELETE</Text>
+                                </View>
+                            </View>
+                        }
+                    />
+                </View>
             </View>
         );
     }
@@ -41,11 +52,19 @@ class AddTodo extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor:'#865a9a'
+        backgroundColor:'#5a3c6a'
     },
     todoView:{
         flex:1,
-        backgroundColor:'pink'
+        marginVertical:20,
+        backgroundColor:'#5a3c6a',
+        padding:30,
+        borderRadius:20,
+        elevation:10,
+        marginHorizontal:30,
+        justifyContent:'space-between',
+        alignItems:'center',
+        flexDirection:'row'
     },
     backGround: {
         position: 'absolute',
@@ -55,6 +74,11 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: 2,
     },
+    textTodo:{
+        color:'#fff',
+        fontSize:20,
+        fontFamily:'sanserif'
+    }
 });
 const mapStateToProps =(state)=>{
     return{

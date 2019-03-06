@@ -1,0 +1,24 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Buy eggs",
+      "username": "majid"
+    },
+    {
+      "id": 2,
+      "name": "Buy milk",
+      "username": "karim"
+    },
+    {
+      "id": 3,
+      "name": "Get clothes from tailor",
+      "username": "kobra"
+    },
+    {
+      "id": 4,
+      "name": "Take out trash",
+      "username": "orooj ali"
+    }
+  ]
+}

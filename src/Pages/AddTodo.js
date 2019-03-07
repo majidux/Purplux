@@ -31,7 +31,8 @@ class AddTodo extends Component {
             return;
         } else {
             let name = this.state.name;
-            this.props.addTodo(name)
+            this.props.addTodo(name);
+            this.props.getUsersData();
         }
     };
     
@@ -52,9 +53,9 @@ class AddTodo extends Component {
                 
                 <View style={styles.inputText}>
                     <Text style={styles.textTitle}>Type your task</Text>
-                    <TextInput placeholder={'Add your Tasks to do'} placeholderTextColor={'#c3c3c3'}
-                               onChangeText={this.addName}/>
-                    
+                    <View style={styles.textInputView}>
+                        <TextInput value={this.state.name} placeholder={'Add your Tasks to do'} onSubmitEditing={this.addName} placeholderTextColor={'#474747'} onChangeText={this.addName}/>
+                    </View>
                     
                     <TouchableOpacity onPress={this.sendButton}>
                         <View style={styles.sendView}>
@@ -151,6 +152,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingVertical: 10,
         borderRadius: 15
+    },
+    textInputView:{
+        backgroundColor:'#fff',
+        borderRadius:10,
+        marginVertical: 10
     }
 });
 const mapStateToProps = (state) => {

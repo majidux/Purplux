@@ -1,12 +1,7 @@
 import {ADD_TODO} from "./addType";
 
 const initialState = {
-    todo: [
-        {
-            name:'',
-            username:''
-        }
-    ]
+    todo: []
 };
 
 export const addReducer = (state = initialState, action) => {
@@ -14,7 +9,7 @@ export const addReducer = (state = initialState, action) => {
         case ADD_TODO:{
             return{
                 ...state,
-                todoData:[...state.todoData , action.payload]
+                todo:[...state.todo , action.payload]
             }
         }
         default :

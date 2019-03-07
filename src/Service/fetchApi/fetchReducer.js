@@ -1,4 +1,4 @@
-import {GET_BEGIN,GET_SUCCESS,GET_FAILED,ADD_TODO} from "./fetchType";
+import {GET_BEGIN,GET_SUCCESS,GET_FAILED} from "./fetchType";
 
 const initialState = {
     todoData:[],

@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS,ADD_TODO} from './fetchType';
+import {GET_BEGIN, GET_FAILED, GET_SUCCESS} from './fetchType';
 
 export const getBegin = () => ({
     type: GET_BEGIN

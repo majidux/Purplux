@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS} from './fetchType';
+import {GET_BEGIN, GET_FAILED, GET_SUCCESS,ADD_TODO} from './fetchType';
 
 export const getBegin = () => ({
     type: GET_BEGIN
@@ -11,6 +11,12 @@ export const getSuccess = (data) => ({
 export const getFailed = () => ({
     type: GET_FAILED
 });
+
+
+
+
+
+
 export const getUsersData = () => {
     return dispatch => {
         let dataUser = `http://10.0.2.2:3000/user`;
@@ -23,3 +29,4 @@ export const getUsersData = () => {
             .catch(error => dispatch(getFailed(error)))
     }
 };
+

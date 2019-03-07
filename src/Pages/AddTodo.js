@@ -63,7 +63,6 @@ class AddTodo extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
-                
                 <View style={styles.flatListView}>
                     <FlatList
                         data={todoList}

@@ -1,7 +1,8 @@
-import {GET_BEGIN,GET_SUCCESS,GET_FAILED} from "./fetchType";
+import {GET_BEGIN,GET_SUCCESS,GET_FAILED,ADD_TODO} from "./fetchType";
 
 const initialState = {
     todoData:[],
+    todo:[],
     loading:false,
     error:null
 };
@@ -27,6 +28,12 @@ export const fetchReducer =(state=initialState, action)=>{
                 loading:false,
                 todoData:[],
                 error:action.payload
+            }
+        }
+        case ADD_TODO:{
+            return{
+                ...state,
+                todoData:[...state.todoData,action.payload]
             }
         }
         default:

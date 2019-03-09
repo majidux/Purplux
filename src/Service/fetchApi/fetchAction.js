@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS} from './fetchType';
+import {GET_BEGIN, GET_FAILED, GET_SUCCESS,ADD_TODO} from './fetchType';
 
 export const getBegin = () => ({
     type: GET_BEGIN
@@ -8,12 +8,39 @@ export const getSuccess = (data) => ({
     type: GET_SUCCESS,
     payload: data
 });
-export const getFailed = () => ({
-    type: GET_FAILED
+export const getFailed = (error) => ({
+    type: GET_FAILED,
+    payload:error
 });
 
 
+export const add = (name) => ({
+    type: ADD_TODO,
+    payload: name
+});
 
+export const addTodo = (name) => {
+    return dispatch=> {
+        let data = {
+            "name": name,
+        };
+        fetch(`http://10.0.2.2:3000/user`,
+            {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(response => response.json())
+            .then(data => {
+                dispatch(add(data))
+            })
+            .catch(error => error)
+    }
+};
 
 
 

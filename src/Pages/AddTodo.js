@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, Dimensions, TextInput, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {getUsersData} from "../Service/fetchApi/fetchAction";
-import {add, addTodo} from '../Service/addTodo/addAction';
+import {addTodo} from '../Service/fetchApi/fetchAction';
 
 const gradientColor = '#402659';
 const data = Array.from({length: 500});
@@ -32,7 +32,7 @@ class AddTodo extends Component {
         } else {
             let name = this.state.name;
             this.props.addTodo(name);
-            this.props.getUsersData();
+            this.setState({name:''})
         }
     };
     

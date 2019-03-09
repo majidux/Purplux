@@ -3,22 +3,26 @@
     {
       "id": 1,
       "name": "Check engine",
-      "username": "majid"
+      "username": "majid",
+      "isComplete": false
     },
     {
       "id": 2,
       "name": "Change engine oil",
-      "username": "karim"
+      "username": "karim",
+      "isComplete": true
     },
     {
       "id": 3,
       "name": "Change the air filter",
-      "username": "Cobra"
+      "username": "Cobra",
+      "isComplete": false
     },
     {
       "id": 4,
       "name": "Fill the tires with air",
-      "username": "Orooj ali"
+      "username": "Orooj ali",
+      "isComplete": false
     }
   ]
 }

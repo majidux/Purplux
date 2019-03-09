@@ -20,6 +20,10 @@ export const add = (name) => ({
     type: ADD_TODO,
     payload: name
 });
+
+// export const _delete =(index)=>{
+//
+// };
 // End Types
 
 // Post data to API

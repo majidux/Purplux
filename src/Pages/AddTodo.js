@@ -1,45 +1,20 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, Dimensions, TextInput, TouchableOpacity} from 'react-native';
-import {connect} from 'react-redux';
-import {getUsersData} from "../Service/fetchApi/fetchAction";
-import {addTodo} from '../Service/fetchApi/fetchAction';
-import {createStackNavigator, createDrawerNavigator, createAppContainer} from "react-navigation";
+import {createAppContainer,createBottomTabNavigator} from 'react-navigation';
+import Items from "../Component/Items";
+import Done from "./Done";
+import SendItem from "../Component/SendItem";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const gradientColor = '#bdbdbd';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
     
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-        }
-    }
-    
-    componentDidMount() {
-        this.props.getUsersData();
-    }
-    
-    
-    addName = (name) => {
-        this.setState({name: name})
-    };
-    
-    
-    sendButton = () => {
-        if (!this.state.name.length) {
-            return;
-        } else {
-            let name = this.state.name;
-            this.props.addTodo(name);
-            this.setState({name: ''})
-        }
-    };
+   
     
     
     render() {
-        let todoList = this.props.todo.todoData;
         return (
             <View style={styles.className}>
                 
@@ -52,62 +27,49 @@ class AddTodo extends Component {
                     />
                 ))}
                 
-                <View style={styles.inputText}>
-                    <Text style={styles.textTitle}>Type your task</Text>
-                    <View style={styles.textInputView}>
-                        <TextInput value={this.state.name} placeholder={'Add your Tasks to do'}
-                                   onSubmitEditing={this.addName} placeholderTextColor={'#474747'}
-                                   onChangeText={this.addName}
-                        />
-                    </View>
-                    <TouchableOpacity onPress={this.sendButton}>
-                        <View style={styles.sendView}>
-                            <Text style={styles.textSaveDelete}>SAVE</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.flatListView}>
-                    <FlatList
-                        data={todoList}
-                        keyExtractor={(item) => item.id.toString()}
-                        inverted={true}
-                        renderItem={({item}) =>
-                            <View style={styles.todoView}>
-                                <View>
-                                    <Text style={styles.textName}>{item.name}</Text>
-                                    <Text style={styles.textUsername}>{item.username}</Text>
-                                </View>
-                                <TouchableOpacity>
-                                    <View style={styles.deleteView}>
-                                        <Text style={styles.textSaveDelete}>DELETE</Text>
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
-                        }
-                    />
-                </View>
+                <SendItem/>
+                <Items/>
             </View>
         );
     }
 }
 
+const RouteTabNavigator = createBottomTabNavigator(
+    {
+        AddTodo:{
+            screen:AddTodo,
+            navigationOptions: {
+                tabBarIcon: ({tintColor:color}) => (
+                    <Icon name="home" size={30} color={color}/>
+                )
+            }
+        },
+        Done:{
+            screen:Done,
+            navigationOptions: {
+                tabBarIcon: ({tintColor:color}) => (
+                    <Icon name="address-book" size={30} color={color}/>
+                )
+            }
+        }
+    },
+    {
+        tabBarOptions:{
+            showLabel:false,
+            activeTintColor:'#575757',
+            inactiveTintColor:'#c4c0c0'
+        }
+    }
+);
+
+export default createAppContainer(RouteTabNavigator)
+
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#99899c'
+        backgroundColor: '#e8e3e3'
     },
-    todoView: {
-        flex: 1,
-        marginVertical: 20,
-        backgroundColor: '#e7e7e7',
-        padding: 30,
-        borderRadius: 20,
-        elevation: 10,
-        marginHorizontal: 30,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
+    
     backGround: {
         position: 'absolute',
         backgroundColor: gradientColor,
@@ -116,55 +78,5 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: -2,
     },
-    textName: {
-        color: '#fff',
-        fontSize: 20,
-        fontFamily: 'sanserif'
-    },
-    textUsername: {
-        color: '#96b81d',
-        fontWeight: '800',
-        fontFamily: 'sanserif'
-    },
-    textSaveDelete: {
-        color: '#fff',
-        fontWeight: '800',
-        fontFamily: 'sanserif'
-    },
-    inputText: {
-        paddingHorizontal: 20,
-        marginTop: 10
-    },
-    textTitle: {
-        color: '#f2f2f2',
-        fontSize: 25
-    },
-    flatListView: {
-        flex: 1
-    },
-    sendView: {
-        backgroundColor: '#96b81d',
-        alignSelf: 'flex-end',
-        paddingHorizontal: 20,
-        paddingVertical: 15,
-        borderRadius: 25
-    },
-    deleteView: {
-        backgroundColor: '#ff374a',
-        alignSelf: 'flex-end',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 15
-    },
-    textInputView: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        marginVertical: 10
-    }
+    
 });
-const mapStateToProps = (state) => {
-    return {
-        todo: state.getDataReducer,
-    }
-};
-export default connect(mapStateToProps, {getUsersData, addTodo})(AddTodo)

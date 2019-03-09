@@ -1,11 +1,11 @@
-import {GET_BEGIN,GET_SUCCESS,GET_FAILED,ADD_TODO} from "./fetchType";
+import {GET_BEGIN,GET_SUCCESS,GET_FAILED,ADD_TODO,DELETE_TODO} from "./fetchType";
 
 const initialState = {
     todoData:[],
     loading:false,
     error:null
 };
-export const fetchReducer =(state=initialState, action)=>{
+export const fetchReducer =(state=initialState, action)=> {
     switch (action.type) {
         case GET_BEGIN:{
             return{
@@ -33,6 +33,15 @@ export const fetchReducer =(state=initialState, action)=>{
             return{
                 ...state,
                 todoData:[...state.todoData,action.payload]
+            }
+        }
+        case DELETE_TODO :{
+            return{
+                ...state,
+                todoData : [
+                    ...state.todoData.splice(0 ,action.payload),
+                    ...state.todoData.splice(action.payload + 1),
+                ]
             }
         }
         default:

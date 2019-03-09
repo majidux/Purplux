@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity} from 'react-native';
 import {connect} from "react-redux";
-import {addTodo, getUsersData} from "../Service/fetchApi/fetchAction";
+import {addTodo, getUsersData, deleteTodo, _delete} from "../Service/fetchApi/fetchAction";
 
 
 class Items extends Component {
@@ -10,6 +10,14 @@ class Items extends Component {
         this.props.getUsersData();
     }
     
+    // deleteButton = (id) => {
+    //     this.props.deleteTodo(id)
+    // };
+    
+    deleteItem = (id) => {
+        this.props._delete(id)
+    };
+    
     render() {
         let todoList = this.props.todo.todoData;
         return (
@@ -17,14 +25,13 @@ class Items extends Component {
                 <FlatList
                     data={todoList}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) =>
-                
+                    renderItem={({item, id}) =>
                         <View style={[styles.todoView]}>
                             <View>
-                                <Text style={styles.textName}>{item.name.slice(0,18)}{item.name.length>18&&'...'}</Text>
+                                <Text style={styles.textName}>{item.name.slice(0, 18)}{item.name.length > 18 && '...'}</Text>
                             </View>
                             <View>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={this.deleteItem.bind(this, id)}>
                                     <View style={styles.deleteView}>
                                         <Text style={styles.textSaveDelete}>DELETE</Text>
                                     </View>
@@ -42,6 +49,7 @@ class Items extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     todoView: {
         flex: 1,
@@ -101,4 +109,4 @@ const mapStateToProps = (state) => {
         todo: state.getDataReducer,
     }
 };
-export default connect(mapStateToProps, {getUsersData, addTodo})(Items)
+export default connect(mapStateToProps, {getUsersData, addTodo, deleteTodo, _delete})(Items)

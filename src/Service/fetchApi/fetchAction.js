@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS,ADD_TODO} from './fetchType';
+import {GET_BEGIN, GET_FAILED, GET_SUCCESS, ADD_TODO, DELETE_TODO} from './fetchType';
 
 
 // Types
@@ -13,7 +13,7 @@ export const getSuccess = (data) => ({
 
 export const getFailed = (error) => ({
     type: GET_FAILED,
-    payload:error
+    payload: error
 });
 
 export const add = (name) => ({
@@ -21,14 +21,15 @@ export const add = (name) => ({
     payload: name
 });
 
-// export const _delete =(index)=>{
-//
-// };
+export const _delete = (id) => ({
+    type: DELETE_TODO,
+    payload:id
+});
 // End Types
 
 // Post data to API
 export const addTodo = (name) => {
-    return dispatch=> {
+    return dispatch => {
         let data = {
             "name": name,
         };
@@ -50,6 +51,27 @@ export const addTodo = (name) => {
     }
 };
 
+//Delete an item from API
+// export const deleteTodo = (id)=>{
+//     return dispatch=>{
+//         // let deleteData ={
+//         //     "id":id
+//         // };
+//         fetch(`http://10.0.2.2:3000/user?id=${id}`,
+//             {
+//                 method:'DELETE',
+//                 headers: {
+//                     Accept: 'application/json',
+//                     'Content-Type': 'application/json',
+//                 },
+//             }
+//             )
+//             .then(response=>response.json())
+//             .then(data =>{
+//                 dispatch(_delete(data))
+//             })
+//     }
+// };
 
 // Get data from API
 export const getUsersData = () => {

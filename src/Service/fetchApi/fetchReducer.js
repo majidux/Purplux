@@ -2,7 +2,6 @@ import {GET_BEGIN,GET_SUCCESS,GET_FAILED,ADD_TODO} from "./fetchType";
 
 const initialState = {
     todoData:[],
-    todo:[],
     loading:false,
     error:null
 };

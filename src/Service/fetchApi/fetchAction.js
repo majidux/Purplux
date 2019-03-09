@@ -1,5 +1,7 @@
 import {GET_BEGIN, GET_FAILED, GET_SUCCESS,ADD_TODO} from './fetchType';
 
+
+// Types
 export const getBegin = () => ({
     type: GET_BEGIN
 });
@@ -8,17 +10,19 @@ export const getSuccess = (data) => ({
     type: GET_SUCCESS,
     payload: data
 });
+
 export const getFailed = (error) => ({
     type: GET_FAILED,
     payload:error
 });
 
-
 export const add = (name) => ({
     type: ADD_TODO,
     payload: name
 });
+// End Types
 
+// Post data to API
 export const addTodo = (name) => {
     return dispatch=> {
         let data = {
@@ -43,7 +47,7 @@ export const addTodo = (name) => {
 };
 
 
-
+// Get data from API
 export const getUsersData = () => {
     return dispatch => {
         let dataUser = `http://10.0.2.2:3000/user`;

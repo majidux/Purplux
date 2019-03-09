@@ -3,8 +3,9 @@ import {View, Text, StyleSheet, Image, FlatList, Dimensions, TextInput, Touchabl
 import {connect} from 'react-redux';
 import {getUsersData} from "../Service/fetchApi/fetchAction";
 import {addTodo} from '../Service/fetchApi/fetchAction';
+import {createStackNavigator, createDrawerNavigator, createAppContainer} from "react-navigation";
 
-const gradientColor = '#402659';
+const gradientColor = '#bdbdbd';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
@@ -32,7 +33,7 @@ class AddTodo extends Component {
         } else {
             let name = this.state.name;
             this.props.addTodo(name);
-            this.setState({name:''})
+            this.setState({name: ''})
         }
     };
     
@@ -54,9 +55,11 @@ class AddTodo extends Component {
                 <View style={styles.inputText}>
                     <Text style={styles.textTitle}>Type your task</Text>
                     <View style={styles.textInputView}>
-                        <TextInput value={this.state.name} placeholder={'Add your Tasks to do'} onSubmitEditing={this.addName} placeholderTextColor={'#474747'} onChangeText={this.addName}/>
+                        <TextInput value={this.state.name} placeholder={'Add your Tasks to do'}
+                                   onSubmitEditing={this.addName} placeholderTextColor={'#474747'}
+                                   onChangeText={this.addName}
+                        />
                     </View>
-                    
                     <TouchableOpacity onPress={this.sendButton}>
                         <View style={styles.sendView}>
                             <Text style={styles.textSaveDelete}>SAVE</Text>
@@ -67,6 +70,7 @@ class AddTodo extends Component {
                     <FlatList
                         data={todoList}
                         keyExtractor={(item) => item.id.toString()}
+                        inverted={true}
                         renderItem={({item}) =>
                             <View style={styles.todoView}>
                                 <View>
@@ -90,12 +94,12 @@ class AddTodo extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#5a3c6a'
+        backgroundColor: '#99899c'
     },
     todoView: {
         flex: 1,
         marginVertical: 20,
-        backgroundColor: '#5a3c6a',
+        backgroundColor: '#e7e7e7',
         padding: 30,
         borderRadius: 20,
         elevation: 10,
@@ -152,9 +156,9 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 15
     },
-    textInputView:{
-        backgroundColor:'#fff',
-        borderRadius:10,
+    textInputView: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
         marginVertical: 10
     }
 });

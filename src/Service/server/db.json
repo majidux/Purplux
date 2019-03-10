@@ -11,6 +11,11 @@
       "isComplete": true
     },
     {
+      "id": 2,
+      "name": "Change the air filter",
+      "isComplete": false
+    },
+    {
       "id": 3,
       "name": "Fill the tires with air",
       "isComplete": false

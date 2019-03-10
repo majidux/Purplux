@@ -15,7 +15,8 @@ class Items extends Component {
     // };
     
     deleteItem = (id, index) => {
-        this.props.deleteTodo(id, index);
+        this.props.deleteTodo(id);
+        this.props._delete(index)
     };
     
     emptyList = () => <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
-import {createSwitchNavigator,createAppContainer} from 'react-navigation' ;
+import {createSwitchNavigator,createAppContainer,createStackNavigator} from 'react-navigation' ;
 import AddTodo from "./AddTodo";
 import SvgUri from "react-native-svg-uri";
 

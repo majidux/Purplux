@@ -1,49 +1,54 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity,ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
-import {addTodo, getUsersData, deleteTodo, _delete} from "../Service/fetchApi/fetchAction";
+import {addTodo, getUsersDataUnfinished, deleteTodo,updateStatus} from "../Service/fetchApi/fetchAction";
 
 
 class Items extends Component {
     
+    
+    completeTask=(id)=>{
+          this.props.updateStatus(id)
+    };
+    
     componentDidMount() {
-        this.props.getUsersData();
+        this.props.getUsersDataUnfinished();
     }
     
-    // deleteButton = (id) => {
-    //     this.props.deleteTodo(id)
-    // };
-    
-    deleteItem = (id, index) => {
+    deleteItem = (id) => {
         this.props.deleteTodo(id);
     };
     
-    emptyList = () => <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text
-        style={{fontSize: 30}}>The List is Empty</Text></View>
+    emptyList = () =>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{fontSize: 30}}>The List is Empty</Text>
+        </View>;
     
     
     render() {
         let todoList = this.props.todo.todoData;
         return (
             <View style={styles.flatListView}>
+                {this.props.todo.loading && <ActivityIndicator size={'large'} color={'red'}/>}
+                
                 <FlatList
                     data={todoList}
                     keyExtractor={(item) => item.id.toString()}
                     ListEmptyComponent={this.emptyList}
-                    renderItem={({item, index}) =>
-                        <View style={[styles.todoView]}>
+                    renderItem={({item}) =>
+                        <View style={styles.todoView}>
                             <View>
-                                <Text
-                                    style={styles.textName}>{item.name.slice(0, 18)}{item.name.length > 18 && '...'}</Text>
+                                <Text style={styles.textName}>{item.name}</Text>
                                 <Text style={styles.textName}>{item.id}</Text>
+                                <Text style={styles.textName}>{item.isComplete.toString()}</Text>
                             </View>
                             <View>
-                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id, index)}>
+                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
                                     <View style={styles.deleteView}>
                                         <Text style={styles.textSaveDelete}>DELETE</Text>
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={this.completeTask.bind(this,item.id)}>
                                     <View style={styles._doneView}>
                                         <Text style={styles.textDone}>DONE</Text>
                                     </View>
@@ -116,4 +121,4 @@ const mapStateToProps = (state) => {
         todo: state.getDataReducer,
     }
 };
-export default connect(mapStateToProps, {getUsersData, addTodo, deleteTodo, _delete})(Items)
+export default connect(mapStateToProps, {getUsersDataUnfinished, addTodo, deleteTodo,updateStatus})(Items)

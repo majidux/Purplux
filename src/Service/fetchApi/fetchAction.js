@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS, ADD_TODO, DELETE_TODO} from './fetchType';
+import {GET_BEGIN, GET_FAILED, GET_SUCCESS, ADD_TODO, DELETE_TODO,CHANGE_STATUS} from './fetchType';
 
 
 // Types
@@ -21,12 +21,15 @@ export const add = (name) => ({
     payload: name
 });
 
-export const remove = (id) => {
-    return {
+export const removeItem = (id) => ({
         type: DELETE_TODO,
         payload: id
-    }
-};
+});
+
+export const changeStatus = (id) =>({
+    type:CHANGE_STATUS,
+    payload:id
+});
 // End Types
 
 // Post data to API
@@ -64,13 +67,13 @@ export const deleteTodo = (id) => {
         )
             .then(response => response.json())
             .then(data => {
-                dispatch(remove(id))
+                dispatch(removeItem(id));
             })
     }
 };
 
-// Get data from API
-export const getUsersData = () => {
+// Get data which they are over from API
+export const getUsersDataUnfinished = () => {
     return dispatch => {
         let dataUser = `http://10.0.2.2:3000/user`;
         dispatch(getBegin());
@@ -80,5 +83,29 @@ export const getUsersData = () => {
                 dispatch(getSuccess(data))
             })
             .catch(error => dispatch(getFailed(error)))
+    }
+};
+
+
+// Update the isComplete status
+export const updateStatus = (id)=>{
+    return dispatch => {
+        let data = {
+            "isComplete": false
+        };
+        fetch(`http://10.0.2.2:3000/user?${id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            }
+        )
+            .then(response => response.json())
+            .then(data => {
+                dispatch(changeStatus(id))
+            })
     }
 };

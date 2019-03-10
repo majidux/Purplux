@@ -8,12 +8,12 @@
     {
       "id": 1,
       "name": "Change engine oil",
-      "isComplete": true
+      "isComplete": false
     },
     {
       "id": 2,
       "name": "Change the air filter",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 3,

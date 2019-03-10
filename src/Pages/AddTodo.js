@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList, Dimensions, TextInput, TouchableOpacity} from 'react-native';
-import {createAppContainer, createBottomTabNavigator} from 'react-navigation';
+import {View, StyleSheet} from 'react-native';
+import {createAppContainer} from 'react-navigation';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import Items from "../Component/Items";
 import Done from "./Done";
@@ -11,7 +11,6 @@ const gradientColor = '#bdbdbd';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
-    
     
     render() {
         return (
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#e8e3e3'
     },
-    
     backGround: {
         position: 'absolute',
         backgroundColor: gradientColor,
@@ -80,5 +78,4 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: -2,
     },
-    
 });

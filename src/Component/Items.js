@@ -14,9 +14,13 @@ class Items extends Component {
     //     this.props.deleteTodo(id)
     // };
     
-    deleteItem = (id) => {
-        this.props._delete(id)
+    deleteItem = (id, index) => {
+        this.props.deleteTodo(id, index);
     };
+    
+    emptyList = () => <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text
+        style={{fontSize: 30}}>The List is Empty</Text></View>
+    
     
     render() {
         let todoList = this.props.todo.todoData;
@@ -25,13 +29,16 @@ class Items extends Component {
                 <FlatList
                     data={todoList}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item, id}) =>
+                    ListEmptyComponent={this.emptyList}
+                    renderItem={({item, index}) =>
                         <View style={[styles.todoView]}>
                             <View>
-                                <Text style={styles.textName}>{item.name.slice(0, 18)}{item.name.length > 18 && '...'}</Text>
+                                <Text
+                                    style={styles.textName}>{item.name.slice(0, 18)}{item.name.length > 18 && '...'}</Text>
+                                <Text style={styles.textName}>{item.id}</Text>
                             </View>
                             <View>
-                                <TouchableOpacity onPress={this.deleteItem.bind(this, id)}>
+                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id, index)}>
                                     <View style={styles.deleteView}>
                                         <Text style={styles.textSaveDelete}>DELETE</Text>
                                     </View>

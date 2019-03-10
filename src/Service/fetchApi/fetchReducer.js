@@ -39,8 +39,8 @@ export const fetchReducer =(state=initialState, action)=> {
             return{
                 ...state,
                 todoData : [
-                    ...state.todoData.splice(0 ,action.payload),
-                    ...state.todoData.splice(action.payload + 1),
+                    ...state.todoData.slice(0,action.payload),
+                    ...state.todoData.slice(action.payload + 1),
                 ]
             }
         }

@@ -1,40 +1,29 @@
 {
   "user": [
     {
-      "id": 1,
+      "id": 0,
       "name": "Check engine",
-      "username": "majid",
       "isComplete": false
     },
     {
-      "id": 2,
+      "id": 1,
       "name": "Change engine oil",
-      "username": "karim",
       "isComplete": true
     },
     {
       "id": 3,
-      "name": "Change the air filter",
-      "username": "Cobra",
-      "isComplete": false
-    },
-    {
-      "id": 4,
       "name": "Fill the tires with air",
-      "username": "Orooj ali",
       "isComplete": false
-    },
-    {
-      "name": "Change the oil filter",
-      "id": 5
     },
     {
       "name": "Balance the tires",
-      "id": 6
+      "isComplete": false,
+      "id": 4
     },
     {
-      "name": "sasasasa",
-      "id": 7
+      "name": "Change the oil filter",
+      "isComplete": false,
+      "id": 5
     }
   ]
 }

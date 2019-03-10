@@ -93,7 +93,7 @@ export const updateStatus = (id)=>{
         let data = {
             "isComplete": false
         };
-        fetch(`http://10.0.2.2:3000/user?${id}`,
+        fetch(`http://10.0.2.2:3000/user?id=${id}`,
             {
                 method: 'PUT',
                 headers: {

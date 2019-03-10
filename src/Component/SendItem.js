@@ -33,7 +33,7 @@ class SendItem extends Component {
     render() {
         return (
             <View style={styles.inputText}>
-                <Text style={styles.textTitle}>Type your task</Text>
+                <Text style={styles.textTitle}>Tasks in Progress</Text>
                 <View style={styles.textInputView}>
                     <TextInput value={this.state.name} placeholder={'Add your Tasks to do ...'}
                                onSubmitEditing={this.addName} placeholderTextColor={'#474747'}

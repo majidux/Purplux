@@ -36,11 +36,14 @@ export const fetchReducer =(state=initialState, action)=> {
             }
         }
         case DELETE_TODO :{
+            
+            let itemIndex = state.todoData.findIndex((p => p.id === action.payload));
+            
             return{
                 ...state,
                 todoData : [
-                    ...state.todoData.slice(0,action.payload),
-                    ...state.todoData.slice(action.payload + 1),
+                    ...state.todoData.slice(0,itemIndex),
+                    ...state.todoData.slice(itemIndex + 1),
                 ]
             }
         }

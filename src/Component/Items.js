@@ -16,7 +16,6 @@ class Items extends Component {
     
     deleteItem = (id, index) => {
         this.props.deleteTodo(id);
-        this.props._delete(index)
     };
     
     emptyList = () => <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         backgroundColor: '#f5f5f5',
         padding: 15,
-        borderRadius: 20,
+        borderRadius: 1,
         elevation: 10,
         marginHorizontal: 30,
         justifyContent: 'space-between',

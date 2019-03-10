@@ -21,10 +21,10 @@ export const add = (name) => ({
     payload: name
 });
 
-export const _delete = (index) => {
+export const remove = (id) => {
     return {
         type: DELETE_TODO,
-        payload: index
+        payload: id
     }
 };
 // End Types
@@ -57,14 +57,15 @@ export const addTodo = (name) => {
 //Delete an item from API
 export const deleteTodo = (id) => {
     return dispatch => {
-           fetch(`http://10.0.2.2:3000/user/${id}` ,{
+        const url = `http://10.0.2.2:3000/user/`;
+           fetch(`${url}${id}` ,{
                method: 'DELETE'
            }
         )
             .then(response => response.json())
-            // .then(id => {
-            //     dispatch(_delete(id))
-            // })
+            .then(data => {
+                dispatch(remove(id))
+            })
     }
 };
 

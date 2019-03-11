@@ -2,12 +2,12 @@
 
 My github page: [Majid Darvish Nejad](https://github.com/majidux).
 
-####Step One:
+###Step One:
  Clone the project on your machine
  
 Write `npm install` in CMD
 
-####Step Two : 
+###Step Two : 
 
 After that you need install required libraries
 
@@ -24,7 +24,7 @@ Installing navigation
 Installing vector icons
 `yarn add react-native-vector-icons`
 
-####Step three :
+###Step three :
 
 Link the libraries 
 
@@ -32,7 +32,7 @@ Link the libraries
 
 `react-native link react-native-vector-icons`
 
-####Final Step :
+###Final Step :
 Start the emulator
  
  run the app with this command: `react-native run-android` 

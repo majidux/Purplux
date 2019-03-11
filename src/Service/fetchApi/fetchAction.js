@@ -91,11 +91,13 @@ export const getUsersDataUnfinished = () => {
 export const updateStatus = (id)=>{
     return dispatch => {
         let data = {
-            "isComplete": false
+            "isComplete": true
         };
-        fetch(`http://10.0.2.2:3000/user?id=${id}`,
+        let trueComplete = true;
+        const url = `http://10.0.2.2:3000/user/`;
+        fetch(`${url}${id}/?isComplete=${trueComplete}`,
             {
-                method: 'PUT',
+                method: 'PATCH',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',

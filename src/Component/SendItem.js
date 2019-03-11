@@ -33,18 +33,19 @@ class SendItem extends Component {
     render() {
         return (
             <View style={styles.inputText}>
-                <Text style={styles.textTitle}>Tasks in Progress</Text>
                 <View style={styles.textInputView}>
                     <TextInput value={this.state.name} placeholder={'Add your Tasks to do ...'}
                                onSubmitEditing={this.addName} placeholderTextColor={'#474747'}
                                onChangeText={this.addName}
                     />
                 </View>
-                <TouchableOpacity onPress={this.sendButton}>
-                    <View style={styles.sendView}>
-                        <Text style={styles.textSaveDelete}>ADD</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.sendButtonViewStyle}>
+                    <TouchableOpacity onPress={this.sendButton}>
+                        <View style={styles.sendView}>
+                            <Text style={styles.textSaveDelete}>SAVE</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
@@ -61,7 +62,10 @@ const styles = StyleSheet.create({
     },
     inputText: {
         paddingHorizontal: 20,
-        marginVertical: 10
+        marginVertical: 10,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
     },
     textTitle: {
         color: '#4c4c4c',
@@ -72,13 +76,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#474747',
         alignSelf: 'flex-end',
         paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 25
+        paddingVertical: 15,
+        borderRadius: 5,
     },
     textInputView: {
         backgroundColor: '#fff',
         borderRadius: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        flex:4
+    },
+    sendButtonViewStyle:{
+        flex:1
     }
 });
 

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
-import {createSwitchNavigator,createAppContainer,createStackNavigator} from 'react-navigation' ;
-import AddTodo from "./AddTodo";
+import {createSwitchNavigator,createAppContainer} from 'react-navigation' ;
 import SvgUri from "react-native-svg-uri";
+import Home from "../Component/Home";
 
 class LoadingPage extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +18,7 @@ class LoadingPage extends Component {
     }
     
     navigate=()=>{
-        setTimeout(()=>this.props.navigation.navigate('AddTodo'),100)
+        setTimeout(()=>this.props.navigation.navigate('Home'),100)
     };
     animationRotation = () => {
         Animated.timing(
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
 const RootSwitch = createSwitchNavigator(
     {
         LoadingPage:LoadingPage,
-        AddTodo:AddTodo
+        Home:Home
     },
     {
         initialRouteName:'LoadingPage'

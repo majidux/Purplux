@@ -36,11 +36,10 @@ class Items extends Component {
                     keyExtractor={(item) => item.id.toString()}
                     ListEmptyComponent={this.emptyList}
                     renderItem={({item}) =>
+                        !item.isComplete &&
                         <View style={styles.todoView}>
                             <View>
                                 <Text style={styles.textName}>{item.name}</Text>
-                                <Text style={styles.textName}>{item.id}</Text>
-                                <Text style={styles.textName}>{item.isComplete.toString()}</Text>
                             </View>
                             <View>
                                 <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>

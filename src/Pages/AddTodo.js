@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createMaterialTopTabNavigator, createStackNavigator} from 'react-navigation';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
 import Items from "../Component/Items";
 import Done from "./Done";
 import SendItem from "../Component/SendItem";
 import Icon from "react-native-vector-icons/FontAwesome";
+import Failed from "./Failed";
 
 const gradientColor = '#bdbdbd';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
+    
     
     render() {
         return (
@@ -25,14 +27,15 @@ class AddTodo extends Component {
                     />
                 ))}
                 
-                <SendItem/>
+                
                 <Items/>
+                <SendItem/>
             </View>
         );
     }
 }
 
-const RouteTabNavigator = createMaterialBottomTabNavigator(
+const RouteTabNavigator = createMaterialTopTabNavigator(
     {
         AddTodo: {
             screen: AddTodo,
@@ -49,20 +52,38 @@ const RouteTabNavigator = createMaterialBottomTabNavigator(
                     <Icon name="thumbs-up" size={30} color={color}/>
                 )
             }
-        }
+        },
+        Failed: {
+            screen: Failed,
+            navigationOptions: {
+                tabBarIcon: ({tintColor: color}) => (
+                    <Icon name="thumbs-down" size={30} color={color}/>
+                )
+            }
+        },
     },
     {
-        activeColor: '#575757',
-        inactiveColor: '#c4c0c0',
-        barStyle: {backgroundColor: '#fff'},
-        labeled: false,
-        backBehavior: 'initialRoute'
+        tabBarOptions: {
+            activeTintColor: '#414141',
+            inactiveTintColor: '#949494',
+            showIcon: true,
+            showLabel: false,
+            labelStyle: {
+                fontSize: 12,
+                fontWeight: '700'
+            },
+            tabStyle: {
+                width: 100,
+            },
+            style: {
+                backgroundColor: '#e7e7e7',
+            },
+        }
     },
     {
         initialRouteName: 'AddTodo'
     }
 );
-
 export default createAppContainer(RouteTabNavigator)
 
 const styles = StyleSheet.create({

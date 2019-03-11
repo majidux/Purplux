@@ -13,7 +13,7 @@
     {
       "id": 2,
       "name": "Change the air filter",
-      "isComplete": false
+      "isComplete": true
     },
     {
       "id": 3,
@@ -29,6 +29,21 @@
       "name": "Change the oil filter",
       "isComplete": false,
       "id": 5
+    },
+    {
+      "name": "Fill the radiator",
+      "isComplete": false,
+      "id": 6
+    },
+    {
+      "name": "Wax the door",
+      "isComplete": false,
+      "id": 7
+    },
+    {
+      "name": "Clean the mirror",
+      "isComplete": false,
+      "id": 8
     }
   ]
 }

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {createAppContainer, createMaterialTopTabNavigator, createStackNavigator} from 'react-navigation';
-import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs'
+import {View, StyleSheet, Text} from 'react-native';
+import {createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
 import Items from "../Component/Items";
 import Done from "./Done";
 import SendItem from "../Component/SendItem";
@@ -27,7 +26,9 @@ class AddTodo extends Component {
                     />
                 ))}
                 
-                
+                <View style={styles.inProgressTasksView}>
+                    <Text style={styles.inProgressTasks}>Tasks in progress</Text>
+                </View>
                 <Items/>
                 <SendItem/>
             </View>
@@ -64,7 +65,7 @@ const RouteTabNavigator = createMaterialTopTabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: '#414141',
+            activeTintColor: '#8979f3',
             inactiveTintColor: '#949494',
             showIcon: true,
             showLabel: false,
@@ -73,15 +74,12 @@ const RouteTabNavigator = createMaterialTopTabNavigator(
                 fontWeight: '700'
             },
             tabStyle: {
-                width: 100,
+                flex:1
             },
             style: {
                 backgroundColor: '#e7e7e7',
             },
         }
-    },
-    {
-        initialRouteName: 'AddTodo'
     }
 );
 export default createAppContainer(RouteTabNavigator)
@@ -99,4 +97,13 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: -2,
     },
+    inProgressTasks:{
+        fontSize: 20,
+        fontWeight: '600',
+        color:'#8979f3'
+    },
+    inProgressTasksView:{
+        marginTop:20,
+        marginLeft:30
+    }
 });

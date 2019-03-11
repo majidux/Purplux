@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity,ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
-import {addTodo, getUsersDataUnfinished, deleteTodo,updateStatus} from "../Service/fetchApi/fetchAction";
+import {addTodo, getUsersDataUnfinished, deleteTodo, updateStatus} from "../Service/fetchApi/fetchAction";
+import SvgUri from "react-native-svg-uri";
 
 
 class Items extends Component {
     
     
-    completeTask=(id)=>{
-          this.props.updateStatus(id)
+    completeTask = (id) => {
+        this.props.updateStatus(id)
     };
     
     componentDidMount() {
@@ -19,37 +20,58 @@ class Items extends Component {
         this.props.deleteTodo(id);
     };
     
-    emptyList = () =>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize: 30}}>The List is Empty</Text>
-        </View>;
+    // emptyList = () =>
+    //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    //         <Text style={{fontSize: 30}}>The List is Empty</Text>
+    //     </View>;
     
     
     render() {
         let todoList = this.props.todo.todoData;
         return (
             <View style={styles.flatListView}>
-                {this.props.todo.loading && <ActivityIndicator size={'large'} color={'red'}/>}
+                <View style={styles.activityIndicator}>
+                    {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
+                </View>
+                
                 
                 <FlatList
                     data={todoList}
                     keyExtractor={(item) => item.id.toString()}
-                    ListEmptyComponent={this.emptyList}
+                    // ListEmptyComponent={this.emptyList}
                     renderItem={({item}) =>
                         !item.isComplete &&
                         <View style={styles.todoView}>
                             <View>
                                 <Text style={styles.textName}>{item.name}</Text>
                             </View>
-                            <View>
-                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
-                                    <View style={styles.deleteView}>
-                                        <Text style={styles.textSaveDelete}>DELETE</Text>
+                            <View style={styles.buttonOptions}>
+                                
+                                <TouchableOpacity onPress={this.completeTask.bind(this, item.id)}>
+                                    <View style={styles._doneView}>
+                                        <SvgUri
+                                            width={'24'}
+                                            height={'24'}
+                                            source={require('../Assets/image/checked.svg')}
+                                            strokeWidth={10}
+                                            stroke={'#000'}
+                                            strokeLinejoin={'bevel'}
+                                            fill={'#8979f3'}
+                                        />
                                     </View>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={this.completeTask.bind(this,item.id)}>
-                                    <View style={styles._doneView}>
-                                        <Text style={styles.textDone}>DONE</Text>
+                                
+                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
+                                    <View style={styles.deleteView}>
+                                        <SvgUri
+                                            width={'24'}
+                                            height={'24'}
+                                            source={require('../Assets/image/trash.svg')}
+                                            strokeWidth={10}
+                                            stroke={'#000'}
+                                            strokeLinejoin={'bevel'}
+                                            fill={'#8979f3'}
+                                        />
                                     </View>
                                 </TouchableOpacity>
                             </View>
@@ -75,10 +97,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     flatListView: {
-        flex: 1
+        flex: 1,
+        paddingTop:15
     },
     textName: {
-        color: '#000',
+        color: '#6e6e6e',
         fontSize: 20,
         fontWeight: '600'
     },
@@ -91,27 +114,36 @@ const styles = StyleSheet.create({
         fontWeight: '800'
     },
     deleteView: {
-        backgroundColor: '#ff374a',
         alignSelf: 'flex-end',
         paddingVertical: 2,
         borderRadius: 15,
         marginVertical: 5,
-        width: 80,
-        alignItems: 'center'
+        width: 20,
+        alignItems: 'center',
     },
     
     _doneView: {
-        backgroundColor: '#56c42f',
         alignSelf: 'flex-end',
         paddingVertical: 2,
         borderRadius: 15,
         marginVertical: 5,
-        width: 80,
+        width: 20,
         alignItems: 'center',
+        marginRight:25
     },
     textDone: {
         color: '#3d3d3d',
         fontWeight: '800'
+    },
+    buttonOptions:{
+        flexDirection: 'row',
+        flex:1,
+        justifyContent:'flex-end',
+    },
+    activityIndicator:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     }
 });
 
@@ -120,4 +152,4 @@ const mapStateToProps = (state) => {
         todo: state.getDataReducer,
     }
 };
-export default connect(mapStateToProps, {getUsersDataUnfinished, addTodo, deleteTodo,updateStatus})(Items)
+export default connect(mapStateToProps, {getUsersDataUnfinished, addTodo, deleteTodo, updateStatus})(Items)

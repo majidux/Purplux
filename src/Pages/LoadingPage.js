@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
 import {createSwitchNavigator,createAppContainer} from 'react-navigation' ;
 import SvgUri from "react-native-svg-uri";
-import Home from "../Component/Home";
+import Login from "../Component/Login";
 
 class LoadingPage extends Component {
     
@@ -18,7 +18,7 @@ class LoadingPage extends Component {
     }
     
     navigate=()=>{
-        setTimeout(()=>this.props.navigation.navigate('Home'),100)
+        setTimeout(()=>this.props.navigation.navigate('Login'),1000)
     };
     animationRotation = () => {
         Animated.timing(
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
 const RootSwitch = createSwitchNavigator(
     {
         LoadingPage:LoadingPage,
-        Home:Home
+        Login:Login
     },
     {
         initialRouteName:'LoadingPage'

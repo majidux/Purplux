@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     
     sendView: {
-        backgroundColor: '#474747',
+        backgroundColor: '#8979f3',
         alignSelf: 'flex-end',
         paddingHorizontal: 15,
         paddingVertical: 15,

@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {connect} from "react-redux";
-import {addTodo, getUsersDataUnfinished, deleteTodo, updateStatus} from "../Service/fetchApi/fetchAction";
+import {
+    addTodo,
+    getUsersDataUnfinished,
+    deleteTodo,
+    updateStatus,
+    updateFailure
+} from "../Service/fetchApi/fetchAction";
 import SvgUri from "react-native-svg-uri";
 
 
@@ -11,6 +17,10 @@ class Items extends Component {
     completeTask = (id) => {
         this.props.updateStatus(id)
     };
+    
+    failedTask = (id) => {
+        this.props.updateFailure(id)
+    }
     
     componentDidMount() {
         this.props.getUsersDataUnfinished();
@@ -40,13 +50,25 @@ class Items extends Component {
                     keyExtractor={(item) => item.id.toString()}
                     // ListEmptyComponent={this.emptyList}
                     renderItem={({item}) =>
-                        !item.isComplete &&
+                        item.isComplete || item.isFail &&
                         <View style={styles.todoView}>
                             <View>
                                 <Text style={styles.textName}>{item.name}</Text>
                             </View>
                             <View style={styles.buttonOptions}>
-                                
+                                <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
+                                    <View style={styles._doneView}>
+                                        <SvgUri
+                                            width={'24'}
+                                            height={'24'}
+                                            source={require('../Assets/image/close-button.svg')}
+                                            strokeWidth={10}
+                                            stroke={'#000'}
+                                            strokeLinejoin={'bevel'}
+                                            fill={'#e45'}
+                                        />
+                                    </View>
+                                </TouchableOpacity>
                                 <TouchableOpacity onPress={this.completeTask.bind(this, item.id)}>
                                     <View style={styles._doneView}>
                                         <SvgUri
@@ -56,11 +78,10 @@ class Items extends Component {
                                             strokeWidth={10}
                                             stroke={'#000'}
                                             strokeLinejoin={'bevel'}
-                                            fill={'#8979f3'}
+                                            fill={'#45ba28'}
                                         />
                                     </View>
                                 </TouchableOpacity>
-                                
                                 <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
                                     <View style={styles.deleteView}>
                                         <SvgUri
@@ -90,7 +111,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f5f5f5',
         padding: 15,
         borderRadius: 1,
-        elevation: 10,
+        elevation: 2,
         marginHorizontal: 30,
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -98,12 +119,12 @@ const styles = StyleSheet.create({
     },
     flatListView: {
         flex: 1,
-        paddingTop:15
+        paddingTop: 15
     },
     textName: {
-        color: '#6e6e6e',
+        color: '#4d4d4d',
         fontSize: 20,
-        fontWeight: '600'
+        fontWeight: '400'
     },
     textUsername: {
         color: '#96b81d',
@@ -129,21 +150,21 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         width: 20,
         alignItems: 'center',
-        marginRight:25
+        marginRight: 20
     },
     textDone: {
         color: '#3d3d3d',
         fontWeight: '800'
     },
-    buttonOptions:{
+    buttonOptions: {
         flexDirection: 'row',
-        flex:1,
-        justifyContent:'flex-end',
+        flex: 1,
+        justifyContent: 'flex-end',
     },
-    activityIndicator:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+    activityIndicator: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
@@ -152,4 +173,10 @@ const mapStateToProps = (state) => {
         todo: state.getDataReducer,
     }
 };
-export default connect(mapStateToProps, {getUsersDataUnfinished, addTodo, deleteTodo, updateStatus})(Items)
+export default connect(mapStateToProps, {
+    getUsersDataUnfinished,
+    addTodo,
+    deleteTodo,
+    updateStatus,
+    updateFailure
+})(Items)

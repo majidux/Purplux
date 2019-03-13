@@ -34,16 +34,14 @@ class Login extends Component {
                     <TextInput placeholder={'Password'}/>
                 </View>
                 <View style={styles.bottomArea}>
-                    
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}>
                         <View style={styles.loginButton}>
                             <Text style={styles.textStyleButton}>Login</Text>
                         </View>
                     </TouchableOpacity>
-                    
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
                         <View>
-                            <Text style={styles.textStyleButtonSignIn}>Have already account?</Text>
+                            <Text style={styles.textStyleButtonSignIn}>You don't have a account?</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

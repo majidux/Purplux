@@ -37,6 +37,7 @@ Start the emulator
  
  run the app with this command: `react-native run-android` 
  
-## A screen shot of front page
+## A screen shot of login page
 
-![alt text](./src/Assets/image/screenshot.png)
+![alt text](./src/Assets/image/loginPage.jpg)
+

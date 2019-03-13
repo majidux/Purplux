@@ -1,54 +1,64 @@
 {
-  "user": [
+  "tasks": [
     {
       "id": 0,
       "name": "Check engine",
-      "isComplete": false
+      "isComplete": false,
+      "isFail": true
     },
     {
       "id": 1,
       "name": "Change engine oil",
-      "isComplete": false
+      "isComplete": true,
+      "isFail": true
     },
     {
       "id": 2,
       "name": "Change the air filter",
-      "isComplete": false
+      "isComplete": true,
+      "isFail": true
     },
     {
       "id": 3,
       "name": "Fill the tires with air",
-      "isComplete": true
+      "isComplete": true,
+      "isFail": true
     },
     {
       "name": "Balance the tires",
       "isComplete": false,
-      "id": 4
+      "id": 4,
+      "isFail": true
     },
     {
       "name": "Change the oil filter",
       "isComplete": false,
-      "id": 5
+      "id": 5,
+      "isFail": true
     },
     {
       "name": "Clean the mirror",
       "isComplete": false,
-      "id": 6
+      "id": 6,
+      "isFail": true
     },
     {
       "name": "wax the body",
       "isComplete": false,
-      "id": 7
+      "id": 7,
+      "isFail": true
     },
     {
       "name": "Fill the radiator",
       "isComplete": false,
-      "id": 8
+      "id": 8,
+      "isFail": true
     },
     {
       "name": "Fill the battery",
       "isComplete": false,
-      "id": 9
+      "id": 9,
+      "isFail": false
     }
   ]
 }

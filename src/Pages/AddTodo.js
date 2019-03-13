@@ -7,7 +7,7 @@ import SendItem from "../Component/SendItem";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Failed from "./Failed";
 
-const gradientColor = '#bdbdbd';
+const gradientColor = '#f6f6f6';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
@@ -17,14 +17,14 @@ class AddTodo extends Component {
         return (
             <View style={styles.className}>
                 
-                {data.map((_, i) => (
-                    <View key={i} style={[styles.backGround,
-                        {
-                            opacity: (1 / 500) * (i + 1),
-                            bottom: (500 - i),
-                        }]}
-                    />
-                ))}
+                {/*{data.map((_, i) => (*/}
+                    {/*<View key={i} style={[styles.backGround,*/}
+                        {/*{*/}
+                            {/*opacity: (1 / 500) * (i + 1),*/}
+                            {/*bottom: (500 - i),*/}
+                        {/*}]}*/}
+                    {/*/>*/}
+                {/*))}*/}
                 
                 <View style={styles.inProgressTasksView}>
                     <Text style={styles.inProgressTasks}>Tasks in progress</Text>
@@ -82,12 +82,13 @@ const RouteTabNavigator = createMaterialTopTabNavigator(
         }
     }
 );
+
 export default createAppContainer(RouteTabNavigator)
 
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#e8e3e3'
+        backgroundColor: '#f6f6f6'
     },
     backGround: {
         position: 'absolute',

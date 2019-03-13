@@ -10,14 +10,21 @@ class Done extends Component {
         let data = this.props.todo.todoData;
         return (
             <View style={styles.className}>
+                <View>
+                    <Text style={styles.pageTitle}>Finished Tasks</Text>
+                </View>
                 <FlatList
                     data={data}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) =>
                         item.isComplete &&
                         <View style={styles.flatListInside}>
-                            <Text style={styles.listText}>{item.name}</Text>
-                            <Text style={styles.listText}>{item.isComplete.toString()}</Text>
+                            <View style={styles.titleTaskView}>
+                                <Text style={styles.listText}>{item.name}</Text>
+                            </View>
+                            <View style={styles.statusTaskView}>
+                                <Text style={styles.statusTaskText}>Finished</Text>
+                            </View>
                         </View>
                     }
                 />
@@ -29,17 +36,41 @@ class Done extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
-        padding: 30
+        marginHorizontal: 30,
+        marginTop:20
     },
     flatListInside: {
         marginVertical: 20,
+        flex: 1,
+        padding: 15,
+        borderRadius: 1,
+        elevation: 2,
         justifyContent: 'space-between',
-        flexDirection: 'row'
+        alignItems: 'center',
+        flexDirection: 'row',
     },
     listText: {
         color: '#000',
         fontSize: 20
+    },
+    statusTaskText:{
+        color: '#fff',
+        fontSize: 15
+    },
+    titleTaskView: {
+        flex:4,
+    },
+    statusTaskView:{
+        flex:1,
+        backgroundColor:'#45ba28',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 3
+    },
+    pageTitle:{
+        fontSize: 20,
+        fontWeight: '600',
+        color:'#45ba28'
     }
 });
 const mapStateToProps = (state) => ({

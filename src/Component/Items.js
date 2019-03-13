@@ -47,6 +47,8 @@ class Items extends Component {
                 
                 <FlatList
                     data={todoList}
+                    onRefresh={()=>this.props.getUsersDataUnfinished()}
+                    refreshing={false}
                     keyExtractor={(item) => item.id.toString()}
                     // ListEmptyComponent={this.emptyList}
                     renderItem={({item}) =>

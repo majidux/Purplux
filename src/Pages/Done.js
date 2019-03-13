@@ -22,8 +22,6 @@ class Done extends Component {
                 </View>
                 <FlatList
                     data={data}
-                    onRefresh={()=>this.props.getUsersDataUnfinished()}
-                    refreshing={this.state.item}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) =>
                         item.isComplete &&

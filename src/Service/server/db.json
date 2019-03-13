@@ -4,7 +4,7 @@
       "id": 0,
       "name": "Check engine",
       "isComplete": false,
-      "isFail": true
+      "isFail": false
     },
     {
       "id": 1,
@@ -26,39 +26,45 @@
     },
     {
       "name": "Balance the tires",
-      "isComplete": false,
+      "isComplete": true,
       "id": 4,
       "isFail": true
     },
     {
       "name": "Change the oil filter",
-      "isComplete": false,
+      "isComplete": true,
       "id": 5,
       "isFail": true
     },
     {
       "name": "Clean the mirror",
-      "isComplete": false,
+      "isComplete": true,
       "id": 6,
       "isFail": true
     },
     {
       "name": "wax the body",
-      "isComplete": false,
+      "isComplete": true,
       "id": 7,
-      "isFail": true
-    },
-    {
-      "name": "Fill the radiator",
-      "isComplete": false,
-      "id": 8,
       "isFail": true
     },
     {
       "name": "Fill the battery",
       "isComplete": false,
-      "id": 9,
-      "isFail": false
+      "isFail": false,
+      "id": 8
+    },
+    {
+      "name": "Change the radiator's door",
+      "isComplete": false,
+      "isFail": true,
+      "id": 9
+    },
+    {
+      "name": "Clean the exhaust",
+      "isComplete": false,
+      "isFail": true,
+      "id": 10
     }
   ]
 }

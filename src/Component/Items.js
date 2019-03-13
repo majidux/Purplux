@@ -52,8 +52,8 @@ class Items extends Component {
                     renderItem={({item}) =>
                         item.isComplete || item.isFail &&
                         <View style={styles.todoView}>
-                            <View>
-                                <Text numberOfLines={1} style={styles.textName}>{item.name.slice(0, 14)}{item.name.length > 14&&'...'}</Text>
+                            <View style={styles.titleView}>
+                                <Text style={styles.textName}>{item.name}</Text>
                             </View>
                             <View style={styles.buttonOptions}>
                                 <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
@@ -161,10 +161,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
     },
-    activityIndicator: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+    titleView:{
+        flex:1
     }
 });
 

@@ -5,22 +5,31 @@ import {getTaskDataUnfinished} from '../Service/fetchApi/fetchAction'
 
 class Done extends Component {
     
+    constructor(props){
+        super(props);
+        this.state={
+            item:false
+        }
+    }
+    
     
     render() {
         let data = this.props.todo.todoData;
         return (
             <View style={styles.className}>
-                <View>
+                <View style={styles.titleView}>
                     <Text style={styles.pageTitle}>Finished Tasks</Text>
                 </View>
                 <FlatList
                     data={data}
+                    onRefresh={()=>this.props.getUsersDataUnfinished()}
+                    refreshing={this.state.item}
                     keyExtractor={item => item.id.toString()}
                     renderItem={({item}) =>
                         item.isComplete &&
                         <View style={styles.flatListInside}>
                             <View style={styles.titleTaskView}>
-                                <Text style={styles.listText}>{item.name.slice(0, 20)}{item.name.length > 20 && '...'}</Text>
+                                <Text style={styles.listText}>{item.name}</Text>
                             </View>
                             <View style={styles.statusTaskView}>
                                 <Text style={styles.statusTaskText}>Finished</Text>
@@ -36,11 +45,13 @@ class Done extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        marginHorizontal: 30,
-        marginTop: 20
+        marginTop: 20,
+    },
+    titleView:{
+        marginLeft:30
     },
     flatListInside: {
-        marginVertical: 20,
+        marginVertical: 5,
         flex: 1,
         padding: 15,
         borderRadius: 1,
@@ -48,6 +59,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
+        marginHorizontal: 30,
     },
     listText: {
         color: '#000',

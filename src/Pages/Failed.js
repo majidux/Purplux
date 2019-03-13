@@ -8,7 +8,7 @@ class Failed extends Component {
         let data = this.props.todo.todoData;
         return (
             <View style={styles.className}>
-                <View>
+                <View style={styles.titleView}>
                     <Text style={styles.pageTitle}>Failed Tasks</Text>
                 </View>
                 <FlatList
@@ -18,7 +18,7 @@ class Failed extends Component {
                         !item.isFail &&
                         <View style={styles.flatListInside}>
                             <View style={styles.titleTaskView}>
-                                <Text style={styles.listText}>{item.name.slice(0, 20)}{item.name.length > 20&&'...'}</Text>
+                                <Text style={styles.listText}>{item.name}</Text>
                             </View>
                             <View style={styles.statusTaskView}>
                                 <Text style={styles.statusTaskText}>Failed</Text>
@@ -33,11 +33,13 @@ class Failed extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        marginHorizontal: 30,
         marginTop:20
     },
+    titleView:{
+        marginLeft:30
+    },
     flatListInside: {
-        marginVertical: 20,
+        marginVertical: 5,
         flex: 1,
         padding: 15,
         borderRadius: 1,
@@ -45,6 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
+        marginHorizontal: 30,
     },
     
     listText: {

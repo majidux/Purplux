@@ -6,10 +6,14 @@ export default class LogoArea extends Component {
         return (
             <View style={styles.className}>
                 <View>
-                    <Image source={require('../Assets/image/logo.png')} style={styles.logoStyle}/>
+                    <Image source={require('../Assets/image/PurpleLogo.png')} style={styles.logoStyle}/>
                 </View>
                 <View>
-                    <Text style={styles.nameTitle}>Purplux</Text>
+                    <Image
+                        source={require('../Assets/image/logo.png')}
+                        style={{width:50,height:50}}
+                    />
+                    {/*<Text style={styles.nameTitle}>Your tasks</Text>*/}
                 </View>
             </View>
         );
@@ -24,11 +28,11 @@ const styles = StyleSheet.create({
         paddingHorizontal:20
     },
     logoStyle:{
-        width:50,
-        height:50
+        width:140,
+        height:45
     },
     nameTitle:{
-        color:'#373737',
+        color:'#52286d',
         fontSize:22,
         fontWeight:'600'
     }

@@ -95,12 +95,15 @@ export const getTaskDataUnfinished = () => {
 // Update the isComplete status
 export const updateStatus = (id) => {
     return dispatch => {
+        let isFail = {
+            "isFail": false
+        };
         let data = {
             "isComplete": true
         };
         let trueComplete = true;
         const url = `http://10.0.2.2:3000/tasks/`;
-        fetch(`${url}${id}/?isComplete=${trueComplete}`,
+        fetch(`${url}${id}/?isComplete=${trueComplete}&&isFail=${isFail}`,
             {
                 method: 'PATCH',
                 headers: {
@@ -124,9 +127,12 @@ export const updateFailure = (id) => {
         let data = {
             "isFail": false
         };
+        let isComplete ={
+            "isComplete": false
+        }
         let falser = false;
         const url = `http://10.0.2.2:3000/tasks/`;
-        fetch(`${url}${id}/?isFail=${falser}`,
+        fetch(`${url}${id}/?isFail=${falser}&&isComplete=${isComplete}`,
             {
                 method: 'PATCH',
                 headers: {

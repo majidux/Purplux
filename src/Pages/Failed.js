@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {connect} from 'react-redux'
-import {getUsersDataUnfinished} from '../Service/fetchApi/fetchAction'
+import {getTaskDataUnfinished} from '../Service/fetchApi/fetchAction'
 
 class Failed extends Component {
     render() {
@@ -18,7 +18,7 @@ class Failed extends Component {
                         !item.isFail &&
                         <View style={styles.flatListInside}>
                             <View style={styles.titleTaskView}>
-                                <Text style={styles.listText}>{item.name}</Text>
+                                <Text style={styles.listText}>{item.name.slice(0, 20)}{item.name.length > 20&&'...'}</Text>
                             </View>
                             <View style={styles.statusTaskView}>
                                 <Text style={styles.statusTaskText}>Failed</Text>
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     titleTaskView: {
-        flex:4,
+        flex:1,
     },
     statusTaskView:{
-        flex:1,
         backgroundColor:'#e45',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 3
+        borderRadius: 3,
+        paddingHorizontal:5
     },
     pageTitle:{
         fontSize: 20,
@@ -75,5 +75,5 @@ const mapStateToProps = (state) => ({
     todo: state.getDataReducer,
 });
 
-export default connect(mapStateToProps, {getUsersDataUnfinished})(Failed);
+export default connect(mapStateToProps, {getUsersDataUnfinished: getTaskDataUnfinished})(Failed);
 

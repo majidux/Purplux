@@ -1,13 +1,50 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
+import {addUserData} from '../Service/usersApi/usersAction';
+import {connect} from 'react-redux'
 
-export default class SignUp extends Component {
+class SignUp extends Component {
     
     static navigationOptions = ({navigation}) => {
         return {
             title: 'Sign Up'
         }
     }
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            email: '',
+            password: ''
+        }
+    }
+    
+    userNameSetState = (username) => {
+        this.setState({username: username})
+    }
+    
+    emailSetState = (email) => {
+        this.setState({email: email})
+    }
+    
+    passwordSetState = (password) => {
+        this.setState({password: password})
+    }
+    
+    userNameFunc = () => {
+        if (!this.state.username.length) {
+            return;
+        } else {
+            let username = this.state.username;
+            let email = this.state.email;
+            let password = this.state.password;
+            this.props.addUserData(username,email,password);
+            this.setState({username: ''})
+            this.props.navigation.navigate('Login')
+        }
+    }
+    
     
     render() {
         return (
@@ -16,20 +53,23 @@ export default class SignUp extends Component {
                     <View style={styles.textInputViewStyle}>
                         <TextInput
                             placeholder={'User name'}
+                            onChangeText={this.userNameSetState.bind(this)}
                         />
                     </View>
                     <View style={styles.textInputViewStyle}>
                         <TextInput
                             placeholder={'Email'}
+                            onChangeText={this.emailSetState.bind(this)}
                         />
                     </View>
                     <View style={styles.textInputViewStyle}>
                         <TextInput
                             placeholder={'Password'}
+                            onChangeText={this.passwordSetState.bind(this)}
                         />
                     </View>
                     <View style={styles.buttonArea}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+                        <TouchableOpacity onPress={this.userNameFunc}>
                             <View style={styles.signUpButton}>
                                 <Text style={styles.textStyleButton}>Sign Up</Text>
                             </View>
@@ -40,6 +80,7 @@ export default class SignUp extends Component {
         );
     }
 }
+
 const styles = StyleSheet.create({
     className: {
         flex: 1,
@@ -74,3 +115,9 @@ const styles = StyleSheet.create({
         fontSize: 17
     },
 });
+const mapStateToProps = (state) => {
+    return {
+        user: state.userReducer
+    }
+}
+export default connect(mapStateToProps, {addUserData})(SignUp);

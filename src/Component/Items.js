@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ActivityIndic
 import {connect} from "react-redux";
 import {
     addTodo,
-    getUsersDataUnfinished,
+    getTaskDataUnfinished,
     deleteTodo,
     updateStatus,
     updateFailure
@@ -53,7 +53,7 @@ class Items extends Component {
                         item.isComplete || item.isFail &&
                         <View style={styles.todoView}>
                             <View>
-                                <Text style={styles.textName}>{item.name}</Text>
+                                <Text numberOfLines={1} style={styles.textName}>{item.name.slice(0, 14)}{item.name.length > 14&&'...'}</Text>
                             </View>
                             <View style={styles.buttonOptions}>
                                 <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
@@ -78,7 +78,7 @@ class Items extends Component {
                                             strokeWidth={10}
                                             stroke={'#000'}
                                             strokeLinejoin={'bevel'}
-                                            fill={'#45ba28'}
+                                            fill={'#57b993'}
                                         />
                                     </View>
                                 </TouchableOpacity>
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
     },
     textName: {
         color: '#4d4d4d',
-        fontSize: 20,
-        fontWeight: '400'
+        fontSize: 16,
+        fontWeight: '500'
     },
     textUsername: {
         color: '#96b81d',
@@ -174,7 +174,7 @@ const mapStateToProps = (state) => {
     }
 };
 export default connect(mapStateToProps, {
-    getUsersDataUnfinished,
+    getUsersDataUnfinished: getTaskDataUnfinished,
     addTodo,
     deleteTodo,
     updateStatus,

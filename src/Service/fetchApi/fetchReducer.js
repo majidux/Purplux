@@ -1,4 +1,4 @@
-import {GET_BEGIN, GET_SUCCESS, GET_FAILED, ADD_TODO, DELETE_TODO, CHANGE_STATUS,FAILED} from "./fetchType";
+import {GET_BEGIN, GET_SUCCESS, GET_FAILED, ADD_TODO, DELETE_TODO, CHANGE_STATUS, FAILED} from "./fetchType";
 
 const initialState = {
     todoData: [],
@@ -36,9 +36,7 @@ export const fetchReducer = (state = initialState, action) => {
             }
         }
         case DELETE_TODO : {
-            
             let itemIndex = state.todoData.findIndex((p => p.id === action.payload));
-            
             return {
                 ...state,
                 todoData: [
@@ -62,10 +60,10 @@ export const fetchReducer = (state = initialState, action) => {
             }
         }
         case FAILED: {
-        
+            
             let itemIndex = state.todoData.findIndex((p => p.id === action.payload));
             let item = state.todoData[itemIndex];
-        
+            
             return {
                 ...state,
                 todoData: [

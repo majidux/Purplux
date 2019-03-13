@@ -78,11 +78,11 @@ export const deleteTodo = (id) => {
 };
 
 // Get data which they are over from API
-export const getUsersDataUnfinished = () => {
+export const getTaskDataUnfinished = () => {
     return dispatch => {
-        let dataUser = `http://10.0.2.2:3000/tasks`;
+        let dataTask = `http://10.0.2.2:3000/tasks`;
         dispatch(getBegin());
-        fetch(dataUser, {method: 'GET'})
+        fetch(dataTask, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
                 dispatch(getSuccess(data))

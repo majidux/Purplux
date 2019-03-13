@@ -61,7 +61,7 @@ const RouteTabNavigator = createMaterialTopTabNavigator(
                     <Icon name="thumbs-down" size={30} color={color}/>
                 )
             }
-        },
+        }
     },
     {
         tabBarOptions: {

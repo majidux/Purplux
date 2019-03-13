@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {connect} from 'react-redux'
-import {getUsersDataUnfinished} from '../Service/fetchApi/fetchAction'
+import {getTaskDataUnfinished} from '../Service/fetchApi/fetchAction'
 
 class Done extends Component {
     
@@ -20,7 +20,7 @@ class Done extends Component {
                         item.isComplete &&
                         <View style={styles.flatListInside}>
                             <View style={styles.titleTaskView}>
-                                <Text style={styles.listText}>{item.name}</Text>
+                                <Text style={styles.listText}>{item.name.slice(0, 20)}{item.name.length > 20 && '...'}</Text>
                             </View>
                             <View style={styles.statusTaskView}>
                                 <Text style={styles.statusTaskText}>Finished</Text>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     className: {
         flex: 1,
         marginHorizontal: 30,
-        marginTop:20
+        marginTop: 20
     },
     flatListInside: {
         marginVertical: 20,
@@ -53,28 +53,28 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 20
     },
-    statusTaskText:{
+    statusTaskText: {
         color: '#fff',
         fontSize: 15
     },
     titleTaskView: {
-        flex:4,
+        flex: 1,
     },
-    statusTaskView:{
-        flex:1,
-        backgroundColor:'#45ba28',
+    statusTaskView: {
+        backgroundColor: '#57b993',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 3
+        borderRadius: 3,
+        paddingHorizontal: 5
     },
-    pageTitle:{
+    pageTitle: {
         fontSize: 20,
         fontWeight: '600',
-        color:'#45ba28'
+        color: '#57b993'
     }
 });
 const mapStateToProps = (state) => ({
     todo: state.getDataReducer,
 });
 
-export default connect(mapStateToProps, {getUsersDataUnfinished})(Done);
+export default connect(mapStateToProps, {getUsersDataUnfinished: getTaskDataUnfinished})(Done);

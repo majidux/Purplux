@@ -1,9 +1,9 @@
 import {combineReducers} from "redux";
 import * as getReducer from './fetchApi/fetchReducer';
-// import * as addReducer from "./addTodo/addReducer";
+import * as usersReducer from "./usersApi/usersReducer";
 
 const rootReducer = combineReducers({
     getDataReducer:getReducer.fetchReducer,
-    // getAddReducer:addReducer.addReducer
+    userReducer:usersReducer.usersReducer
 });
 export default rootReducer;

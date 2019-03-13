@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         marginVertical: 10,
-        flex:4
+        flex:1
     },
     sendButtonViewStyle:{
-        flex:1
+        // flex:1
     }
 });
 

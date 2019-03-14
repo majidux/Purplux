@@ -30,12 +30,6 @@ class Items extends Component {
         this.props.deleteTodo(id);
     };
     
-    // emptyList = () =>
-    //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    //         <Text style={{fontSize: 30}}>The List is Empty</Text>
-    //     </View>;
-    
-    
     render() {
         let todoList = this.props.todo.todoData;
         return (
@@ -50,7 +44,6 @@ class Items extends Component {
                     onRefresh={()=>this.props.getUsersDataUnfinished()}
                     refreshing={false}
                     keyExtractor={(item) => item.id.toString()}
-                    // ListEmptyComponent={this.emptyList}
                     renderItem={({item}) =>
                         item.isComplete || item.isFail &&
                         <View style={styles.todoView}>

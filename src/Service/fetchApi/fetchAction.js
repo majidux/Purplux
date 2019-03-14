@@ -39,10 +39,12 @@ export const failed = (id) => ({
 // Post data to API
 export const addTodo = (name) => {
     return dispatch => {
+        let now = new Date();
         let data = {
             "name": name,
             "isComplete": false,
-            "isFail": true
+            "isFail": true,
+            "date":now.toLocaleDateString()
         };
         fetch(`http://10.0.2.2:3000/tasks`,
             {

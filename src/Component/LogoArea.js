@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import SvgUri from "react-native-svg-uri";
 
 export default class LogoArea extends Component {
     render() {
@@ -8,13 +9,20 @@ export default class LogoArea extends Component {
                 <View>
                     <Image source={require('../Assets/image/PurpleLogo.png')} style={styles.logoStyle}/>
                 </View>
-                <View>
-                    <Image
-                        source={require('../Assets/image/logo.png')}
-                        style={{width:50,height:50}}
-                    />
-                    {/*<Text style={styles.nameTitle}>Your tasks</Text>*/}
-                </View>
+                
+                <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
+                    <View>
+                        <SvgUri
+                            width={'24'}
+                            height={'24'}
+                            source={require('../Assets/image/three-lines.svg')}
+                            strokeWidth={10}
+                            stroke={'#000'}
+                            strokeLinejoin={'bevel'}
+                            fill={'#e45'}
+                        />
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }

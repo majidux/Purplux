@@ -44,7 +44,7 @@ export const addTodo = (name) => {
             "name": name,
             "isComplete": false,
             "isFail": true,
-            "date":now.toLocaleDateString()
+            "createdAt":now.toLocaleDateString()
         };
         fetch(`http://10.0.2.2:3000/tasks`,
             {

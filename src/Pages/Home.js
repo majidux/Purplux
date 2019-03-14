@@ -3,6 +3,7 @@ import {View, StyleSheet,Text} from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import AddTodo from "./AddTodo";
 import LogoArea from "../Component/LogoArea";
+import DrawerNavigator from "../Routes/DrawerNavigator";
 
 class Home extends Component {
     
@@ -23,7 +24,7 @@ class Home extends Component {
 const RouteStack = createStackNavigator(
     {
         Home:Home,
-        AddTodo:AddTodo
+        DrawerNavigator:DrawerNavigator
     },
     {
         initialRouteName:'Home'

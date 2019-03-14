@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import SvgUri from "react-native-svg-uri";
 
 export default class LogoArea extends Component {
+    
+    
     render() {
         return (
             <View style={styles.className}>
                 <View>
                     <Image source={require('../Assets/image/PurpleLogo.png')} style={styles.logoStyle}/>
                 </View>
-                
-                <TouchableOpacity onPress={()=>this.props.navigation.openDrawer()}>
+                <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                     <View>
                         <SvgUri
                             width={'24'}
@@ -30,18 +31,18 @@ export default class LogoArea extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        paddingHorizontal:20
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20
     },
-    logoStyle:{
-        width:140,
-        height:45
+    logoStyle: {
+        width: 140,
+        height: 45
     },
-    nameTitle:{
-        color:'#52286d',
-        fontSize:22,
-        fontWeight:'600'
+    nameTitle: {
+        color: '#52286d',
+        fontSize: 22,
+        fontWeight: '600'
     }
 });

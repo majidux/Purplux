@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import SvgUri from "react-native-svg-uri";
 
 export default class LogoArea extends Component {
     
@@ -11,19 +10,6 @@ export default class LogoArea extends Component {
                 <View>
                     <Image source={require('../Assets/image/PurpleLogo.png')} style={styles.logoStyle}/>
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
-                    <View>
-                        <SvgUri
-                            width={'24'}
-                            height={'24'}
-                            source={require('../Assets/image/three-lines.svg')}
-                            strokeWidth={10}
-                            stroke={'#000'}
-                            strokeLinejoin={'bevel'}
-                            fill={'#e45'}
-                        />
-                    </View>
-                </TouchableOpacity>
             </View>
         );
     }

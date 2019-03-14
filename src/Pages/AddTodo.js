@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Picker} from 'react-native';
 import {createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
 import Items from "../Component/Items";
 import Done from "./Done";
@@ -7,15 +7,17 @@ import SendItem from "../Component/SendItem";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Failed from "./Failed";
 
+
 const gradientColor = '#f6f6f6';
 const data = Array.from({length: 500});
 
 class AddTodo extends Component {
     
     
+    
     render() {
         return (
-            <View style={styles.className}>
+            <View style={this.state.theme ? [styles.className,{backgroundColor:'#585858'}] : [styles.className]}>
                 
                 {/*{data.map((_, i) => (*/}
                     {/*<View key={i} style={[styles.backGround,*/}
@@ -27,7 +29,12 @@ class AddTodo extends Component {
                 {/*))}*/}
                 
                 <View style={styles.inProgressTasksView}>
-                    <Text style={styles.inProgressTasks}>Tasks in progress</Text>
+                    <View>
+                        <Text style={styles.inProgressTasks}>Tasks in progress</Text>
+                    </View>
+                    <View>
+                    
+                    </View>
                 </View>
                 <Items/>
                 <SendItem/>
@@ -105,6 +112,9 @@ const styles = StyleSheet.create({
     },
     inProgressTasksView:{
         marginTop:20,
-        marginLeft:30
+        marginLeft:30,
+        justifyContent:'space-between',
+        flexDirection:'row',
+        alignItems:'center'
     }
 });

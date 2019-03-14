@@ -1,9 +1,10 @@
-import {BEGIN_USER, ADD_USER, FAILED_USER, SUCCESS_USER} from './usersType';
+import {BEGIN_USER, ADD_USER, FAILED_USER, SUCCESS_USER,CHANGE_THEME} from './usersType';
 
 const initialState = {
     users: [],
     loading:false,
-    error:null
+    error:null,
+    theme:false
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -25,6 +26,10 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        case CHANGE_THEME:
+            return{
+                theme:action.payload
             }
         default:
             return state

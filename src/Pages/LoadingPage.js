@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems:'center'
     }
 });
-const RootSwitch = createSwitchNavigator(
+const RootSwitchLoadingPage = createSwitchNavigator(
     {
         LoadingPage:LoadingPage,
         Login:Login
@@ -69,4 +69,4 @@ const RootSwitch = createSwitchNavigator(
         initialRouteName:'LoadingPage'
     }
 );
-export default createAppContainer(RootSwitch);
+export default createAppContainer(RootSwitchLoadingPage);

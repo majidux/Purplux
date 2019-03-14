@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    FlatList,
+    TouchableOpacity,
+    ActivityIndicator,
+} from 'react-native';
 import {connect} from "react-redux";
 import {
     addTodo,
@@ -12,6 +20,7 @@ import SvgUri from "react-native-svg-uri";
 
 
 class Items extends Component {
+    
     
     
     completeTask = (id) => {

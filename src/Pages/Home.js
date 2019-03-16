@@ -8,6 +8,8 @@ import SvgUri from "react-native-svg-uri";
 import Setting from "./Setting";
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
 import {connect} from "react-redux";
+import ThemedButton from "../Component/themed-button";
+import {ThemeContext, themes} from "../Component/themes-context";
 
 class Home extends Component {
     
@@ -36,18 +38,14 @@ class Home extends Component {
         }
     };
     
-    
-    
     render() {
         return (
-            <View style={this.props.theme.theme ? styles.darkStyle : styles.lightStyle}>
+            <View style={styles.lightStyle}>
                 <RouteTabNavigator/>
             </View>
         );
     }
 }
-
-
 
 const styles = StyleSheet.create({
     lightStyle: {
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        theme: state.userReducer,
+        change: state.userReducer,
     }
 };
 export default connect(mapStateToProps)(Home)

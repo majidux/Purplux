@@ -4,7 +4,7 @@ const initialState = {
     users: [],
     loading:false,
     error:null,
-    theme:false
+    theme:''
 }
 
 export const usersReducer = (state = initialState, action) => {

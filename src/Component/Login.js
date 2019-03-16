@@ -13,7 +13,8 @@ class Login extends Component {
         super(props);
         this.state = {
             userName: '',
-            lastName:''
+            lastName:'',
+            usernameError:''
         };
     }
     
@@ -35,9 +36,9 @@ class Login extends Component {
                     </View>
                 
                 </View>
-                {!!this.state.nameError && (
+                {!!this.state.usernameError && (
                     <View style={styles.errorFieldView}>
-                        <Text style={styles.errorFieldText}>{this.state.nameError}</Text>
+                        <Text style={styles.errorFieldText}>{this.state.usernameError}</Text>
                     </View>
                 )}
                 <View style={styles.textInputView}>
@@ -55,7 +56,7 @@ class Login extends Component {
                 <View style={styles.bottomArea}>
                     <TouchableOpacity onPress={() => {
                         if (this.state.userName.trim() === "" || this.state.lastName.trim() === "") {
-                            this.setState({nameError: "You need to type your User name and password"});
+                            this.setState({usernameError: "You need to type your User name and password"});
                         } else {
                             this.props.navigation.navigate('Home')
                         }
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#ff5954',
         marginHorizontal: 30,
         borderRadius: 5,
-        paddingHorizontal: 10,
-        marginVertical: 10,
+        paddingHorizontal: 5,
+        marginVertical: 5,
         justifyContent:'center',
         alignItems:'center'
     },

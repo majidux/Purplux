@@ -8,10 +8,11 @@ class ThemedButton extends Component {
         let theme = this.context;
         return (
             
-                <TouchableOpacity {...props} style={{backgroundColor: theme.background}}>
+                <TouchableOpacity
+                    {...props}
+                    style={{backgroundColor: theme.background}}>
                     <Text>Change Theme</Text>
                 </TouchableOpacity>
-            
         );
     }
 }

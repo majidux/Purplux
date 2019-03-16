@@ -11,6 +11,18 @@ import {connect} from "react-redux";
 import ThemedButton from "../Component/themed-button";
 import {ThemeContext, themes} from "../Component/themes-context";
 
+
+Toolbar = (props) => {
+    return (
+        <ThemedButton onPress={props.changeTheme}>
+            Changer
+        </ThemedButton>
+    )
+    
+}
+
+
+
 class Home extends Component {
     
     static navigationOptions = ({navigation}) => {
@@ -38,9 +50,10 @@ class Home extends Component {
         }
     };
     
+    
     render() {
         return (
-            <View style={styles.lightStyle}>
+            <View style={[styles.lightStyle]}>
                 <RouteTabNavigator/>
             </View>
         );

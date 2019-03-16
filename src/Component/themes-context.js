@@ -6,7 +6,8 @@ export const themes = {
         paddingLeft: 20,
         paddingTop: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex:-1
     },
     dark: {
         backgroundColor: '#575757',
@@ -14,7 +15,8 @@ export const themes = {
         paddingLeft: 20,
         paddingTop: 20,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        zIndex:-1
     },
 };
 

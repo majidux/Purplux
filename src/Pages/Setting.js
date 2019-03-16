@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import ThemedButton from "../Component/themed-button";
 import {ThemeContext, themes} from "../Component/themes-context";
 
-Toolbar = (props)=>{
+Toolbar = (props) => {
     return (
         <ThemedButton onPress={props.changeTheme}>
             Changer
@@ -21,19 +21,16 @@ class Setting extends Component {
         this.state = {
             theme: themes.light,
         };
-        this.toggleTheme = () => {
-            let themeState=this.state.theme
-            this.props.changeTheme(themeState)
-            this.setState(state => ({
-                theme:
-                    state.theme === themes.dark
-                        ? themes.light
-                        : themes.dark,
-            }));
-        };
+        
     }
-    
-    
+    toggleTheme = () => {
+        this.setState(state => ({
+            theme:
+                state.theme === themes.dark
+                    ? themes.light
+                    : themes.dark,
+        }));
+    };
     
     // constructor(props) {
     //     super(props);
@@ -61,20 +58,20 @@ class Setting extends Component {
                 
                 
                 {/*{*/}
-                    {/*this.props.theme.theme &&*/}
-                    {/*<View>*/}
-                        {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
-                            {/*<Text style={styles.darkFont}>Dark</Text>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
+                {/*this.props.theme.theme &&*/}
+                {/*<View>*/}
+                {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
+                {/*<Text style={styles.darkFont}>Dark</Text>*/}
+                {/*</TouchableOpacity>*/}
+                {/*</View>*/}
                 {/*}*/}
                 {/*{*/}
-                    {/*!this.props.theme.theme &&*/}
-                    {/*<View>*/}
-                        {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
-                            {/*<Text style={styles.lightFont}>Light</Text>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
+                {/*!this.props.theme.theme &&*/}
+                {/*<View>*/}
+                {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
+                {/*<Text style={styles.lightFont}>Light</Text>*/}
+                {/*</TouchableOpacity>*/}
+                {/*</View>*/}
                 {/*}*/}
             </View>
         );

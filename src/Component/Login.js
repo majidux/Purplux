@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, Button} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, Animated, Easing} from 'react-native';
 import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 import DrawerNavigator from "../Routes/HomeDrawerStack";
 import SignUp from "../Pages/SignUp";
@@ -13,10 +13,46 @@ class Login extends Component {
         super(props);
         this.state = {
             userName: '',
-            lastName:'',
-            usernameError:''
+            password: '',
+            usernameError: '',
+            passwordError: '',
+            transformX: new Animated.Value(70),
+            transformY: new Animated.Value(-70),
+            opacity: new Animated.Value(0),
         };
     }
+    
+    componentDidMount() {
+        this.animationParallel()
+    }
+    
+    animationParallel = () => ([
+        Animated.timing(
+            this.state.transformX,
+            {
+                toValue: 0,
+                duration: 1000,
+                // easing: Easing.back(),
+                useNativeDriver: true
+            }
+        ).start(),
+        Animated.timing(
+            this.state.transformY,
+            {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true
+            }
+        ).start(),
+        Animated.timing(
+            this.state.opacity,
+            {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true
+            }
+        ).start(),
+    ])
     
     static navigationOptions = ({navigation}) => {
         return {
@@ -28,12 +64,12 @@ class Login extends Component {
         return (
             <View style={styles.className}>
                 <View style={styles.topArea}>
-                    <View style={styles.imageStyleView}>
+                    <Animated.View style={[styles.imageStyleView, {opacity: this.state.opacity}]}>
                         <Image
                             source={require('../Assets/image/mainPagePhoto.png')}
                             style={styles.imageBack}
                         />
-                    </View>
+                    </Animated.View>
                 
                 </View>
                 {!!this.state.usernameError && (
@@ -41,29 +77,36 @@ class Login extends Component {
                         <Text style={styles.errorFieldText}>{this.state.usernameError}</Text>
                     </View>
                 )}
-                <View style={styles.textInputView}>
+                <Animated.View style={[styles.textInputView, {
+                    opacity: this.state.opacity,
+                    transform: [{translateY: this.state.transformX}]
+                }]}>
                     <TextInput
                         placeholder={'User name'}
                         onChangeText={userName => this.setState({userName})}
                         value={this.state.text}/>
-                </View>
-                <View style={styles.textInputView}>
+                </Animated.View>
+                <Animated.View style={[styles.textInputView, {
+                    opacity: this.state.opacity,
+                    transform: [{translateY: this.state.transformY}]
+                }]}>
                     <TextInput
                         placeholder={'Password'}
-                        onChangeText={lastName => this.setState({lastName})}
+                        onChangeText={password => this.setState({password})}
                         value={this.state.text}/>
-                </View>
+                </Animated.View>
                 <View style={styles.bottomArea}>
                     <TouchableOpacity onPress={() => {
-                        if (this.state.userName.trim() === "" || this.state.lastName.trim() === "") {
-                            this.setState({usernameError: "You need to type your User name and password"});
+                        if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
+                            this.setState({usernameError: "Required fields are empty"});
                         } else {
                             this.props.navigation.navigate('Home')
                         }
-                    }}>
-                        <View style={styles.loginButton}>
+                    }}
+                    >
+                        <Animated.View style={[styles.loginButton, {opacity: this.state.opacity}]}>
                             <Text style={styles.textStyleButton}>Login</Text>
-                        </View>
+                        </Animated.View>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
                         <View>
@@ -75,7 +118,6 @@ class Login extends Component {
         );
     }
 }
-
 
 
 const styles = StyleSheet.create({
@@ -131,19 +173,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    errorFieldView:{
+    errorFieldView: {
         backgroundColor: '#ff5954',
         marginHorizontal: 30,
         borderRadius: 5,
         paddingHorizontal: 5,
         marginVertical: 5,
-        justifyContent:'center',
-        alignItems:'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    errorFieldText:{
-        color:'#fff',
-        fontWeight:'600',
-        fontSize:16
+    errorFieldText: {
+        color: '#fff',
+        fontWeight: '600',
+        fontSize: 16
     }
 });
 const mapStateToProps = (state) => {

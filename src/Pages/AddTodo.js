@@ -6,6 +6,7 @@ import Done from "./Done";
 import SendItem from "../Component/SendItem";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Failed from "./Failed";
+import {connect} from "react-redux";
 
 
 const gradientColor = '#f6f6f6';
@@ -17,7 +18,7 @@ class AddTodo extends Component {
     
     render() {
         return (
-            <View style={this.state.theme ? [styles.className,{backgroundColor:'#585858'}] : [styles.className]}>
+            <View style={[styles.className]}>
                 
                 {/*{data.map((_, i) => (*/}
                     {/*<View key={i} style={[styles.backGround,*/}
@@ -43,54 +44,9 @@ class AddTodo extends Component {
     }
 }
 
-const RouteTabNavigator = createMaterialTopTabNavigator(
-    {
-        AddTodo: {
-            screen: AddTodo,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="list" size={30} color={color}/>
-                )
-            }
-        },
-        Done: {
-            screen: Done,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="thumbs-up" size={30} color={color}/>
-                )
-            }
-        },
-        Failed: {
-            screen: Failed,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="thumbs-down" size={30} color={color}/>
-                )
-            }
-        }
-    },
-    {
-        tabBarOptions: {
-            activeTintColor: '#8979f3',
-            inactiveTintColor: '#949494',
-            showIcon: true,
-            showLabel: false,
-            labelStyle: {
-                fontSize: 12,
-                fontWeight: '700'
-            },
-            tabStyle: {
-                flex:1
-            },
-            style: {
-                backgroundColor: '#e7e7e7',
-            },
-        }
-    }
-);
 
-export default createAppContainer(RouteTabNavigator)
+
+
 
 const styles = StyleSheet.create({
     className: {
@@ -118,3 +74,9 @@ const styles = StyleSheet.create({
         alignItems:'center'
     }
 });
+const mapStateToProps = (state) => {
+    return {
+        theme: state.userReducer,
+    }
+};
+export default connect(mapStateToProps)(AddTodo)

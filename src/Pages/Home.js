@@ -6,6 +6,8 @@ import LogoArea from "../Component/LogoArea";
 import About from "./About";
 import SvgUri from "react-native-svg-uri";
 import Setting from "./Setting";
+import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
+import {connect} from "react-redux";
 
 class Home extends Component {
     
@@ -37,43 +39,13 @@ class Home extends Component {
     render() {
         return (
             <View style={styles.className}>
-                <AddTodo/>
+                <RouteTabNavigator/>
             </View>
         );
     }
 }
 
-const RouteStack = createStackNavigator(
-    {
-        Home: Home,
-        About:About,
-        Setting:Setting
-    },
-    {
-        initialRouteName: 'Home'
-    }
-);
-const DrawerNavigator = createDrawerNavigator(
-    {
-        Home: RouteStack,
-        About:About,
-        Setting:Setting
-    },
-    {
-        contentOptions:{
-            activeTintColor:'#8979f3',
-            inactiveTintColor:'#949494',
-            drawerType:'slide',
-            activeLabelStyle:{
-                fontSize:20
-            },
-            inactiveLabelStyle:{
-                fontSize: 16
-            }
-        }
-    }
-);
-export default DrawerNavigator;
+
 
 const styles = StyleSheet.create({
     className: {
@@ -83,3 +55,10 @@ const styles = StyleSheet.create({
         marginLeft: 20
     }
 });
+
+const mapStateToProps = (state) => {
+    return {
+        theme: state.userReducer,
+    }
+};
+export default connect(mapStateToProps)(Home)

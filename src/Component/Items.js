@@ -58,6 +58,8 @@ class Items extends Component {
                         <View style={styles.todoView}>
                             <View style={styles.titleView}>
                                 <Text style={styles.textName}>{item.name}</Text>
+                                <Text style={styles.dateTimeTextStyle}>{item.date}</Text>
+                                <Text style={styles.dateTimeTextStyle}>{item.time}</Text>
                             </View>
                             <View style={styles.buttonOptions}>
                                 <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
@@ -167,6 +169,9 @@ const styles = StyleSheet.create({
     },
     titleView:{
         flex:1
+    },
+    dateTimeTextStyle:{
+        color:'#3d3d3d'
     }
 });
 

@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20
     },
     logoStyle: {
-        width: 140,
-        height: 45
+        width: 100,
+        height: 40
     },
     nameTitle: {
         color: '#52286d',

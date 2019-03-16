@@ -36,9 +36,11 @@ class Home extends Component {
         }
     };
     
+    
+    
     render() {
         return (
-            <View style={styles.className}>
+            <View style={this.props.theme.theme ? styles.darkStyle : styles.lightStyle}>
                 <RouteTabNavigator/>
             </View>
         );
@@ -48,8 +50,13 @@ class Home extends Component {
 
 
 const styles = StyleSheet.create({
-    className: {
+    lightStyle: {
         flex: 1,
+        backgroundColor: '#f6f6f6'
+    },
+    darkStyle: {
+        flex: 1,
+        backgroundColor: '#373737'
     },
     drawerButton: {
         marginLeft: 20

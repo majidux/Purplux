@@ -75,19 +75,6 @@ class Login extends Component {
     }
 }
 
-const RouteStack = createStackNavigator(
-    {
-        Login: Login,
-        SignUp: SignUp,
-    }
-);
-
-const RouteSwitch = createSwitchNavigator(
-    {
-        RouteStack: RouteStack,
-        Home: DrawerNavigator
-    }
-);
 
 
 const styles = StyleSheet.create({
@@ -163,4 +150,4 @@ const mapStateToProps = (state) => {
         theme: state.userReducer,
     }
 };
-export default connect(mapStateToProps)(RouteSwitch)
+export default connect(mapStateToProps)(Login)

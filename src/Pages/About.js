@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import LogoArea from "./Home";
-import SvgUri from "react-native-svg-uri";
 import {connect} from "react-redux";
-import {addTodo, deleteTodo, getTaskDataUnfinished, updateFailure, updateStatus} from "../Service/fetchApi/fetchAction";
 
 class About extends Component {
    

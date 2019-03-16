@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Text, Picker} from 'react-native';
-import {createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
 import Items from "../Component/Items";
-import Done from "./Done";
 import SendItem from "../Component/SendItem";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Failed from "./Failed";
 import {connect} from "react-redux";
 
 
@@ -51,7 +47,6 @@ class AddTodo extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#f6f6f6'
     },
     backGround: {
         position: 'absolute',

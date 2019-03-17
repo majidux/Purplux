@@ -22,7 +22,6 @@ Toolbar = (props) => {
 }
 
 
-
 class Home extends Component {
     
     static navigationOptions = ({navigation}) => {
@@ -53,9 +52,13 @@ class Home extends Component {
     
     render() {
         return (
-            <View style={[styles.lightStyle]}>
-                <RouteTabNavigator/>
-            </View>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.lightStyle,{backgroundColor: theme.backgroundColor}]}>
+                        <RouteTabNavigator/>
+                    </View>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }

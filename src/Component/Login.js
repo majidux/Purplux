@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, Animated, Easing} from 'react-native';
-import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
-import DrawerNavigator from "../Routes/HomeDrawerStack";
 import SignUp from "../Pages/SignUp";
 import {connect} from "react-redux";
 import {ThemeContext} from './themes-context'

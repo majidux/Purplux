@@ -1,63 +1,34 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Picker, Animated, TouchableOpacity, TextInput} from 'react-native';
-import {changeTheme} from '../Service/usersApi/usersAction';
+import {themeChanger} from '../Service/usersApi/usersAction';
 import {connect} from 'react-redux';
 import ThemedButton from "../Component/themed-button";
 import {ThemeContext, themes} from "../Component/themes-context";
 
-Toolbar = (props) => {
-    return (
-        <ThemedButton onPress={props.changeTheme}>
-            Changer
-        </ThemedButton>
-    )
-    
-}
 
 class Setting extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {
-            theme: themes.light,
-        };
+        this.state = {};
         
     }
     
     toggleTheme = () => {
-        this.setState(state => ({
-            theme:
-                state.theme === themes.dark
-                    ? themes.light
-                    : themes.dark,
-        }));
+        this.props.themeChanger()
     };
-    
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         theme: true,
-    //     }
-    // }
-    
-    
-    // sendThemeChange = () => {
-    //     this.setState({theme:!this.state.theme})
-    //     let changer = this.state.theme
-    //     this.props.changeTheme(changer)
-    // }
-    
     
     render() {
         return (
             
-                
-                <View style={ {flex:1, backgroundColor: this.context.backgroundColor}}>
-                
-                
-                </View>
-                
             
+            <View style={{flex: 1}}>
+                <TouchableOpacity onPress={this.toggleTheme}>
+                    <Text>PRESS CHANGE THEME</Text>
+                </TouchableOpacity>
+            </View>
+        
+        
         );
     }
 }
@@ -94,4 +65,4 @@ const mapStateToProps = (state) => {
         theme: state.userReducer
     }
 }
-export default connect(mapStateToProps, {changeTheme})(Setting)
+export default connect(mapStateToProps, {themeChanger})(Setting)

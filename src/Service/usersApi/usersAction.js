@@ -20,9 +20,8 @@ export const addUser = (name) => ({
     payload: name
 });
 
-export const changeTheme =(changer)=>({
+export const themeChanger =()=>({
     type:CHANGE_THEME,
-    payload:changer
 })
 
 

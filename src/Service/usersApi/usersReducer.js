@@ -1,10 +1,11 @@
 import {BEGIN_USER, ADD_USER, FAILED_USER, SUCCESS_USER,CHANGE_THEME} from './usersType';
+import {themes} from "../../Component/themes-context";
 
 const initialState = {
     users: [],
     loading:false,
     error:null,
-    theme:{}
+    theme:themes.light,
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -29,7 +30,10 @@ export const usersReducer = (state = initialState, action) => {
             }
         case CHANGE_THEME:
             return{
-                theme:action.payload
+                theme:
+                    state.theme === themes.dark
+                        ? themes.light
+                        : themes.dark,
             }
         default:
             return state

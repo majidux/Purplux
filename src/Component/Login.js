@@ -4,6 +4,7 @@ import {createStackNavigator, createSwitchNavigator} from 'react-navigation';
 import DrawerNavigator from "../Routes/HomeDrawerStack";
 import SignUp from "../Pages/SignUp";
 import {connect} from "react-redux";
+import {ThemeContext} from './themes-context'
 
 let deviceWidth = Dimensions.get('window').width;
 let deviceHeight = Dimensions.get('window').height;
@@ -62,59 +63,64 @@ class Login extends Component {
     
     render() {
         return (
-            <View style={styles.className}>
-                <View style={styles.topArea}>
-                    <Animated.View style={[styles.imageStyleView, {opacity: this.state.opacity}]}>
-                        <Image
-                            source={require('../Assets/image/mainPagePhoto.png')}
-                            style={styles.imageBack}
-                        />
-                    </Animated.View>
-                
-                </View>
-                {!!this.state.usernameError && (
-                    <View style={styles.errorFieldView}>
-                        <Text style={styles.errorFieldText}>{this.state.usernameError}</Text>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
+                        <View style={styles.topArea}>
+                            <Animated.View style={[styles.imageStyleView, {opacity: this.state.opacity}]}>
+                                <Image
+                                    source={require('../Assets/image/mainPagePhoto.png')}
+                                    style={styles.imageBack}
+                                />
+                            </Animated.View>
+        
+                        </View>
+                        {!!this.state.usernameError && (
+                            <View style={styles.errorFieldView}>
+                                <Text style={styles.errorFieldText}>{this.state.usernameError}</Text>
+                            </View>
+                        )}
+                        <Animated.View style={[styles.textInputView, {
+                            opacity: this.state.opacity,
+                            transform: [{translateY: this.state.transformX}]
+                        }]}>
+                            <TextInput
+                                placeholder={'User name'}
+                                onChangeText={userName => this.setState({userName})}
+                                value={this.state.text}/>
+                        </Animated.View>
+                        <Animated.View style={[styles.textInputView, {
+                            opacity: this.state.opacity,
+                            transform: [{translateY: this.state.transformY}]
+                        }]}>
+                            <TextInput
+                                placeholder={'Password'}
+                                onChangeText={password => this.setState({password})}
+                                value={this.state.text}/>
+                        </Animated.View>
+                        <View style={styles.bottomArea}>
+                            <TouchableOpacity onPress={() => {
+                                if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
+                                    this.setState({usernameError: "Required fields are empty"});
+                                } else {
+                                    this.props.navigation.navigate('Home')
+                                }
+                            }}
+                            >
+                                <Animated.View style={[styles.loginButton, {opacity: this.state.opacity}]}>
+                                    <Text style={styles.textStyleButton}>Login</Text>
+                                </Animated.View>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
+                                <View>
+                                    <Text style={styles.textStyleButtonSignIn}>You don't have a account?</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 )}
-                <Animated.View style={[styles.textInputView, {
-                    opacity: this.state.opacity,
-                    transform: [{translateY: this.state.transformX}]
-                }]}>
-                    <TextInput
-                        placeholder={'User name'}
-                        onChangeText={userName => this.setState({userName})}
-                        value={this.state.text}/>
-                </Animated.View>
-                <Animated.View style={[styles.textInputView, {
-                    opacity: this.state.opacity,
-                    transform: [{translateY: this.state.transformY}]
-                }]}>
-                    <TextInput
-                        placeholder={'Password'}
-                        onChangeText={password => this.setState({password})}
-                        value={this.state.text}/>
-                </Animated.View>
-                <View style={styles.bottomArea}>
-                    <TouchableOpacity onPress={() => {
-                        if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
-                            this.setState({usernameError: "Required fields are empty"});
-                        } else {
-                            this.props.navigation.navigate('Home')
-                        }
-                    }}
-                    >
-                        <Animated.View style={[styles.loginButton, {opacity: this.state.opacity}]}>
-                            <Text style={styles.textStyleButton}>Login</Text>
-                        </Animated.View>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
-                        <View>
-                            <Text style={styles.textStyleButtonSignIn}>You don't have a account?</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </ThemeContext.Consumer>
+            
         );
     }
 }

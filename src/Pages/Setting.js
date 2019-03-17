@@ -23,6 +23,7 @@ class Setting extends Component {
         };
         
     }
+    
     toggleTheme = () => {
         this.setState(state => ({
             theme:
@@ -49,31 +50,14 @@ class Setting extends Component {
     
     render() {
         return (
-            <View style={this.state.theme}>
-                <View>
-                    <ThemeContext.Provider value={this.state.theme}>
-                        <Toolbar changeTheme={this.toggleTheme}/>
-                    </ThemeContext.Provider>
+            
+                
+                <View style={ {flex:1, backgroundColor: this.context.backgroundColor}}>
+                
+                
                 </View>
                 
-                
-                {/*{*/}
-                {/*this.props.theme.theme &&*/}
-                {/*<View>*/}
-                {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
-                {/*<Text style={styles.darkFont}>Dark</Text>*/}
-                {/*</TouchableOpacity>*/}
-                {/*</View>*/}
-                {/*}*/}
-                {/*{*/}
-                {/*!this.props.theme.theme &&*/}
-                {/*<View>*/}
-                {/*<TouchableOpacity onPress={this.sendThemeChange}>*/}
-                {/*<Text style={styles.lightFont}>Light</Text>*/}
-                {/*</TouchableOpacity>*/}
-                {/*</View>*/}
-                {/*}*/}
-            </View>
+            
         );
     }
 }

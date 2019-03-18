@@ -2,11 +2,11 @@ import React from 'react';
 export const tabTheme = {
     light: {
         color:'#8979f3',
-        backgroundColor:'#e7e7e7'
+        tab:'#e7403e'
     },
     dark: {
         color:'#ffffff',
-        backgroundColor:'#424a57'
+        tab:'#1e5730'
     }
 };
 

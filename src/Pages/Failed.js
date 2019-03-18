@@ -10,7 +10,7 @@ class Failed extends Component {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={styles.className}>
+                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
                         <View style={styles.titleView}>
                             <Text style={styles.pageTitle}>Failed Tasks</Text>
                         </View>
@@ -39,7 +39,7 @@ class Failed extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        marginTop: 20
+        paddingTop: 20
     },
     titleView: {
         marginLeft: 30

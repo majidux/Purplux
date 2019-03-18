@@ -19,7 +19,7 @@ class Done extends Component {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={styles.className}>
+                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
                         <View style={styles.titleView}>
                             <Text style={[styles.pageTitle]}>Finished Tasks</Text>
                         </View>
@@ -28,9 +28,9 @@ class Done extends Component {
                             keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 item.isComplete &&
-                                <View style={[styles.flatListInside,{backgroundColor: theme.backgroundColor,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
+                                <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleTaskView}>
-                                        <Text style={[styles.listText,{color:theme.color}]}>{item.name}</Text>
+                                        <Text style={[styles.listText,{color:theme.fontColor}]}>{item.name}</Text>
                                     </View>
                                     <View style={styles.statusTaskView}>
                                         <Text style={styles.statusTaskText}>Finished</Text>
@@ -48,7 +48,7 @@ class Done extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        marginTop: 20,
+        paddingTop: 20,
     },
     titleView: {
         marginLeft: 30

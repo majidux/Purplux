@@ -17,7 +17,7 @@ class AddTodo extends Component {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={[styles.className,{backgroundColor: theme.backgroundColor}]}>
+                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
                         <View style={styles.inProgressTasksView}>
                             <View>
                                 <TabNavigatorContext.Consumer>

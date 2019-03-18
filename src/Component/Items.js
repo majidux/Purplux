@@ -45,7 +45,7 @@ class Items extends Component {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={styles.flatListView}>
+                    <View style={[styles.flatListView]}>
                         <View>
                             {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
                         </View>
@@ -56,13 +56,13 @@ class Items extends Component {
                             keyExtractor={(item) => item.id.toString()}
                             renderItem={({item}) =>
                                 item.isComplete || item.isFail &&
-                                <View style={[styles.todoView, {backgroundColor: theme.backgroundColor,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
+                                <View style={[styles.todoView, {backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleView}>
-                                        <Text style={[styles.textName, {color: theme.color}]}>{item.name}</Text>
+                                        <Text style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>
                                         <Text
-                                            style={[styles.dateTimeTextStyle, {color: theme.color}]}>{item.date}</Text>
+                                            style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.date}</Text>
                                         <Text
-                                            style={[styles.dateTimeTextStyle, {color: theme.color}]}>{item.time}</Text>
+                                            style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.time}</Text>
                                     </View>
                                     <View style={styles.buttonOptions}>
                                         <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>

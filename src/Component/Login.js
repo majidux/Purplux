@@ -71,7 +71,7 @@ class Login extends Component {
                                     style={styles.imageBack}
                                 />
                             </Animated.View>
-        
+                        
                         </View>
                         {!!this.state.usernameError && (
                             <View style={styles.errorFieldView}>
@@ -101,7 +101,7 @@ class Login extends Component {
                                 if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
                                     this.setState({usernameError: "Required fields are empty"});
                                 } else {
-                                    this.props.navigation.navigate('Home',{item:this.props.theme})
+                                    this.props.navigation.navigate('Home')
                                 }
                             }}
                             >
@@ -118,7 +118,7 @@ class Login extends Component {
                     </View>
                 )}
             </ThemeContext.Consumer>
-            
+        
         );
     }
 }

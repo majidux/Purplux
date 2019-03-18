@@ -3,7 +3,7 @@
     {
       "name": "Check engine",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 1
@@ -18,7 +18,7 @@
     },
     {
       "name": "Change the air filter",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",

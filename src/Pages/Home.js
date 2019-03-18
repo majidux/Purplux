@@ -8,18 +8,8 @@ import SvgUri from "react-native-svg-uri";
 import Setting from "./Setting";
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
 import {connect} from "react-redux";
-import ThemedButton from "../Component/themed-button";
 import {ThemeContext, themes} from "../Component/themes-context";
-
-
-Toolbar = (props) => {
-    return (
-        <ThemedButton onPress={props.changeTheme}>
-            Changer
-        </ThemedButton>
-    )
-    
-}
+import {TabNavigatorContext} from "../Component/tabNavigator-context";
 
 
 class Home extends Component {
@@ -46,17 +36,26 @@ class Home extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>,
+            headerStyle:{backgroundColor: 'red'}
         }
     };
     
     
     render() {
+        const { navigation } = this.props;
+        const item = navigation.getParam('item', 'NO-ID');
         return (
             <ThemeContext.Consumer>
+                
                 {(theme) => (
-                    <View style={[styles.lightStyle,{backgroundColor: theme.backgroundColor}]}>
-                        <RouteTabNavigator/>
-                    </View>
+                    <TabNavigatorContext.Consumer>
+                        {(tabTheme) =>
+                            <View style={[styles.lightStyle, {backgroundColor: theme.backgroundColor}]}>
+                                <Text>{JSON.stringify(item)}</Text>
+                                <RouteTabNavigator tabTheme={tabTheme.backgroundColor}/>
+                            </View>
+                        }
+                    </TabNavigatorContext.Consumer>
                 )}
             </ThemeContext.Consumer>
         );

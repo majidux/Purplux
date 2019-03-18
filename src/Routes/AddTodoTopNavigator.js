@@ -5,7 +5,8 @@ import Failed from "../Pages/Failed";
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const RouteTabNavigator = createMaterialTopTabNavigator(
+const RouteTabNavigator =  createMaterialTopTabNavigator(
+    
     {
         AddTodo: {
             screen: AddTodo,
@@ -46,7 +47,7 @@ const RouteTabNavigator = createMaterialTopTabNavigator(
                 flex:1
             },
             style: {
-                backgroundColor: '#e7e7e7',
+                backgroundColor: this.props,
             },
         }
     }

@@ -75,7 +75,7 @@ class Login extends Component {
                         </View>
                         {!!this.state.usernameError && (
                             <View style={styles.errorFieldView}>
-                                <Text style={styles.errorFieldText}>{this.state.usernameError}</Text>
+                                <Text style={[styles.errorFieldText]}>{this.state.usernameError}</Text>
                             </View>
                         )}
                         <Animated.View style={[styles.textInputView, {
@@ -101,7 +101,7 @@ class Login extends Component {
                                 if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
                                     this.setState({usernameError: "Required fields are empty"});
                                 } else {
-                                    this.props.navigation.navigate('Home')
+                                    this.props.navigation.navigate('Home',{item:this.props.theme})
                                 }
                             }}
                             >

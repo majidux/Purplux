@@ -3,6 +3,8 @@ import {View, StyleSheet, Text, Picker} from 'react-native';
 import Items from "../Component/Items";
 import SendItem from "../Component/SendItem";
 import {connect} from "react-redux";
+import {ThemeContext} from "../Component/themes-context";
+import {TabNavigatorContext} from "../Component/tabNavigator-context";
 
 
 const gradientColor = '#f6f6f6';
@@ -11,37 +13,31 @@ const data = Array.from({length: 500});
 class AddTodo extends Component {
     
     
-    
     render() {
         return (
-            <View style={[styles.className]}>
-                
-                {/*{data.map((_, i) => (*/}
-                    {/*<View key={i} style={[styles.backGround,*/}
-                        {/*{*/}
-                            {/*opacity: (1 / 500) * (i + 1),*/}
-                            {/*bottom: (500 - i),*/}
-                        {/*}]}*/}
-                    {/*/>*/}
-                {/*))}*/}
-                
-                <View style={styles.inProgressTasksView}>
-                    <View>
-                        <Text style={styles.inProgressTasks}>Tasks in progress</Text>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.className,{backgroundColor: theme.backgroundColor}]}>
+                        <View style={styles.inProgressTasksView}>
+                            <View>
+                                <TabNavigatorContext.Consumer>
+                                    {(tabTheme)=>
+                                        <Text style={[styles.inProgressTasks,{color:tabTheme.color}]}>Tasks in progress</Text>
+                                    }
+                                </TabNavigatorContext.Consumer>
+                            </View>
+                            <View>
+                            
+                            </View>
+                        </View>
+                        <Items/>
+                        <SendItem/>
                     </View>
-                    <View>
-                    
-                    </View>
-                </View>
-                <Items/>
-                <SendItem/>
-            </View>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -56,17 +52,17 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: -2,
     },
-    inProgressTasks:{
+    inProgressTasks: {
         fontSize: 20,
         fontWeight: '600',
-        color:'#8979f3'
+        color: '#8979f3'
     },
-    inProgressTasksView:{
-        marginTop:20,
-        marginLeft:30,
-        justifyContent:'space-between',
-        flexDirection:'row',
-        alignItems:'center'
+    inProgressTasksView: {
+        marginTop: 20,
+        marginLeft: 30,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 });
 const mapStateToProps = (state) => {

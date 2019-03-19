@@ -1,70 +1,92 @@
 {
   "tasks": [
     {
-      "id": 0,
       "name": "Check engine",
       "isComplete": false,
-      "isFail": false
+      "isFail": false,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 1
     },
     {
-      "id": 1,
       "name": "Change engine oil",
       "isComplete": true,
-      "isFail": true
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 2
     },
     {
-      "id": 2,
       "name": "Change the air filter",
       "isComplete": true,
-      "isFail": true
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 3
     },
     {
-      "id": 3,
       "name": "Fill the tires with air",
-      "isComplete": true,
-      "isFail": true
+      "isComplete": false,
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 4
     },
     {
       "name": "Balance the tires",
       "isComplete": true,
-      "id": 4,
-      "isFail": true
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 5
     },
     {
       "name": "Change the oil filter",
-      "isComplete": true,
-      "id": 5,
-      "isFail": true
+      "isComplete": false,
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 6
     },
     {
       "name": "Clean the mirror",
-      "isComplete": true,
-      "id": 6,
-      "isFail": true
+      "isComplete": false,
+      "isFail": false,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 7
     },
     {
-      "name": "wax the body",
-      "isComplete": true,
-      "id": 7,
-      "isFail": true
+      "name": "Wax the body",
+      "isComplete": false,
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 8
     },
     {
       "name": "Fill the battery",
       "isComplete": false,
-      "isFail": false,
-      "id": 8
+      "isFail": true,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 9
     },
     {
       "name": "Change the radiator's door",
       "isComplete": false,
-      "isFail": true,
-      "id": 9
+      "isFail": false,
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 10
     },
     {
       "name": "Clean the exhaust",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
-      "id": 10
+      "date": "03/16/19",
+      "time": "11:30:04 AM",
+      "id": 11
     }
   ]
 }

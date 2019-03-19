@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import {connect} from 'react-redux'
 import {getTaskDataUnfinished} from '../Service/fetchApi/fetchAction'
+import {ThemeContext} from "../Component/themes-context";
 
 class Done extends Component {
     
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            item:false
+        this.state = {
+            item: false
         }
     }
     
@@ -16,26 +17,30 @@ class Done extends Component {
     render() {
         let data = this.props.todo.todoData;
         return (
-            <View style={styles.className}>
-                <View style={styles.titleView}>
-                    <Text style={styles.pageTitle}>Finished Tasks</Text>
-                </View>
-                <FlatList
-                    data={data}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({item}) =>
-                        item.isComplete &&
-                        <View style={styles.flatListInside}>
-                            <View style={styles.titleTaskView}>
-                                <Text style={styles.listText}>{item.name}</Text>
-                            </View>
-                            <View style={styles.statusTaskView}>
-                                <Text style={styles.statusTaskText}>Finished</Text>
-                            </View>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
+                        <View style={styles.titleView}>
+                            <Text style={[styles.pageTitle]}>Finished Tasks</Text>
                         </View>
-                    }
-                />
-            </View>
+                        <FlatList
+                            data={data}
+                            keyExtractor={item => item.id.toString()}
+                            renderItem={({item}) =>
+                                item.isComplete &&
+                                <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
+                                    <View style={styles.titleTaskView}>
+                                        <Text style={[styles.listText,{color:theme.fontColor}]}>{item.name}</Text>
+                                    </View>
+                                    <View style={styles.statusTaskView}>
+                                        <Text style={styles.statusTaskText}>Finished</Text>
+                                    </View>
+                                </View>
+                            }
+                        />
+                    </View>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }
@@ -43,10 +48,10 @@ class Done extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        marginTop: 20,
+        paddingTop: 20,
     },
-    titleView:{
-        marginLeft:30
+    titleView: {
+        marginLeft: 30
     },
     flatListInside: {
         marginVertical: 5,

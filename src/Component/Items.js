@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    FlatList,
+    TouchableOpacity,
+    ActivityIndicator,
+} from 'react-native';
 import {connect} from "react-redux";
 import {
     addTodo,
@@ -9,6 +17,8 @@ import {
     updateFailure
 } from "../Service/fetchApi/fetchAction";
 import SvgUri from "react-native-svg-uri";
+import {ThemeContext} from "./themes-context";
+import {TabNavigatorContext} from "./tabNavigator-context";
 
 
 class Items extends Component {
@@ -30,78 +40,77 @@ class Items extends Component {
         this.props.deleteTodo(id);
     };
     
-    // emptyList = () =>
-    //     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    //         <Text style={{fontSize: 30}}>The List is Empty</Text>
-    //     </View>;
-    
-    
     render() {
         let todoList = this.props.todo.todoData;
         return (
-            <View style={styles.flatListView}>
-                <View style={styles.activityIndicator}>
-                    {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
-                </View>
-                
-                
-                <FlatList
-                    data={todoList}
-                    onRefresh={()=>this.props.getUsersDataUnfinished()}
-                    refreshing={false}
-                    keyExtractor={(item) => item.id.toString()}
-                    // ListEmptyComponent={this.emptyList}
-                    renderItem={({item}) =>
-                        item.isComplete || item.isFail &&
-                        <View style={styles.todoView}>
-                            <View style={styles.titleView}>
-                                <Text style={styles.textName}>{item.name}</Text>
-                            </View>
-                            <View style={styles.buttonOptions}>
-                                <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
-                                    <View style={styles._doneView}>
-                                        <SvgUri
-                                            width={'24'}
-                                            height={'24'}
-                                            source={require('../Assets/image/close-button.svg')}
-                                            strokeWidth={10}
-                                            stroke={'#000'}
-                                            strokeLinejoin={'bevel'}
-                                            fill={'#e45'}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={this.completeTask.bind(this, item.id)}>
-                                    <View style={styles._doneView}>
-                                        <SvgUri
-                                            width={'24'}
-                                            height={'24'}
-                                            source={require('../Assets/image/checked.svg')}
-                                            strokeWidth={10}
-                                            stroke={'#000'}
-                                            strokeLinejoin={'bevel'}
-                                            fill={'#57b993'}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                                <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
-                                    <View style={styles.deleteView}>
-                                        <SvgUri
-                                            width={'24'}
-                                            height={'24'}
-                                            source={require('../Assets/image/trash.svg')}
-                                            strokeWidth={10}
-                                            stroke={'#000'}
-                                            strokeLinejoin={'bevel'}
-                                            fill={'#8979f3'}
-                                        />
-                                    </View>
-                                </TouchableOpacity>
-                            </View>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.flatListView]}>
+                        <View>
+                            {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
                         </View>
-                    }
-                />
-            </View>
+                        <FlatList
+                            data={todoList}
+                            onRefresh={() => this.props.getUsersDataUnfinished()}
+                            refreshing={false}
+                            keyExtractor={(item) => item.id.toString()}
+                            renderItem={({item}) =>
+                                item.isComplete || item.isFail &&
+                                <View style={[styles.todoView, {backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
+                                    <View style={styles.titleView}>
+                                        <Text style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>
+                                        <Text
+                                            style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.date}</Text>
+                                        <Text
+                                            style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.time}</Text>
+                                    </View>
+                                    <View style={styles.buttonOptions}>
+                                        <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
+                                            <View style={styles._doneView}>
+                                                <SvgUri
+                                                    width={'24'}
+                                                    height={'24'}
+                                                    source={require('../Assets/image/close-button.svg')}
+                                                    strokeWidth={10}
+                                                    stroke={'#000'}
+                                                    strokeLinejoin={'bevel'}
+                                                    fill={'#e45'}
+                                                />
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={this.completeTask.bind(this, item.id)}>
+                                            <View style={styles._doneView}>
+                                                <SvgUri
+                                                    width={'24'}
+                                                    height={'24'}
+                                                    source={require('../Assets/image/checked.svg')}
+                                                    strokeWidth={10}
+                                                    stroke={'#000'}
+                                                    strokeLinejoin={'bevel'}
+                                                    fill={'#57b993'}
+                                                />
+                                            </View>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
+                                            <View style={styles.deleteView}>
+                                                <SvgUri
+                                                    width={'24'}
+                                                    height={'24'}
+                                                    source={require('../Assets/image/trash.svg')}
+                                                    strokeWidth={10}
+                                                    stroke={'#000'}
+                                                    strokeLinejoin={'bevel'}
+                                                    fill={'#8979f3'}
+                                                />
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            }
+                        />
+                    </View>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }
@@ -163,8 +172,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-end',
     },
-    titleView:{
-        flex:1
+    titleView: {
+        flex: 1
+    },
+    dateTimeTextStyle: {
+        color: '#3d3d3d'
     }
 });
 

@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 export default class LogoArea extends Component {
+    
+    
     render() {
         return (
             <View style={styles.className}>
                 <View>
                     <Image source={require('../Assets/image/PurpleLogo.png')} style={styles.logoStyle}/>
-                </View>
-                <View>
-                    <Image
-                        source={require('../Assets/image/logo.png')}
-                        style={{width:50,height:50}}
-                    />
-                    {/*<Text style={styles.nameTitle}>Your tasks</Text>*/}
                 </View>
             </View>
         );
@@ -22,18 +17,18 @@ export default class LogoArea extends Component {
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
-        paddingHorizontal:20
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 20
     },
-    logoStyle:{
-        width:140,
-        height:45
+    logoStyle: {
+        width: 100,
+        height: 40
     },
-    nameTitle:{
-        color:'#52286d',
-        fontSize:22,
-        fontWeight:'600'
+    nameTitle: {
+        color: '#52286d',
+        fontSize: 22,
+        fontWeight: '600'
     }
 });

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import LoadingPage from "./src/Pages/LoadingPage";
+import {StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 import rootReducer from './src/Service/combiner';
+import ThemeProvider from "./src/Pages/ThemeProvider";
 
 const initialState = {};
 export const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
@@ -14,7 +14,7 @@ export default class App extends Component {
         return (
             <Provider store={store}>
                 <View style={styles.container}>
-                    <LoadingPage/>
+                    <ThemeProvider/>
                 </View>
             </Provider>
         );

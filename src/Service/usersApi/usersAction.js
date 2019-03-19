@@ -1,4 +1,4 @@
-import {BEGIN_USER, ADD_USER, FAILED_USER, SUCCESS_USER} from './usersType';
+import {BEGIN_USER, ADD_USER, FAILED_USER, SUCCESS_USER,CHANGE_THEME} from './usersType';
 
 // Types
 export const userBegin = () => ({
@@ -20,6 +20,9 @@ export const addUser = (name) => ({
     payload: name
 });
 
+export const themeChanger =()=>({
+    type:CHANGE_THEME,
+})
 
 
 //Get data from endpoint

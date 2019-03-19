@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
 import {connect} from "react-redux";
 import {addTodo, getUsersData} from "../Service/fetchApi/fetchAction";
+import {ThemeContext} from "./themes-context";
 
 class SendItem extends Component {
     
@@ -11,8 +12,6 @@ class SendItem extends Component {
             name: '',
         }
     }
-    
-    
     
     
     addName = (name) => {
@@ -32,24 +31,32 @@ class SendItem extends Component {
     
     render() {
         return (
-            <View style={styles.inputText}>
-                <View style={styles.textInputView}>
-                    <TextInput value={this.state.name} placeholder={'Add your Tasks to do ...'}
-                               onSubmitEditing={this.addName} placeholderTextColor={'#474747'}
-                               onChangeText={this.addName}
-                    />
-                </View>
-                <View style={styles.sendButtonViewStyle}>
-                    <TouchableOpacity onPress={this.sendButton}>
-                        <View style={styles.sendView}>
-                            <Text style={styles.textSaveDelete}>SAVE</Text>
+            <ThemeContext.Consumer>
+                {(theme) =>
+                    <View style={[styles.inputText,{backgroundColor:theme.inputBackground}]}>
+                        <View style={styles.textInputView}>
+                            <TextInput value={this.state.name} placeholder={'Add your Tasks to do ...'}
+                                       onSubmitEditing={this.addName} placeholderTextColor={theme.placeholderTextColor}
+                                       onChangeText={this.addName}
+                                       style={{backgroundColor:theme.inputArea,borderRadius: 10}}
+                            />
                         </View>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                        <View style={styles.sendButtonViewStyle}>
+                            <TouchableOpacity onPress={this.sendButton}>
+                                <View style={styles.sendView}>
+                                    <Text style={styles.textSaveDelete}>SAVE</Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                }
+            </ThemeContext.Consumer>
+        
+        
         );
     }
 }
+
 const styles = StyleSheet.create({
     textName: {
         color: '#000',
@@ -62,10 +69,9 @@ const styles = StyleSheet.create({
     },
     inputText: {
         paddingHorizontal: 20,
-        marginVertical: 10,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     textTitle: {
         color: '#4c4c4c',
@@ -83,9 +89,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 10,
         marginVertical: 10,
-        flex:1
+        marginHorizontal: 10,
+        flex: 1
     },
-    sendButtonViewStyle:{
+    sendButtonViewStyle: {
         // flex:1
     }
 });

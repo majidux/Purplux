@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
+import {View, StyleSheet, Text, Picker} from 'react-native';
 import Items from "../Component/Items";
-import Done from "./Done";
 import SendItem from "../Component/SendItem";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Failed from "./Failed";
+import {connect} from "react-redux";
+import {ThemeContext} from "../Component/themes-context";
+import {TabNavigatorContext} from "../Component/tabNavigator-context";
+
 
 const gradientColor = '#f6f6f6';
 const data = Array.from({length: 500});
@@ -15,80 +15,34 @@ class AddTodo extends Component {
     
     render() {
         return (
-            <View style={styles.className}>
-                
-                {/*{data.map((_, i) => (*/}
-                    {/*<View key={i} style={[styles.backGround,*/}
-                        {/*{*/}
-                            {/*opacity: (1 / 500) * (i + 1),*/}
-                            {/*bottom: (500 - i),*/}
-                        {/*}]}*/}
-                    {/*/>*/}
-                {/*))}*/}
-                
-                <View style={styles.inProgressTasksView}>
-                    <Text style={styles.inProgressTasks}>Tasks in progress</Text>
-                </View>
-                <Items/>
-                <SendItem/>
-            </View>
+            <ThemeContext.Consumer>
+                {(theme) => (
+                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
+                        <View style={styles.inProgressTasksView}>
+                            <View>
+                                <TabNavigatorContext.Consumer>
+                                    {(tabTheme)=>
+                                        <Text style={[styles.inProgressTasks,{color:tabTheme.color}]}>Tasks in progress</Text>
+                                    }
+                                </TabNavigatorContext.Consumer>
+                            </View>
+                            <View>
+                            
+                            </View>
+                        </View>
+                        <Items/>
+                        <SendItem/>
+                    </View>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }
 
-const RouteTabNavigator = createMaterialTopTabNavigator(
-    {
-        AddTodo: {
-            screen: AddTodo,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="list" size={30} color={color}/>
-                )
-            }
-        },
-        Done: {
-            screen: Done,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="thumbs-up" size={30} color={color}/>
-                )
-            }
-        },
-        Failed: {
-            screen: Failed,
-            navigationOptions: {
-                tabBarIcon: ({tintColor: color}) => (
-                    <Icon name="thumbs-down" size={30} color={color}/>
-                )
-            }
-        }
-    },
-    {
-        tabBarOptions: {
-            activeTintColor: '#8979f3',
-            inactiveTintColor: '#949494',
-            showIcon: true,
-            showLabel: false,
-            labelStyle: {
-                fontSize: 12,
-                fontWeight: '700'
-            },
-            tabStyle: {
-                flex:1
-            },
-            style: {
-                backgroundColor: '#e7e7e7',
-            },
-        }
-    }
-);
-
-export default createAppContainer(RouteTabNavigator)
 
 const styles = StyleSheet.create({
     className: {
         flex: 1,
-        backgroundColor: '#f6f6f6'
     },
     backGround: {
         position: 'absolute',
@@ -98,13 +52,22 @@ const styles = StyleSheet.create({
         left: 0,
         zIndex: -2,
     },
-    inProgressTasks:{
+    inProgressTasks: {
         fontSize: 20,
         fontWeight: '600',
-        color:'#8979f3'
+        color: '#8979f3'
     },
-    inProgressTasksView:{
-        marginTop:20,
-        marginLeft:30
+    inProgressTasksView: {
+        marginTop: 20,
+        marginLeft: 30,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 });
+const mapStateToProps = (state) => {
+    return {
+        theme: state.userReducer,
+    }
+};
+export default connect(mapStateToProps)(AddTodo)

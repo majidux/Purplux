@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
 import {createSwitchNavigator,createAppContainer} from 'react-navigation' ;
 import SvgUri from "react-native-svg-uri";
 import Login from "../Component/Login";
+import {connect} from "react-redux";
 
 class LoadingPage extends Component {
     
@@ -60,13 +61,9 @@ const styles = StyleSheet.create({
         alignItems:'center'
     }
 });
-const RootSwitch = createSwitchNavigator(
-    {
-        LoadingPage:LoadingPage,
-        Login:Login
-    },
-    {
-        initialRouteName:'LoadingPage'
+const mapStateToProps = (state) => {
+    return {
+        theme: state.userReducer,
     }
-);
-export default createAppContainer(RootSwitch);
+};
+export default connect(mapStateToProps)(LoadingPage)

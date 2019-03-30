@@ -6,7 +6,7 @@ class About extends Component {
    
     render() {
         return (
-            <View style={this.props.theme.theme ? [styles.className, {backgroundColor: 'red'}] : styles.className}>
+            <View style={this.props.theme.theme ? [styles.className] : styles.className}>
                 <Text style={styles.fontTextStyle}>Majid darvish nejad</Text>
             </View>
         );
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
         paddingTop:20,
         justifyContent:'center',
         alignItems:'center',
-        backgroundColor:'#ee9096'
     },
     fontTextStyle:{
         color:'#000',

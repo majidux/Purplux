@@ -21,7 +21,7 @@ class Home extends Component {
                 <ThemeContext.Consumer>
                     {(theme) => (
                         <View style={[styles.drawerButton]}>
-                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                            <TouchableOpacity onPress={()=>navigation.openDrawer()}>
                                 <View>
                                     {/*<SvgUri*/}
                                         {/*width={'24'}*/}
@@ -39,7 +39,7 @@ class Home extends Component {
                         </View>
                     )}
                 </ThemeContext.Consumer>,
-            headerStyle: {backgroundColor: 'skyblue'}
+            // headerStyle: {backgroundColor: 'skyblue'}
         }
     };
     

@@ -2,7 +2,7 @@ import {createDrawerNavigator, createStackNavigator} from "react-navigation";
 import About from "../Pages/About";
 import Setting from "../Pages/Setting";
 import Home from '../Pages/Home'
-
+import DrawerItems from '../Component/DrawerItems';
 const RouteStack = createStackNavigator(
     {
         Home: Home,
@@ -28,6 +28,7 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         contentOptions: {
+            customComponent:DrawerItems,
             activeTintColor: '#8979f3',
             inactiveTintColor: '#949494',
             drawerType: 'slide',

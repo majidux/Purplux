@@ -1,6 +1,6 @@
-import {createDrawerNavigator, createStackNavigator} from "react-navigation";
-import About from "../Pages/About";
-import Setting from "../Pages/Setting";
+import {createDrawerNavigator, createStackNavigator} from 'react-navigation';
+import About from '../Pages/About';
+import Setting from '../Pages/Setting';
 import Home from '../Pages/Home'
 import DrawerItems from '../Component/DrawerItems';
 const RouteStack = createStackNavigator(
@@ -27,18 +27,18 @@ const DrawerNavigator = createDrawerNavigator(
         Setting: Setting
     },
     {
-        contentOptions: {
-            customComponent:DrawerItems,
-            activeTintColor: '#8979f3',
-            inactiveTintColor: '#949494',
-            drawerType: 'slide',
-            activeLabelStyle: {
-                fontSize: 20
-            },
-            inactiveLabelStyle: {
-                fontSize: 16
-            },
-        }
+        // contentComponent :DrawerItems,
+        
+        //     activeTintColor: '#8979f3',
+        //     inactiveTintColor: '#949494',
+        //     drawerType: 'slide',
+        //     activeLabelStyle: {
+        //         fontSize: 20
+        //     },
+        //     inactiveLabelStyle: {
+        //         fontSize: 16
+        //     },
+        // }
     }
 );
 export default DrawerNavigator;

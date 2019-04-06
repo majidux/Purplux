@@ -1,9 +1,9 @@
-import {createAppContainer, createMaterialTopTabNavigator,createBottomTabNavigator,createStackNavigator} from "react-navigation";
-import AddTodo from "../Pages/AddTodo";
-import Done from "../Pages/Done";
-import Failed from "../Pages/Failed";
-import React from "react";
-import Icon from "react-native-vector-icons/FontAwesome";
+import {createAppContainer, createMaterialTopTabNavigator} from 'react-navigation';
+import AddTodo from '../Pages/AddTodo';
+import Done from '../Pages/Done';
+import Failed from '../Pages/Failed';
+import React from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 let RouteTabNavigator = createMaterialTopTabNavigator(
     {

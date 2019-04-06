@@ -3,6 +3,9 @@ import About from '../Pages/About';
 import Setting from '../Pages/Setting';
 import Home from '../Pages/Home'
 import DrawerItems from '../Component/DrawerItems';
+import {ThemeContext} from '../Component/themes-context'
+
+let theme = this.context;
 const RouteStack = createStackNavigator(
     {
         Home: Home,
@@ -13,11 +16,11 @@ const RouteStack = createStackNavigator(
         initialRouteName: 'Home'
     },
     {
-        contentOptions :{
-            style:{
-                backgroundColor:'red'
+        contentOptions: {
+            style: {
+                backgroundColor: 'red'
             }
-}
+        }
     }
 );
 const DrawerNavigator = createDrawerNavigator(
@@ -28,15 +31,18 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         // contentComponent :DrawerItems,
+        style: {
+            // backgroundColor: theme.backgroundColor
+        },
         contentOptions: {
-                activeTintColor: '#8979f3',
-                inactiveTintColor: '#949494',
-                activeLabelStyle: {
-                    fontSize: 20
-                },
-                inactiveLabelStyle: {
-                    fontSize: 16
-                },
+            activeTintColor: '#8979f3',
+            inactiveTintColor: '#949494',
+            activeLabelStyle: {
+                fontSize: 20
+            },
+            inactiveLabelStyle: {
+                fontSize: 16
+            },
         }
     }
 );

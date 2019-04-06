@@ -15,8 +15,8 @@ class Login extends Component {
             password: '',
             usernameError: '',
             passwordError: '',
-            transformX: new Animated.Value(70),
-            transformY: new Animated.Value(-70),
+            transformX: new Animated.Value(30),
+            transformY: new Animated.Value(-30),
             opacity: new Animated.Value(0),
         };
     }
@@ -93,6 +93,7 @@ class Login extends Component {
                         }]}>
                             <TextInput
                                 placeholder={'Password'}
+                                secureTextEntry={true}
                                 onChangeText={password => this.setState({password})}
                                 value={this.state.text}/>
                         </Animated.View>
@@ -141,8 +142,8 @@ const styles = StyleSheet.create({
     },
     loginButton: {
         backgroundColor: '#8979f3',
-        width: 150,
-        height: 60,
+        paddingHorizontal: 30,
+        paddingVertical: 10,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 30,

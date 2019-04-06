@@ -9,12 +9,16 @@ class Setting extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            button:true
+        };
     }
     
     toggleTheme = () => {
         this.props.themeChanger()
     };
+    
+    
     
     render() {
         return (
@@ -22,9 +26,10 @@ class Setting extends Component {
             <ThemeContext.Consumer>
                 {(theme) => (
                     <View style={[styles.setting,{backgroundColor:theme.backgroundColor}]}>
+                        <Text style={{color:theme.fontColor,fontWeight: '600'}}>Theme</Text>
                         <TouchableOpacity onPress={this.toggleTheme}>
-                            <View style={styles.button}>
-                                <Text style={{color:theme.color}}>PRESS CHANGE THEME</Text>
+                            <View style={[styles.button]}>
+                                <View style={[styles.buttonWrapper,]}></View>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -41,9 +46,23 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 20,
         paddingTop: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    button:{
+        backgroundColor:'#e85',
+        width: 60,
+        height: 25,
+        justifyContent:'center',
+        // paddingHorizontal:20,
+        borderRadius:50,
+        alignItems:'flex-end'
+    },
+    buttonWrapper:{
+        width:20,
+        height:20,
+        backgroundColor:'#ff4b5d',
+        borderRadius:50
     }
 });
 const mapStateToProps = (state) => {

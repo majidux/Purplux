@@ -26,6 +26,8 @@ Installing vector icons
 
 ## `Step three :`
 
+Config java file and put this 
+
 Link the libraries 
 
 `react-native link react-native-gesture-handler`

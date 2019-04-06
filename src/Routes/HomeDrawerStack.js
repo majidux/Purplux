@@ -31,7 +31,6 @@ const DrawerNavigator = createDrawerNavigator(
         contentOptions: {
                 activeTintColor: '#8979f3',
                 inactiveTintColor: '#949494',
-                drawerType: 'slide',
                 activeLabelStyle: {
                     fontSize: 20
                 },

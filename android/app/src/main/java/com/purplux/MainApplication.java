@@ -1,4 +1,4 @@
-package com.purpletodolist;
+package com.purplux;
 
 import android.app.Application;
 

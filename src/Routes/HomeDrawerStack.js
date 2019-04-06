@@ -28,17 +28,17 @@ const DrawerNavigator = createDrawerNavigator(
     },
     {
         // contentComponent :DrawerItems,
-        
-        //     activeTintColor: '#8979f3',
-        //     inactiveTintColor: '#949494',
-        //     drawerType: 'slide',
-        //     activeLabelStyle: {
-        //         fontSize: 20
-        //     },
-        //     inactiveLabelStyle: {
-        //         fontSize: 16
-        //     },
-        // }
+        contentOptions: {
+                activeTintColor: '#8979f3',
+                inactiveTintColor: '#949494',
+                drawerType: 'slide',
+                activeLabelStyle: {
+                    fontSize: 20
+                },
+                inactiveLabelStyle: {
+                    fontSize: 16
+                },
+        }
     }
 );
 export default DrawerNavigator;

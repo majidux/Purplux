@@ -18,7 +18,9 @@ class Setting extends Component {
         this.props.themeChanger()
     };
     
-    
+    buttonStyleChanger = () =>{
+        this.setState({button:!this.state.button})
+    };
     
     render() {
         return (

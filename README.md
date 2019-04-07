@@ -24,15 +24,21 @@ Installing navigation
 Installing vector icons
 `yarn add react-native-vector-icons`
 
+Installing paper 
+`yarn add react-native-paper`
+
+Installing svg and svgUri 
+`yarn add react-native-svg react-native-svg-uri`
+
 ## `Step three :`
 
-Config java file and put this 
+Config java file and put the codes that docs said :
+[React navigation](https://reactnavigation.org/docs/en/getting-started.html)
+
 
 Link the libraries 
 
-`react-native link react-native-gesture-handler`
-
-`react-native link react-native-vector-icons`
+`react-native link`
 
 ## `Final Step :`
 Start the emulator

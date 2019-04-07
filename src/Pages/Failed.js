@@ -16,12 +16,13 @@ class Failed extends Component {
                         </View>
                         <FlatList
                             data={data}
+                            extraData={theme}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 !item.isFail &&
-                                <View style={[styles.flatListInside,{backgroundColor: theme.backgroundColor,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
+                                <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleTaskView}>
-                                        <Text style={[styles.listText,{color:theme.color}]}>{item.name}</Text>
+                                        <Text style={[styles.listText,{color:theme.fontColor}]}>{item.name}</Text>
                                     </View>
                                     <View style={styles.statusTaskView}>
                                         <Text style={styles.statusTaskText}>Failed</Text>

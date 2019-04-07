@@ -17,8 +17,9 @@ import {
     updateFailure
 } from "../Service/fetchApi/fetchAction";
 import SvgUri from "react-native-svg-uri";
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome'
+import AntIcon from 'react-native-vector-icons/AntDesign'
 import {ThemeContext} from "./themes-context";
-import {TabNavigatorContext} from "./tabNavigator-context";
 
 
 class Items extends Component {
@@ -67,41 +68,17 @@ class Items extends Component {
                                     <View style={styles.buttonOptions}>
                                         <TouchableOpacity onPress={this.failedTask.bind(this, item.id)}>
                                             <View style={styles._doneView}>
-                                                <SvgUri
-                                                    width={'24'}
-                                                    height={'24'}
-                                                    source={require('../Assets/image/close-button.svg')}
-                                                    strokeWidth={10}
-                                                    stroke={'#000'}
-                                                    strokeLinejoin={'bevel'}
-                                                    fill={'#e45'}
-                                                />
+                                                <AntIcon size={22} name={'closecircle'} color={'#e45'}/>
                                             </View>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={this.completeTask.bind(this, item.id)}>
                                             <View style={styles._doneView}>
-                                                <SvgUri
-                                                    width={'24'}
-                                                    height={'24'}
-                                                    source={require('../Assets/image/checked.svg')}
-                                                    strokeWidth={10}
-                                                    stroke={'#000'}
-                                                    strokeLinejoin={'bevel'}
-                                                    fill={'#57b993'}
-                                                />
+                                                <AwesomeIcon size={25} name={'check-circle'} color={'#57b993'}/>
                                             </View>
                                         </TouchableOpacity>
                                         <TouchableOpacity onPress={this.deleteItem.bind(this, item.id)}>
                                             <View style={styles.deleteView}>
-                                                <SvgUri
-                                                    width={'24'}
-                                                    height={'24'}
-                                                    source={require('../Assets/image/trash.svg')}
-                                                    strokeWidth={10}
-                                                    stroke={'#000'}
-                                                    strokeLinejoin={'bevel'}
-                                                    fill={'#8979f3'}
-                                                />
+                                                <AwesomeIcon size={25} name={'trash'} color={theme.fontColor}/>
                                             </View>
                                         </TouchableOpacity>
                                     </View>
@@ -159,9 +136,8 @@ const styles = StyleSheet.create({
         paddingVertical: 2,
         borderRadius: 15,
         marginVertical: 5,
-        width: 20,
         alignItems: 'center',
-        marginRight: 20
+        marginRight: 15
     },
     textDone: {
         color: '#3d3d3d',

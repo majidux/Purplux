@@ -25,6 +25,7 @@ class Done extends Component {
                         </View>
                         <FlatList
                             data={data}
+                            extraData={theme}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
                                 item.isComplete &&

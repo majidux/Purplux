@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, AppState} from 'react-native';
 import LogoArea from "../Component/LogoArea";
 import SvgUri from "react-native-svg-uri";
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
@@ -7,11 +7,14 @@ import {connect} from "react-redux";
 import {ThemeContext} from "../Component/themes-context";
 import {TabNavigatorContext} from "../Component/tabNavigator-context";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { NavigationEvents   } from 'react-navigation';
 
 
 class Home extends Component {
     
-    static navigationOptions = ({navigation,theme}) => {
+    
+    static navigationOptions = ({navigation}) => {
+        
         return {
             headerRight:
                 <View>
@@ -21,43 +24,37 @@ class Home extends Component {
                 <ThemeContext.Consumer>
                     {(theme) => (
                         <View style={[styles.drawerButton]}>
-                            <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <View>
-                                    {/*<SvgUri*/}
-                                        {/*width={'24'}*/}
-                                        {/*height={'24'}*/}
-                                        {/*source={require('../Assets/image/three-lines.svg')}*/}
-                                        {/*strokeWidth={10}*/}
-                                        {/*stroke={'#000'}*/}
-                                        {/*strokeLinejoin={'bevel'}*/}
-                                        {/*fill={'#e45'}*/}
-                                    {/*/>*/}
                                     <Icon name="bars" size={30} color={theme.burgerMenu}/>
-                                </View>
                                 
+                                </View>
+                            
                             </TouchableOpacity>
                         </View>
                     )}
                 </ThemeContext.Consumer>,
-            // headerStyle: {backgroundColor: 'skyblue'}
+            headerStyle: {backgroundColor: navigation.getParam('ctx', 'red')}
         }
     };
     
     
     render() {
+        let theme = this.context;
+        // this.props.navigation.setParams({ctx: theme})
         return (
-            <ThemeContext.Consumer>
-                {(theme) => (
-                    <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
-                        <RouteTabNavigator/>
-                    </View>
-                )}
-            </ThemeContext.Consumer>
+            <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
+                <NavigationEvents
+                    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
+                    onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
+                />
+                <RouteTabNavigator/>
+            </View>
         );
     }
 }
 
-Home.contextType = ThemeContext
+Home.contextType = ThemeContext;
 
 const styles = StyleSheet.create({
     lightStyle: {

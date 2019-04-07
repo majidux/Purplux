@@ -9,7 +9,8 @@ export const themes = {
         items:'#f4f4f4',
         inputArea:'#fff',
         placeholderTextColor:'#474747',
-        burgerMenu:'#282c34'
+        burgerMenu:'#282c34',
+        headerColor:"#ff0"
     },
     dark: {
         backgroundColor: '#424a57',
@@ -22,7 +23,8 @@ export const themes = {
         items:'#282c34',
         inputArea:'#77849b',
         placeholderTextColor:'#dedede',
-        burgerMenu:'#fff'
+        burgerMenu:'#fff',
+        headerColor:"#00f"
     }
 };
 

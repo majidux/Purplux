@@ -14,7 +14,6 @@ class Login extends Component {
             userName: '',
             password: '',
             usernameError: '',
-            passwordError: '',
             transformX: new Animated.Value(30),
             transformY: new Animated.Value(-30),
             opacity: new Animated.Value(0),
@@ -102,7 +101,7 @@ class Login extends Component {
                                 if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
                                     this.setState({usernameError: "Required fields are empty"});
                                 } else {
-                                    this.props.navigation.navigate('Home')
+                                    this.props.navigation.navigate('HomeSwitch')
                                 }
                             }}
                             >

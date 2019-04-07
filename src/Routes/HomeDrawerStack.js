@@ -5,21 +5,19 @@ import Home from '../Pages/Home'
 import DrawerItems from '../Component/DrawerItems';
 import {ThemeContext} from '../Component/themes-context'
 
-let theme = this.context;
+
 const RouteStack = createStackNavigator(
     {
-        Home: Home,
+        HomeStack: Home,
         About: About,
         Setting: Setting
     },
     {
-        initialRouteName: 'Home'
+        initialRouteName: 'HomeStack'
     },
     {
-        contentOptions: {
-            style: {
-                backgroundColor: 'red'
-            }
+        style: {
+            backgroundColor: 'red'
         }
     }
 );
@@ -32,7 +30,7 @@ const DrawerNavigator = createDrawerNavigator(
     {
         // contentComponent :DrawerItems,
         style: {
-            // backgroundColor: theme.backgroundColor
+            // backgroundColor: this.props
         },
         contentOptions: {
             activeTintColor: '#8979f3',

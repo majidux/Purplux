@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
     inProgressTasks: {
         fontSize: 20,
         fontWeight: '600',
-        color: '#8979f3'
+        color: '#8979f3',
+        fontFamily:'Roboto'
     },
     inProgressTasksView: {
         marginTop: 20,

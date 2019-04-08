@@ -10,7 +10,7 @@ class LoadingPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rotation: new Animated.Value(0)
+            opacity: new Animated.Value(0)
         }
     }
     
@@ -24,20 +24,20 @@ class LoadingPage extends Component {
     };
     animationRotation = () => {
         Animated.timing(
-            this.state.rotation,
+            this.state.opacity,
             {
                 toValue: 1,
                 duration: 1000,
                 easing: Easing.back(),
                 useNativeDriver: true
             }
-        ).start(() => this.animationRotation())
+        ).start(() => this.animationRotation());
     };
     
     render() {
         return (
-            <Animated.View style={[styles.className, {opacity: this.state.rotation}]}>
-                <Animated.Text style={styles.welcomeText}>Purplux</Animated.Text>
+            <Animated.View style={[styles.className, {opacity: this.state.opacity}]}>
+                <Animated.Text style={[styles.welcomeText]}>Purplux</Animated.Text>
             </Animated.View>
         );
     }
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     welcomeText: {
         color: '#7768f3',
-        fontSize: 45,
+        fontSize: 50,
         fontFamily: 'cursive',
         fontWeight: '800'
     }

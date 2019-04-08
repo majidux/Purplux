@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, 
 import SignUp from "../Pages/SignUp";
 import {connect} from "react-redux";
 import {ThemeContext} from './themes-context'
+import Texter from "./Texter";
 
 let deviceWidth = Dimensions.get('window').width;
 let deviceHeight = Dimensions.get('window').height;
@@ -17,23 +18,24 @@ class Login extends Component {
             transformX: new Animated.Value(30),
             transformY: new Animated.Value(-30),
             opacity: new Animated.Value(0),
+            scale: new Animated.Value(1),
         };
     }
     
-    componentDidMount() {
+    componentWillMount() {
         this.animationParallel()
     }
     
-    animationParallel = () => ([
+    animationParallel = () => {
+        Animated.parallel([
         Animated.timing(
             this.state.transformX,
             {
                 toValue: 0,
                 duration: 1000,
-                // easing: Easing.back(),
                 useNativeDriver: true
             }
-        ).start(),
+        ),
         Animated.timing(
             this.state.transformY,
             {
@@ -41,7 +43,7 @@ class Login extends Component {
                 duration: 1000,
                 useNativeDriver: true
             }
-        ).start(),
+        ),
         Animated.timing(
             this.state.opacity,
             {
@@ -49,8 +51,16 @@ class Login extends Component {
                 duration: 1000,
                 useNativeDriver: true
             }
-        ).start(),
-    ])
+        ),
+        Animated.timing(
+            this.state.scale,
+            {
+                toValue: .7,
+                duration: 1000,
+                useNativeDriver: true
+            }
+        ),
+    ]).start();};
     
     static navigationOptions = ({navigation}) => {
         return {
@@ -63,6 +73,7 @@ class Login extends Component {
             <ThemeContext.Consumer>
                 {(theme) => (
                     <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
+                        
                         <View style={styles.topArea}>
                             <Animated.View style={[styles.imageStyleView, {opacity: this.state.opacity}]}>
                                 <Image
@@ -72,6 +83,14 @@ class Login extends Component {
                             </Animated.View>
                         
                         </View>
+                        <Animated.View style={[styles.titleView, {
+                            transform: ([
+                                {scale: this.state.scale}
+                            ])
+                        }]}>
+                            <Animated.Text style={[styles.titleTop]}>Purplux</Animated.Text>
+                            <Texter/>
+                        </Animated.View>
                         {!!this.state.usernameError && (
                             <View style={styles.errorFieldView}>
                                 <Text style={[styles.errorFieldText]}>{this.state.usernameError}</Text>
@@ -101,7 +120,7 @@ class Login extends Component {
                                 if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
                                     this.setState({usernameError: "Required fields are empty"});
                                 } else {
-                                    this.props.navigation.navigate('HomeSwitch',{prop:theme.backgroundColor})
+                                    this.props.navigation.navigate('HomeSwitch', {prop: theme.backgroundColor})
                                 }
                             }}
                             >
@@ -113,9 +132,9 @@ class Login extends Component {
                                 </Animated.View>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
-                                <View>
+                                <Animated.View style={{opacity: this.state.opacity}}>
                                     <Text style={styles.textStyleButtonSignIn}>You don't have a account?</Text>
-                                </View>
+                                </Animated.View>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -193,6 +212,17 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '600',
         fontSize: 16
+    },
+    titleTop: {
+        fontSize: 50,
+        color: '#7768f3',
+        fontWeight: '600',
+        fontFamily: 'cursive'
+    },
+    titleView: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20
     }
 });
 const mapStateToProps = (state) => {

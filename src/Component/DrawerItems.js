@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     titlePage: {
         flex: 1,
         borderBottomWidth:5,
-        borderBottomColor: '#55f',
+        borderBottomColor: '#8979f3',
         alignItems: 'center'
     },
     itemsMenu: {

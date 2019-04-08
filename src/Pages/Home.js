@@ -16,8 +16,8 @@ class Home extends Component {
     static navigationOptions = ({navigation}) => {
         return {
             headerRight:
-                <View>
-                    <LogoArea/>
+                <View style={styles.drawerTitle}>
+                    <Text style={styles.titleNavigator}>Purplux</Text>
                 </View>,
             headerLeft:
                 <ThemeContext.Consumer>
@@ -25,27 +25,31 @@ class Home extends Component {
                         <View style={[styles.drawerButton]}>
                             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <View>
-                                    <Icon name="bars" size={30} color={theme.burgerMenu}/>
+                                    <Icon name="bars" size={30} color={'#fff'}/>
                                 </View>
                             </TouchableOpacity>
                         </View>
                     )}
                 </ThemeContext.Consumer>,
-            headerStyle: {backgroundColor: navigation.getParam('ctx', 'red')}
+            // headerStyle: {backgroundColor: navigation.getParam('ctx', 'red')}
+            headerStyle: {backgroundColor: '#8979f3'}
         }
     };
-   
     
     render() {
         let theme = this.context;
         return (
-            <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
+            <View style={{flex:1}}>
                 <NavigationEvents
-                    onDidFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
+                    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
                     // onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
                 />
-                <RouteTabNavigator/>
+                <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
+        
+                    <RouteTabNavigator/>
+                </View>
             </View>
+           
         );
     }
 }
@@ -63,6 +67,15 @@ const styles = StyleSheet.create({
     },
     drawerButton: {
         marginLeft: 20
+    },
+    drawerTitle:{
+        marginRight:20
+    },
+    titleNavigator:{
+        fontSize:28,
+        color:'#fff',
+        fontWeight:'600',
+        fontFamily:'cursive'
     }
 });
 

@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     aboutTitle:{
         flex:1,
         borderBottomWidth:5,
-        borderBottomColor: '#55f',
+        borderBottomColor: '#8979f3',
     },
     aboutName:{
         flex:4,

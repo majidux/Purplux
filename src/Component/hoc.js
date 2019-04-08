@@ -1,14 +1,14 @@
 import React from 'react';
 let initialData = {
-    data:'HOC Test'
+    data:'Purplux'
 };
-export let karim = Karim => class extends React.Component {
-    componentDidMount(): void {
+export const connectToHoc = HOC => class extends React.Component {
+    componentDidMount() {
         this.setState({
             data:initialData.data
         })
     }
     render(){
-        return <Karim {...this.props} {...this.state}/>
+        return <HOC {...this.props} {...this.state}/>
     }
 };

@@ -43,7 +43,7 @@ class SendItem extends Component {
                         </View>
                         <View style={styles.sendButtonViewStyle}>
                             <TouchableOpacity onPress={this.sendButton}>
-                                <View style={styles.sendView}>
+                                <View style={[styles.sendView,{backgroundColor:theme.saveButton}]}>
                                     <Text style={styles.textSaveDelete}>SAVE</Text>
                                 </View>
                             </TouchableOpacity>

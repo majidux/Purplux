@@ -4,6 +4,7 @@ import {createSwitchNavigator, createAppContainer} from 'react-navigation' ;
 import SvgUri from "react-native-svg-uri";
 import Login from "../Component/Login";
 import {connect} from "react-redux";
+import Title from "../Component/Title";
 
 class LoadingPage extends Component {
     
@@ -37,7 +38,7 @@ class LoadingPage extends Component {
     render() {
         return (
             <Animated.View style={[styles.className, {opacity: this.state.opacity}]}>
-                <Animated.Text style={[styles.welcomeText]}>Purplux</Animated.Text>
+                <Title/>
             </Animated.View>
         );
     }

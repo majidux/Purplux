@@ -17,13 +17,11 @@ class AddTodo extends Component {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={[styles.className,{backgroundColor:theme.backgroundColor}]}>
+                    <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
                         <View style={styles.inProgressTasksView}>
                             <View>
                                 <TabNavigatorContext.Consumer>
-                                    {(tabTheme)=>
-                                        <Text style={[styles.inProgressTasks,{color:tabTheme.color}]}>Tasks in progress</Text>
-                                    }
+                                    <Text style={[styles.inProgressTasks]}>Tasks in progress</Text>
                                 </TabNavigatorContext.Consumer>
                             </View>
                             <View>
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '600',
         color: '#8979f3',
-        fontFamily:'Roboto'
+        fontFamily: 'Roboto'
     },
     inProgressTasksView: {
         marginTop: 20,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, BackHandler, Alert} from 'react-native';
 import LogoArea from "../Component/LogoArea";
 import SvgUri from "react-native-svg-uri";
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
@@ -11,7 +11,28 @@ import {NavigationEvents} from 'react-navigation';
 
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.buttonPress = this.buttonPress.bind(this);
+    }
     
+    componentWillMount() {
+        BackHandler.addEventListener('backPress', this.buttonPress);
+    }
+    
+    buttonPress = () => {
+        
+        Alert.alert(
+            'Exit',
+            'Do you want to exit From Purplux ?',
+            [
+                { text: 'Yes', onPress: () => BackHandler.exitApp() },
+                { text: 'No' }
+            ],
+            { cancelable: false },
+        );
+        return true;
+    };
     
     static navigationOptions = ({navigation}) => {
         return {

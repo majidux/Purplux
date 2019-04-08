@@ -10,6 +10,7 @@ export const themes = {
         inputArea:'#fff',
         placeholderTextColor:'#474747',
         burgerMenu:'#282c34',
+        saveButton:'#8979f3'
     },
     dark: {
         backgroundColor: '#424a57',
@@ -20,9 +21,10 @@ export const themes = {
         inputBackground:'#282c34',
         tabNavigator:'#282c34',
         items:'#282c34',
-        inputArea:'#77849b',
+        inputArea:'#8979f3',
         placeholderTextColor:'#dedede',
         burgerMenu:'#fff',
+        saveButton:'#424a57'
     }
 };
 

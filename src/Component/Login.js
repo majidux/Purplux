@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, 
 import SignUp from "../Pages/SignUp";
 import {connect} from "react-redux";
 import {ThemeContext} from './themes-context'
-import Texter from "./Texter";
+import Title from "./Title";
 
 let deviceWidth = Dimensions.get('window').width;
 let deviceHeight = Dimensions.get('window').height;
@@ -88,8 +88,7 @@ class Login extends Component {
                                 {scale: this.state.scale}
                             ])
                         }]}>
-                            <Animated.Text style={[styles.titleTop]}>Purplux</Animated.Text>
-                            <Texter/>
+                            <Title/>
                         </Animated.View>
                         {!!this.state.usernameError && (
                             <View style={styles.errorFieldView}>

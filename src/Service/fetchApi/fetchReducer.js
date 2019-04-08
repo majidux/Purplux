@@ -1,4 +1,13 @@
-import {GET_BEGIN, GET_SUCCESS, GET_FAILED, ADD_TODO, DELETE_TODO, CHANGE_STATUS, FAILED} from "./fetchType";
+import {
+    GET_BEGIN,
+    GET_SUCCESS,
+    GET_FAILED,
+    ADD_TODO,
+    DELETE_TODO,
+    CHANGE_STATUS,
+    FAILED,
+    GET_FAILED_DATA, GET_DONE_DATA
+} from "./fetchType";
 
 const initialState = {
     todoData: [],
@@ -15,6 +24,20 @@ export const fetchReducer = (state = initialState, action) => {
             }
         }
         case GET_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                todoData: action.payload
+            }
+        }
+        case GET_FAILED_DATA: {
+            return {
+                ...state,
+                loading: false,
+                todoData: action.payload
+            }
+        }
+        case GET_DONE_DATA: {
             return {
                 ...state,
                 loading: false,

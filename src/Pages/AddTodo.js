@@ -20,9 +20,7 @@ class AddTodo extends Component {
                     <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
                         <View style={styles.inProgressTasksView}>
                             <View>
-                                
-                                    <Text style={[styles.inProgressTasks]}>Tasks in progress</Text>
-                                
+                                <Text style={[styles.inProgressTasks]}>Tasks in progress</Text>
                             </View>
                             <View>
                             

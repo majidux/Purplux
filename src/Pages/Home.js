@@ -17,7 +17,7 @@ class Home extends Component {
     }
     
     componentWillMount() {
-        BackHandler.addEventListener('backPress', this.buttonPress);
+        BackHandler.addEventListener('KARIM', this.buttonPress);
     }
     
     buttonPress = () => {

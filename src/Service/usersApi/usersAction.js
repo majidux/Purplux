@@ -22,7 +22,7 @@ export const addUser = (name) => ({
 
 export const themeChanger =()=>({
     type:CHANGE_THEME,
-})
+});
 
 
 //Get data from endpoint

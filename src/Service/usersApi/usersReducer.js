@@ -9,7 +9,7 @@ const initialState = {
     error: null,
     theme: themes.light,
     tabTheme: tabTheme.light
-}
+};
 
 
 export const usersReducer = (state = initialState, action) => {
@@ -19,19 +19,19 @@ export const usersReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 error: null
-            }
+            };
         case SUCCESS_USER:
             return {
                 ...state,
                 loading: false,
                 users: action.payload
-            }
+            };
         case FAILED_USER:
             return {
                 ...state,
                 loading: false,
                 error: action.payload
-            }
+            };
         case CHANGE_THEME:
             return {
                 theme:
@@ -42,8 +42,8 @@ export const usersReducer = (state = initialState, action) => {
                     state.tabTheme === tabTheme.dark
                         ? tabTheme.light
                         : tabTheme.dark,
-            }
+            };
         default:
             return state
     }
-}
+};

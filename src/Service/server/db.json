@@ -26,7 +26,7 @@
     },
     {
       "name": "Fill the tires with air",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, AppState} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import LogoArea from "../Component/LogoArea";
 import SvgUri from "react-native-svg-uri";
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
@@ -7,14 +7,13 @@ import {connect} from "react-redux";
 import {ThemeContext} from "../Component/themes-context";
 import {TabNavigatorContext} from "../Component/tabNavigator-context";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { NavigationEvents   } from 'react-navigation';
+import {NavigationEvents} from 'react-navigation';
 
 
 class Home extends Component {
     
     
     static navigationOptions = ({navigation}) => {
-        
         return {
             headerRight:
                 <View>
@@ -27,9 +26,7 @@ class Home extends Component {
                             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <View>
                                     <Icon name="bars" size={30} color={theme.burgerMenu}/>
-                                
                                 </View>
-                            
                             </TouchableOpacity>
                         </View>
                     )}
@@ -37,16 +34,15 @@ class Home extends Component {
             headerStyle: {backgroundColor: navigation.getParam('ctx', 'red')}
         }
     };
-    
+   
     
     render() {
         let theme = this.context;
-        // this.props.navigation.setParams({ctx: theme})
         return (
             <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
                 <NavigationEvents
-                    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
-                    onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
+                    onDidFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
+                    // onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
                 />
                 <RouteTabNavigator/>
             </View>

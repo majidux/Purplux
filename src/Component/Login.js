@@ -101,10 +101,13 @@ class Login extends Component {
                                 if (this.state.userName.trim() === "" || this.state.password.trim() === "") {
                                     this.setState({usernameError: "Required fields are empty"});
                                 } else {
-                                    this.props.navigation.navigate('HomeSwitch')
+                                    this.props.navigation.navigate('HomeSwitch',{prop:theme.backgroundColor})
                                 }
                             }}
                             >
+                                {
+                                    console.log(theme.backgroundColor)
+                                }
                                 <Animated.View style={[styles.loginButton, {opacity: this.state.opacity}]}>
                                     <Text style={styles.textStyleButton}>Login</Text>
                                 </Animated.View>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RootSwitchLoadingPage from '../Routes/LoadingPageSwitch'
-import {ThemeContext, themes} from "../Component/themes-context";
+import {ThemeContext} from "../Component/themes-context";
 import {connect} from "react-redux";
 import {TabNavigatorContext} from "../Component/tabNavigator-context";
 
@@ -29,5 +29,5 @@ const mapStateToProps = (state) => {
     return {
         themeData: state.userReducer
     }
-}
+};
 export default connect(mapStateToProps)(ThemeProvider)

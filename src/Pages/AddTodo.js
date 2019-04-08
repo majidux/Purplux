@@ -20,9 +20,9 @@ class AddTodo extends Component {
                     <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
                         <View style={styles.inProgressTasksView}>
                             <View>
-                                <TabNavigatorContext.Consumer>
+                                
                                     <Text style={[styles.inProgressTasks]}>Tasks in progress</Text>
-                                </TabNavigatorContext.Consumer>
+                                
                             </View>
                             <View>
                             

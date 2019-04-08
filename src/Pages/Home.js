@@ -52,7 +52,6 @@ class Home extends Component {
                         </View>
                     )}
                 </ThemeContext.Consumer>,
-            // headerStyle: {backgroundColor: navigation.getParam('ctx', 'red')}
             headerStyle: {backgroundColor: '#8979f3'}
         }
     };
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
         marginRight:20
     },
     titleNavigator:{
-        fontSize:28,
+        fontSize:35,
         color:'#fff',
         fontWeight:'600',
         fontFamily:'cursive'

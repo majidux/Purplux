@@ -20,7 +20,7 @@ class DrawerItems extends Component {
                 <View style={styles.itemsMenu}>
                     <View style={styles.itemMenu}>
                         <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('Home');
+                            this.props.navigation.navigate('HomeStack');
                             this.props.navigation.closeDrawer()
                         }} style={{flexDirection: 'row'}}>
                             <View style={styles.itemMenuInside}>

@@ -100,6 +100,7 @@ class Login extends Component {
                             transform: [{translateY: this.state.transformX}]
                         }]}>
                             <TextInput
+                                style={{justifyContent:'center'}}
                                 placeholder={'User name'}
                                 onChangeText={userName => this.setState({userName})}
                                 value={this.state.text}/>
@@ -109,6 +110,7 @@ class Login extends Component {
                             transform: [{translateY: this.state.transformY}]
                         }]}>
                             <TextInput
+                                style={{justifyContent:'center'}}
                                 placeholder={'Password'}
                                 secureTextEntry={true}
                                 onChangeText={password => this.setState({password})}

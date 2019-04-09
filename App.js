@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 import rootReducer from './src/Service/combiner';
 import ThemeProvider from "./src/Pages/ThemeProvider";
 
-const initialState = {};
-export const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+export const store = createStore(rootReducer,  applyMiddleware(thunk));
 
 export default class App extends Component {
     render() {

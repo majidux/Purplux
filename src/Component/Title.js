@@ -3,6 +3,13 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {connectToHoc} from "./hoc";
 
 class Title extends Component {
+    
+    static navigationOptions =({navigation})=>{
+        return {
+            headerTransparent: true
+        }
+    };
+    
     render() {
         return (
             <Text style={styles.appTitle}>{this.props.data}</Text>

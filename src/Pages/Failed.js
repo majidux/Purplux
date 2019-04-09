@@ -6,7 +6,7 @@ import {ThemeContext} from "../Component/themes-context";
 
 class Failed extends Component {
     render() {
-        let data = this.props.todo.todoData;
+        let data = this.props.todo.failedData;
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
@@ -15,11 +15,10 @@ class Failed extends Component {
                             <Text style={styles.pageTitle}>Failed Tasks</Text>
                         </View>
                         <FlatList
-                            data={data}
+                            data={this.props.todo.failedData}
                             extraData={theme}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
-                                !item.isFail &&
                                 <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleTaskView}>
                                         <Text style={[styles.listText,{color:theme.fontColor}]}>{item.name}</Text>

@@ -60,10 +60,10 @@ class Home extends Component {
         let theme = this.context;
         return (
             <View style={{flex:1}}>
-                <NavigationEvents
-                    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
-                    // onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}
-                />
+                {/*<NavigationEvents*/}
+                {/*    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}*/}
+                {/*    // onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}*/}
+                {/*/>*/}
                 <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
         
                     <RouteTabNavigator/>

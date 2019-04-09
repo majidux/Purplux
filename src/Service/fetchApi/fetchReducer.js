@@ -11,6 +11,9 @@ import {
 
 const initialState = {
     todoData: [],
+    filteredUnfinishedData:[],
+    doneItem: [],
+    failedData: [],
     loading: false,
     error: null
 };
@@ -23,25 +26,30 @@ export const fetchReducer = (state = initialState, action) => {
                 error: null
             }
         }
+        
         case GET_SUCCESS: {
+            let filteredUnfinished = action.payload.filter((item) => (!item.isComplete && item.isFail));
             return {
                 ...state,
                 loading: false,
-                todoData: action.payload
+                filteredUnfinishedData: filteredUnfinished
             }
         }
+        
+        case GET_DONE_DATA:
+            let filteredDoneData = action.payload.filter((item) => (item.isComplete && item.isFail));
+            return {
+                ...state,
+                loading: false,
+                doneItem: filteredDoneData
+            };
+        
         case GET_FAILED_DATA: {
+            let filteredFailedData = action.payload.filter((item) => (!item.isComplete && !item.isFail));
             return {
                 ...state,
                 loading: false,
-                todoData: action.payload
-            }
-        }
-        case GET_DONE_DATA: {
-            return {
-                ...state,
-                loading: false,
-                todoData: action.payload
+                failedData: filteredFailedData
             }
         }
         case GET_FAILED: {

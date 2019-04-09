@@ -42,7 +42,7 @@ class Items extends Component {
     };
     
     render() {
-        let todoList = this.props.todo.todoData;
+        let todoList = this.props.todo.filteredUnfinishedData;
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
@@ -56,7 +56,7 @@ class Items extends Component {
                             refreshing={false}
                             keyExtractor={(item) => item.id.toString()}
                             renderItem={({item}) =>
-                                item.isComplete || item.isFail &&
+                                // item.isComplete || item.isFail &&
                                 <View style={[styles.todoView, {backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleView}>
                                         <Text style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>

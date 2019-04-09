@@ -1,4 +1,14 @@
-import {GET_BEGIN, GET_FAILED, GET_SUCCESS, ADD_TODO, DELETE_TODO, CHANGE_STATUS, FAILED} from './fetchType';
+import {
+    GET_BEGIN,
+    GET_FAILED,
+    GET_SUCCESS,
+    ADD_TODO,
+    DELETE_TODO,
+    CHANGE_STATUS,
+    FAILED,
+    GET_DONE_DATA,
+    GET_FAILED_DATA
+} from './fetchType';
 
 
 // Types
@@ -8,6 +18,16 @@ export const getBegin = () => ({
 
 export const getSuccess = (data) => ({
     type: GET_SUCCESS,
+    payload: data
+});
+
+export const getDone = (data) => ({
+    type: GET_DONE_DATA,
+    payload: data
+});
+
+export const getFail = (data) => ({
+    type: GET_FAILED_DATA,
     payload: data
 });
 
@@ -88,7 +108,9 @@ export const getTaskDataUnfinished = () => {
         fetch(dataTask, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
-                dispatch(getSuccess(data))
+                dispatch(getSuccess(data));
+                dispatch(getDone(data));
+                dispatch(getFail(data));
             })
             .catch(error => dispatch(getFailed(error)))
     }

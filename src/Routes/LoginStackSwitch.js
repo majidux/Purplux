@@ -16,7 +16,7 @@ const RouteSwitch = createSwitchNavigator(
         HomeSwitch: DrawerNavigator
     },
     {
-        initialRouteName:'RouteStack'
+        initialRouteName:'HomeSwitch'
     }
 );
 export default RouteSwitch

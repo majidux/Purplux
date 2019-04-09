@@ -15,7 +15,7 @@ class Done extends Component {
     
     
     render() {
-        let data = this.props.todo.todoData;
+        let data = this.props.todo.doneItem;
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
@@ -28,7 +28,6 @@ class Done extends Component {
                             extraData={theme}
                             keyExtractor={item => item.id.toString()}
                             renderItem={({item}) =>
-                                item.isComplete &&
                                 <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleTaskView}>
                                         <Text style={[styles.listText,{color:theme.fontColor}]}>{item.name}</Text>

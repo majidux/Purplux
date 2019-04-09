@@ -11,6 +11,12 @@
       "username": "karim",
       "email": "karim@gmail.com",
       "password": "12345"
+    },
+    {
+      "username": "gholam",
+      "email": "dassdasas",
+      "password": "adsadsad",
+      "id": 2
     }
   ]
 }

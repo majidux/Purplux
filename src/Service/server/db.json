@@ -1,16 +1,8 @@
 {
   "tasks": [
     {
-      "name": "Test",
-      "isComplete": false,
-      "isFail": true,
-      "date": "03/16/19",
-      "time": "11:40:04 AM",
-      "id": 0
-    },
-    {
       "name": "Check engine",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
@@ -18,7 +10,7 @@
     },
     {
       "name": "Change engine oil",
-      "isComplete": true,
+      "isComplete": false,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
@@ -27,7 +19,7 @@
     {
       "name": "Change the air filter",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 3
@@ -75,22 +67,22 @@
     {
       "name": "Fill the battery",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 9
     },
     {
       "name": "Change the radiator's door",
-      "isComplete": false,
-      "isFail": false,
+      "isComplete": true,
+      "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 10
     },
     {
       "name": "Clean the exhaust",
-      "isComplete": true,
+      "isComplete": false,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
@@ -99,18 +91,10 @@
     {
       "name": "Change the wires",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "04/07/19",
       "time": "13:34:32",
       "id": 12
-    },
-    {
-      "name": "dfsdfsdfsfdsdfs",
-      "isComplete": false,
-      "isFail": true,
-      "date": "04/09/19",
-      "time": "12:35:11",
-      "id": 13
     }
   ]
 }

@@ -15,7 +15,8 @@ const initialState = {
     doneItem: [],
     failedData: [],
     loading: false,
-    error: null
+    error: null,
+    
 };
 export const fetchReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -32,7 +33,7 @@ export const fetchReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                filteredUnfinishedData: filteredUnfinished
+                todoData: filteredUnfinished
             }
         }
         
@@ -85,9 +86,10 @@ export const fetchReducer = (state = initialState, action) => {
                 ...state,
                 todoData: [
                     ...state.todoData.slice(0, itemIndex),
-                    {...item, isComplete: true},
+                    //this part used for one array {...item, isComplete: true},
                     ...state.todoData.slice(itemIndex + 1),
-                ]
+                ],
+                doneItem: [...state.doneItem, item]
             }
         }
         case FAILED: {
@@ -99,9 +101,10 @@ export const fetchReducer = (state = initialState, action) => {
                 ...state,
                 todoData: [
                     ...state.todoData.slice(0, itemIndex),
-                    {...item, isFail: false},
+                    //this part used for one array {...item, isFail: false},
                     ...state.todoData.slice(itemIndex + 1),
-                ]
+                ],
+                failedData:[...state.failedData,item]
             }
         }
         default:

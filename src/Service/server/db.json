@@ -10,7 +10,7 @@
     },
     {
       "name": "Change engine oil",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
@@ -42,7 +42,7 @@
     },
     {
       "name": "Change the oil filter",
-      "isComplete": false,
+      "isComplete": true,
       "isFail": true,
       "date": "03/16/19",
       "time": "11:30:04 AM",
@@ -59,7 +59,7 @@
     {
       "name": "Wax the body",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 8
@@ -83,7 +83,7 @@
     {
       "name": "Clean the exhaust",
       "isComplete": false,
-      "isFail": true,
+      "isFail": false,
       "date": "03/16/19",
       "time": "11:30:04 AM",
       "id": 11
@@ -95,6 +95,70 @@
       "date": "04/07/19",
       "time": "13:34:32",
       "id": 12
+    },
+    {
+      "name": "Clean the dashboard",
+      "isComplete": true,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:36:39",
+      "id": 13
+    },
+    {
+      "name": "Go to carwash",
+      "isComplete": false,
+      "isFail": false,
+      "date": "04/10/19",
+      "time": "10:36:46",
+      "id": 14
+    },
+    {
+      "name": "Change the rings",
+      "isComplete": false,
+      "isFail": false,
+      "date": "04/10/19",
+      "time": "10:37:19",
+      "id": 15
+    },
+    {
+      "name": "Car wash",
+      "isComplete": true,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:40:41",
+      "id": 16
+    },
+    {
+      "name": "Buy perfume",
+      "isComplete": false,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:41:37",
+      "id": 17
+    },
+    {
+      "name": "Buy flowers",
+      "isComplete": false,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:41:53",
+      "id": 18
+    },
+    {
+      "name": "Buy food",
+      "isComplete": false,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:42:05",
+      "id": 19
+    },
+    {
+      "name": "Take the trash out",
+      "isComplete": false,
+      "isFail": true,
+      "date": "04/10/19",
+      "time": "10:42:25",
+      "id": 20
     }
   ]
 }

@@ -154,7 +154,7 @@ export const updateFailure = (id) => {
         };
         let isComplete ={
             "isComplete": false
-        }
+        };
         let falser = false;
         const url = `http://10.0.2.2:3000/tasks/`;
         fetch(`${url}${id}/?isFail=${falser}&&isComplete=${isComplete}`,

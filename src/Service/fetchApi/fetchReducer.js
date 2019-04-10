@@ -11,7 +11,6 @@ import {
 
 const initialState = {
     todoData: [],
-    filteredUnfinishedData:[],
     doneItem: [],
     failedData: [],
     loading: false,

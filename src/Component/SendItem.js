@@ -38,7 +38,7 @@ class SendItem extends Component {
                             <TextInput value={this.state.name} placeholder={'Add your Tasks to do ...'}
                                        onSubmitEditing={this.addName} placeholderTextColor={theme.placeholderTextColor}
                                        onChangeText={this.addName}
-                                       style={{backgroundColor:theme.inputArea,borderRadius: 10}}
+                                       style={[styles.todoInput,{backgroundColor:theme.inputArea, color:theme.fontColor}]}
                             />
                         </View>
                         <View style={styles.sendButtonViewStyle}>
@@ -94,7 +94,12 @@ const styles = StyleSheet.create({
     },
     sendButtonViewStyle: {
         // flex:1
+    },todoInput:{
+        borderRadius:5,
+        fontSize:16,
+        justifyContent: 'center'
     }
+    
 });
 
 const mapStateToProps = (state) => {

@@ -1,9 +1,21 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, TextInput, Animated, Easing} from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Image,
+    Dimensions,
+    TextInput,
+    Animated,
+    Easing,
+    StatusBar
+} from 'react-native';
 import SignUp from "../Pages/SignUp";
 import {connect} from "react-redux";
 import {ThemeContext} from './themes-context'
 import Title from "./Title";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 let deviceWidth = Dimensions.get('window').width;
 let deviceHeight = Dimensions.get('window').height;
@@ -19,6 +31,7 @@ class Login extends Component {
             transformY: new Animated.Value(-30),
             opacity: new Animated.Value(0),
             scale: new Animated.Value(1),
+            eye:true
         };
     }
     
@@ -68,12 +81,16 @@ class Login extends Component {
         }
     };
     
+    eyeFunc = () =>{
+        this.setState({eye:!this.state.eye})
+    };
+    
     render() {
         return (
             <ThemeContext.Consumer>
                 {(theme) => (
                     <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
-                        
+                        <StatusBar backgroundColor={theme.backgroundColor} barStyle={theme.backgroundColor === '#f4f4f4' ? 'dark-content' :'light-content'}/>
                         <View style={styles.topArea}>
                             <Animated.View style={[styles.imageStyleView, {opacity: this.state.opacity}]}>
                                 <Image
@@ -81,7 +98,6 @@ class Login extends Component {
                                     style={styles.imageBack}
                                 />
                             </Animated.View>
-                        
                         </View>
                         <Animated.View style={[styles.titleView, {
                             transform: ([
@@ -106,15 +122,21 @@ class Login extends Component {
                                 value={this.state.text}/>
                         </Animated.View>
                         <Animated.View style={[styles.textInputView, {
+                            flexDirection:'row',
+                            justifyContent:'space-between',
+                            alignItems:'center',
                             opacity: this.state.opacity,
                             transform: [{translateY: this.state.transformY}]
                         }]}>
                             <TextInput
-                                style={{justifyContent:'center'}}
+                                style={{justifyContent:'center',flex:10}}
                                 placeholder={'Password'}
-                                secureTextEntry={true}
+                                secureTextEntry={this.state.eye}
                                 onChangeText={password => this.setState({password})}
                                 value={this.state.text}/>
+                            <TouchableOpacity onPressIn={this.eyeFunc} onPressOut={this.eyeFunc} style={{flex:1}}>
+                                <Icon name={'eye'} size={25}/>
+                            </TouchableOpacity>
                         </Animated.View>
                         <View style={styles.bottomArea}>
                             <TouchableOpacity onPress={() => {

@@ -14,7 +14,6 @@ export const themes = {
     },
     dark: {
         backgroundColor: '#424a57',
-        borderColor:'#77849b',
         fontColor:'#dedede',
         borderWidth:1,
         purpleBackground:'blue',

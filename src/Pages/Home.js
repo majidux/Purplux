@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, BackHandler, Alert} from 'react-native';
-import LogoArea from "../Component/LogoArea";
-import SvgUri from "react-native-svg-uri";
+import {View, StyleSheet, Text, TouchableOpacity, BackHandler, Alert, StatusBar} from 'react-native';
 import RouteTabNavigator from '../Routes/AddTodoTopNavigator'
 import {connect} from "react-redux";
 import {ThemeContext} from "../Component/themes-context";
-import {TabNavigatorContext} from "../Component/tabNavigator-context";
 import Icon from "react-native-vector-icons/FontAwesome";
-import {NavigationEvents} from 'react-navigation';
-
 
 class Home extends Component {
     constructor(props) {
@@ -21,15 +16,14 @@ class Home extends Component {
     }
     
     buttonPress = () => {
-        
         Alert.alert(
             'Exit',
             'Do you want to exit From Purplux ?',
             [
-                { text: 'Yes', onPress: () => BackHandler.exitApp() },
-                { text: 'No' }
+                {text: 'Yes', onPress: () => BackHandler.exitApp()},
+                {text: 'No'}
             ],
-            { cancelable: false },
+            {cancelable: false},
         );
         return true;
     };
@@ -59,17 +53,17 @@ class Home extends Component {
     render() {
         let theme = this.context;
         return (
-            <View style={{flex:1}}>
+            <View style={{flex: 1}}>
                 {/*<NavigationEvents*/}
                 {/*    onWillFocus={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}*/}
                 {/*    // onWillBlur={payload => this.props.navigation.setParams({ctx: theme.backgroundColor})}*/}
                 {/*/>*/}
+                <StatusBar backgroundColor={theme.tabNavigator} barStyle={theme.backgroundColor === '#f4f4f4' ? 'dark-content' :'light-content'}/>
                 <View style={[styles.lightStyle, {backgroundColor: theme.inputBackground}]}>
-        
                     <RouteTabNavigator/>
                 </View>
             </View>
-           
+        
         );
     }
 }
@@ -88,14 +82,14 @@ const styles = StyleSheet.create({
     drawerButton: {
         marginLeft: 20
     },
-    drawerTitle:{
-        marginRight:20
+    drawerTitle: {
+        marginRight: 20
     },
-    titleNavigator:{
-        fontSize:35,
-        color:'#fff',
-        fontWeight:'600',
-        fontFamily:'cursive'
+    titleNavigator: {
+        fontSize: 35,
+        color: '#fff',
+        fontWeight: '600',
+        fontFamily: 'cursive'
     }
 });
 

@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
-import {createSwitchNavigator, createAppContainer} from 'react-navigation' ;
-import SvgUri from "react-native-svg-uri";
+import {StyleSheet, Animated, StatusBar, View} from 'react-native';
 import Login from "../Component/Login";
 import {connect} from "react-redux";
 import Title from "../Component/Title";
+import {ThemeContext} from "../Component/themes-context";
 
 class LoadingPage extends Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -29,20 +27,22 @@ class LoadingPage extends Component {
             {
                 toValue: 1,
                 duration: 1000,
-                easing: Easing.back(),
                 useNativeDriver: true
             }
         ).start(() => this.animationRotation());
     };
     
     render() {
+        let theme = this.context;
         return (
             <Animated.View style={[styles.className, {opacity: this.state.opacity}]}>
+                <StatusBar backgroundColor={'#cbcbcb'} barStyle={'dark-content'}/>
                 <Title/>
             </Animated.View>
         );
     }
 }
+LoadingPage.contextType=ThemeContext;
 
 const styles = StyleSheet.create({
     className: {

@@ -4,6 +4,12 @@ import {connectToHoc} from "./hoc";
 
 class Title extends Component {
     
+    constructor(props){
+        super(props);
+        this.state = {
+            creator:'Majid'
+        }
+    }
     static navigationOptions =({navigation})=>{
         return {
             headerTransparent: true
@@ -11,12 +17,14 @@ class Title extends Component {
     };
     
     render() {
+        let theme = this.context;
         return (
-            <Text style={styles.appTitle}>{this.props.data}</Text>
+            <View>
+                <Text style={styles.appTitle}>{this.props.data}</Text>
+            </View>
         );
     }
 }
-
 const styles = StyleSheet.create({
     className: {
         flex: 1,

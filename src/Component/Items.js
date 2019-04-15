@@ -11,7 +11,8 @@ import {
     Alert,
     Modal,
     Button,
-    Dimensions
+    Animated,
+    Dimensions, PanResponder
 } from 'react-native';
 import {connect} from "react-redux";
 import {
@@ -26,6 +27,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome'
 
 let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
 
 class Items extends Component {
     
@@ -33,7 +35,9 @@ class Items extends Component {
         super(props);
         this.state = {
             Alert_Visibility: false,
-            id: ''
+            id: '',
+            pan: new Animated.ValueXY(),
+            state: ''
         }
     }
     
@@ -60,69 +64,96 @@ class Items extends Component {
         this.setState({Alert_Visibility: !this.state.Alert_Visibility});
     };
     
+    componentWillMount() {
+        this.panResponder = PanResponder.create({
+            onPanResponderGrant: (evt, gestureState) => {
+                this.setState({Alert_Visibility: !this.state.Alert_Visibility});
+                this.setState({state: evt.nativeEvent.pageX})
+            }
+        })
+    }
+    
+    visible = () => {
+        this.setState({Alert_Visibility: !this.state.Alert_Visibility});
+    };
     
     render() {
         let todoList = this.props.todo.todoData;
+        let handles = this.panResponder.panHandlers;
         return (
+            
             <ThemeContext.Consumer>
                 {(theme) => (
-                    <View style={[styles.flatListView]}>
-                        <Modal
-                            hardwareAccelerated={true}
-                            visible={this.state.Alert_Visibility}
-                            animated={true}
-                            animationType={'fade'}
-                            onRequestClose={() => {
-                                this.options((!this.state.Alert_Visibility))
-                            }}
-                        >
-                            <View style={styles.modalViewInside}>
-                                
-                                <View style={styles.Alert_Main_View}>
-                                    <View style={styles.modalTitleView}>
-                                        <Text style={styles.Alert_Title}>What do you want to do ?</Text>
-                                    </View>
-                                    <View style={styles.whiteLine}/>
+                    <View style={[styles.flatListView]}{...handles}>
+                         <Modal
+                                hardwareAccelerated={true}
+                                visible={this.state.Alert_Visibility}
+                                animated={true}
+                                transparent={true}
+                                animationType={'fade'}
+                                onRequestClose={() => {
+                                    this.options((!this.state.Alert_Visibility))
+                                }}
+                            >
+                               
+                                <View style={styles.modalViewInside}>
                                     
-                                    <View style={styles.buttonOptions}>
-                                        <View style={styles.failedView}>
-                                            <TouchableOpacity
-                                                onPress={this.failedTask.bind(this, this.state.id)}
-                                            >
+                                    <View style={styles.Alert_Main_View}>
+                                        <View style={styles.modalTitleView}>
+                                            <Text style={styles.Alert_Title}>What do you want to do ?</Text>
+                                        </View>
+                                        <View style={styles.whiteLine}/>
+                                        
+                                        <View style={styles.buttonOptions}>
+                                            <View style={styles.failedView}>
+                                                <TouchableOpacity
+                                                    onPress={this.failedTask.bind(this, this.state.id)}
+                                                >
+                                                    
+                                                    <AntIcon size={32} name={'closecircle'} color={'#e45'}/>
                                                 
-                                                <AntIcon size={32} name={'closecircle'} color={'#e45'}/>
-                                            
-                                            </TouchableOpacity>
-                                        </View>
-                                        <View style={styles._doneView}>
-                                            <TouchableOpacity
-                                                onPress={this.completeTask.bind(this, this.state.id)}
-                                            >
+                                                </TouchableOpacity>
+                                            </View>
+                                            <View style={styles._doneView}>
+                                                <TouchableOpacity
+                                                    onPress={this.completeTask.bind(this, this.state.id)}
+                                                >
+                                                    
+                                                    <AwesomeIcon size={35} name={'check-circle'} color={'#57b993'}/>
                                                 
-                                                <AwesomeIcon size={35} name={'check-circle'} color={'#57b993'}/>
-                                            
-                                            </TouchableOpacity>
+                                                </TouchableOpacity>
+                                            </View>
+                                            <View style={styles.deleteView}>
+                                                <TouchableOpacity
+                                                    onPress={this.deleteItem.bind(this, this.state.id)}
+                                                >
+                                                    <AwesomeIcon size={35} name={'trash'} color={theme.fontColor}/>
+                                                </TouchableOpacity>
+                                            </View>
                                         </View>
-                                        <View style={styles.deleteView}>
-                                            <TouchableOpacity
-                                                onPress={this.deleteItem.bind(this, this.state.id)}
-                                            >
-                                                <AwesomeIcon size={35} name={'trash'} color={theme.fontColor}/>
-                                            </TouchableOpacity>
-                                        </View>
+                                        <TouchableOpacity
+                                            style={styles.buttonStyle}
+                                            onPress={this.options}
+                                        >
+                                            <AntIcon size={32} name={'close'} color={'#000'}/>
+                                        </TouchableOpacity>
                                     </View>
-                                    <TouchableOpacity
-                                        style={styles.buttonStyle}
-                                        onPress={this.options}
-                                    >
-                                        <AntIcon size={32} name={'close'} color={'#000'}/>
-                                    </TouchableOpacity>
                                 
                                 </View>
-                            
-                            </View>
-                        </Modal>
+                             <TouchableHighlight
+                                 underlayColor={'transparent'}
+                                 onPress={this.visible}
+                                 style={{
+                                     position:'absolute',
+                                     zIndex:-1 ,
+                                     backgroundColor:'rgba(100,100,100,0.5)',
+                                     width:deviceWidth,
+                                     height:deviceHeight
+                                 }}><Text></Text></TouchableHighlight>
+                            </Modal>
+                        
                         <View>
+                            
                             {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
                         </View>
                         <FlatList
@@ -132,8 +163,7 @@ class Items extends Component {
                             refreshing={false}
                             keyExtractor={(item) => item.id.toString()}
                             renderItem={({item}) =>
-                                <TouchableOpacity underlayColor={'#8979f3'} activeOpacity={0.7}
-                                                  onLongPress={this.options.bind(this, item.id)}>
+                                <TouchableOpacity underlayColor={'#8979f3'} activeOpacity={0.7}onLongPress={this.options.bind(this, item.id)}>
                                     <View style={[styles.todoView, {
                                         backgroundColor: theme.items,
                                         borderColor: '#94a4c1',
@@ -250,6 +280,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff',
         borderRadius: 7,
+        position: 'absolute',
+        zIndex:2
         
     },
     

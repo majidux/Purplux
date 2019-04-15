@@ -67,11 +67,9 @@ class Items extends Component {
             <ThemeContext.Consumer>
                 {(theme) => (
                     <View style={[styles.flatListView]}>
-                        
-                        
                         <Modal
+                            hardwareAccelerated={true}
                             visible={this.state.Alert_Visibility}
-                            // transparent={true}
                             animated={true}
                             animationType={'fade'}
                             onRequestClose={() => {
@@ -264,9 +262,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        position:'absolute',
-        left:5,
-        top:5
+        position: 'absolute',
+        left: 5,
+        top: 5
     },
     
     TextStyle: {

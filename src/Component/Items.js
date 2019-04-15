@@ -95,7 +95,6 @@ class Items extends Component {
                                     this.options((!this.state.Alert_Visibility))
                                 }}
                             >
-                               
                                 <View style={styles.modalViewInside}>
                                     
                                     <View style={styles.Alert_Main_View}>
@@ -146,12 +145,11 @@ class Items extends Component {
                                  style={{
                                      position:'absolute',
                                      zIndex:-1 ,
-                                     backgroundColor:'rgba(100,100,100,0.5)',
+                                     backgroundColor:'rgba(100,100,100,0.7)',
                                      width:deviceWidth,
                                      height:deviceHeight
                                  }}><Text></Text></TouchableHighlight>
                             </Modal>
-                        
                         <View>
                             
                             {this.props.todo.loading && <ActivityIndicator size={'large'} color={'#8979f3'}/>}
@@ -175,10 +173,8 @@ class Items extends Component {
                                                     style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>
                                             </View>
                                             <View>
-                                                <Text
-                                                    style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.date}</Text>
-                                                <Text
-                                                    style={[styles.dateTimeTextStyle, {color: theme.fontColor}]}>{item.time}</Text>
+                                                <Text style={[styles.dateTimeTextStyle]}>{item.date}</Text>
+                                                <Text style={[styles.dateTimeTextStyle,{color:'#30a830'}]}>{item.time}</Text>
                                             </View>
                                         </View>
                                     </View>
@@ -264,7 +260,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     dateTimeTextStyle: {
-        color: '#3d3d3d'
+        color: '#e45',
+        fontWeight:'600',
+        fontSize:12,
     },
     alertStyle: {
         backgroundColor: 'red',

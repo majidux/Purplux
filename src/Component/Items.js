@@ -52,7 +52,7 @@ class Items extends Component {
     };
     
     componentDidMount() {
-        this.props.getUsersDataUnfinished();
+        // this.props.getUsersDataUnfinished();
     }
     
     deleteItem = (id) => {
@@ -130,7 +130,7 @@ class Items extends Component {
                             extraData={todoList}
                             onRefresh={() => this.props.getUsersDataUnfinished()}
                             refreshing={false}
-                            keyExtractor={(item) => item.id.toString()}
+                            keyExtractor={(item) => `${item.id} ` }
                             renderItem={({item}) =>
                                 <TouchableOpacity underlayColor={'#8979f3'} activeOpacity={0.7}
                                                   onLongPress={this.options.bind(this, item.id)}>

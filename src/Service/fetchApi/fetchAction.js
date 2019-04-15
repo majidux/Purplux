@@ -67,54 +67,54 @@ export const addTodo = (name) => {
             "date":now.toLocaleDateString(),
             "time":now.toLocaleTimeString()
         };
-        fetch(`http://10.0.2.2:3000/tasks`,
-            {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
+        // fetch(`http://10.0.2.2:3000/tasks`,
+        //     {
+        //         method: 'POST',
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(data)
+        //     }
+        // )
+        //     .then(response => response.json())
+        //     .then(data => {
                 dispatch(add(data))
-            })
-            .catch(error => error)
+            // })
+            // .catch(error => error)
     }
 };
 
 //Delete an item from API
 export const deleteTodo = (id) => {
     return dispatch => {
-        const url = `http://10.0.2.2:3000/tasks/`;
-        fetch(`${url}${id}`, {
-                method: 'DELETE'
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
+        // const url = `http://10.0.2.2:3000/tasks/`;
+        // fetch(`${url}${id}`, {
+        //         method: 'DELETE'
+        //     }
+        // )
+        //     .then(response => response.json())
+        //     .then(data => {
                 dispatch(removeItem(id));
-            })
+            // })
     }
 };
 
 // Get data which they are over from API
-export const getTaskDataUnfinished = () => {
-    return dispatch => {
-        let dataTask = `http://10.0.2.2:3000/tasks`;
-        dispatch(getBegin());
-        fetch(dataTask, {method: 'GET'})
-            .then(response => response.json())
-            .then(data => {
-                dispatch(getSuccess(data));
-                dispatch(getDone(data));
-                dispatch(getFail(data));
-            })
-            .catch(error => dispatch(getFailed(error)))
-    }
-};
+// export const getTaskDataUnfinished = () => {
+//     return dispatch => {
+//         let dataTask = `http://10.0.2.2:3000/tasks`;
+//         dispatch(getBegin());
+//         fetch(dataTask, {method: 'GET'})
+//             .then(response => response.json())
+//             .then(data => {
+//                 dispatch(getSuccess(data));
+//                 dispatch(getDone(data));
+//                 dispatch(getFail(data));
+//             })
+//             .catch(error => dispatch(getFailed(error)))
+//     }
+// };
 
 
 // Update the isComplete status
@@ -127,21 +127,21 @@ export const updateStatus = (id) => {
             "isComplete": true
         };
         let trueComplete = true;
-        const url = `http://10.0.2.2:3000/tasks/`;
-        fetch(`${url}${id}/?isComplete=${trueComplete}&&isFail=${isFail}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
+        // const url = `http://10.0.2.2:3000/tasks/`;
+        // fetch(`${url}${id}/?isComplete=${trueComplete}&&isFail=${isFail}`,
+        //     {
+        //         method: 'PATCH',
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(data)
+        //     }
+        // )
+        //     .then(response => response.json())
+        //     .then(data => {
                 dispatch(changeStatus(id))
-            })
+            // })
     }
 };
 
@@ -156,20 +156,20 @@ export const updateFailure = (id) => {
             "isComplete": false
         };
         let falser = false;
-        const url = `http://10.0.2.2:3000/tasks/`;
-        fetch(`${url}${id}/?isFail=${falser}&&isComplete=${isComplete}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
+        // const url = `http://10.0.2.2:3000/tasks/`;
+        // fetch(`${url}${id}/?isFail=${falser}&&isComplete=${isComplete}`,
+        //     {
+        //         method: 'PATCH',
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(data)
+        //     }
+        // )
+        //     .then(response => response.json())
+        //     .then(data => {
                 dispatch(failed(id))
-            })
+            // })
     }
 };

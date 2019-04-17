@@ -9,7 +9,7 @@ import {
     GET_FAILED_DATA, GET_DONE_DATA
 } from "./fetchType";
 
-const initialState = {
+export const initialState = {
     todoData: [],
     doneItem: [],
     failedData: [],

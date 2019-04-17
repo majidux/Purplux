@@ -45,7 +45,6 @@ class ModalComponent extends Component {
                                 <TouchableOpacity
                                     onPress={this.failedTask.bind(this, this.props.id)}
                                 >
-                            
                                     <AntIcon size={32} name={'closecircle'} color={'#e45'}/>
                         
                                 </TouchableOpacity>

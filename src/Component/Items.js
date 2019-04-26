@@ -45,9 +45,9 @@ class Items extends Component {
         this.setState({id: id});
     };
     
-    componentDidMount() {
-        this.props.getUsersDataUnfinished();
-    }
+    // componentDidMount() {
+    //     this.props.getUsersDataUnfinished();
+    // }
     
     visible = () => {
         this.setState({Alert_Visibility: !this.state.Alert_Visibility});
@@ -72,7 +72,7 @@ class Items extends Component {
                             extraData={todoList}
                             onRefresh={() => this.props.getUsersDataUnfinished()}
                             refreshing={false}
-                            keyExtractor={(item) => item.id.toString()}
+                            keyExtractor={(item) => item.id}
                             renderItem={({item}) =>
                                 <TouchableOpacity underlayColor={'#8979f3'} activeOpacity={0.7}
                                                   onLongPress={this.options.bind(this, item.id)}>

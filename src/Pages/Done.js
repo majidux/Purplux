@@ -26,7 +26,7 @@ class Done extends Component {
                         <FlatList
                             data={data}
                             extraData={theme}
-                            keyExtractor={item => item.id.toString()}
+                            keyExtractor={item => item.id}
                             renderItem={({item}) =>
                                 <View style={[styles.flatListInside,{backgroundColor: theme.items,borderColor:theme.borderColor,borderWidth:theme.borderWidth}]}>
                                     <View style={styles.titleTaskView}>

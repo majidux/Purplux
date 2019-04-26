@@ -79,9 +79,9 @@ export const addTodo = (name) => {
         )
             .then(response => response.json())
             .then(data => {
-                dispatch(add(data))
-            })
-            .catch(error => error)
+        dispatch(add(data))
+        })
+        .catch(error => error)
     }
 };
 
@@ -95,8 +95,8 @@ export const deleteTodo = (id) => {
         )
             .then(response => response.json())
             .then(data => {
-                dispatch(removeItem(id));
-            })
+        dispatch(removeItem(id));
+        })
     }
 };
 
@@ -140,8 +140,8 @@ export const updateStatus = (id) => {
         )
             .then(response => response.json())
             .then(data => {
-                dispatch(changeStatus(id))
-            })
+        dispatch(changeStatus(id))
+        })
     }
 };
 
@@ -169,7 +169,7 @@ export const updateFailure = (id) => {
         )
             .then(response => response.json())
             .then(data => {
-                dispatch(failed(id))
-            })
+        dispatch(failed(id))
+        })
     }
 };

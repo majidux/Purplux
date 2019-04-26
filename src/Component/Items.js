@@ -45,9 +45,9 @@ class Items extends Component {
         this.setState({id: id});
     };
     
-    // componentDidMount() {
-    //     this.props.getUsersDataUnfinished();
-    // }
+    componentDidMount() {
+        this.props.getUsersDataUnfinished();
+    }
     
     visible = () => {
         this.setState({Alert_Visibility: !this.state.Alert_Visibility});
@@ -72,7 +72,7 @@ class Items extends Component {
                             extraData={todoList}
                             onRefresh={() => this.props.getUsersDataUnfinished()}
                             refreshing={false}
-                            keyExtractor={(item) => item.id}
+                            keyExtractor={(item) => item.id.toString()}
                             renderItem={({item}) =>
                                 <TouchableOpacity underlayColor={'#8979f3'} activeOpacity={0.7}
                                                   onLongPress={this.options.bind(this, item.id)}>
@@ -83,13 +83,11 @@ class Items extends Component {
                                     }]}>
                                         <View style={styles.titleView}>
                                             <View>
-                                                <Text
-                                                    style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>
+                                                <Text style={[styles.textName, {color: theme.fontColor}]}>{item.name}</Text>
                                             </View>
                                             <View>
                                                 <Text style={[styles.dateTimeTextStyle]}>{item.date}</Text>
-                                                <Text
-                                                    style={[styles.dateTimeTextStyle, {color: '#30a830'}]}>{item.time}</Text>
+                                                <Text style={[styles.dateTimeTextStyle, {color: '#30a830'}]}>{item.time}</Text>
                                             </View>
                                         </View>
                                     </View>

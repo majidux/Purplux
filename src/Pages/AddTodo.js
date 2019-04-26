@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Picker} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Items from "../Component/Items";
 import SendItem from "../Component/SendItem";
 import {connect} from "react-redux";
 import {ThemeContext} from "../Component/themes-context";
-import {TabNavigatorContext} from "../Component/tabNavigator-context";
+import AsyncStorage from "react-native/Libraries/Storage/AsyncStorage";
 
 
 const gradientColor = '#f6f6f6';
@@ -12,6 +12,10 @@ const data = Array.from({length: 500});
 
 class AddTodo extends Component {
     
+    _logOut = async () => {
+        await AsyncStorage.clear();
+        this.props.navigation.navigate('Login');
+    };
     
     render() {
         return (
@@ -19,8 +23,19 @@ class AddTodo extends Component {
                 {(theme) => (
                     <View style={[styles.className, {backgroundColor: theme.backgroundColor}]}>
                         <View style={styles.inProgressTasksView}>
-                            <View>
+                            <View style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                flex: 1,
+                                paddingRight: 15
+                            }}>
                                 <Text style={[styles.inProgressTasks]}>Tasks in progress</Text>
+                                <TouchableOpacity
+                                    onPress={this._logOut}
+                                >
+                                    <Text style={{color: 'red', fontSize: 15}}>Log out</Text>
+                                </TouchableOpacity>
                             </View>
                             <View>
                             

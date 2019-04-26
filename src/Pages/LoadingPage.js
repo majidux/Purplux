@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet, Animated, StatusBar, View} from 'react-native';
-import Login from "../Component/Login";
+import Login from "./Login";
 import {connect} from "react-redux";
 import Title from "../Component/Title";
 import {ThemeContext} from "../Component/themes-context";
+import AsyncStorage from "react-native/Libraries/Storage/AsyncStorage";
 
 class LoadingPage extends Component {
     constructor(props) {
@@ -13,14 +14,16 @@ class LoadingPage extends Component {
         }
     }
     
+    _loadData = async () => {
+        const userToken = await AsyncStorage.getItem('userToken');
+        setTimeout(() => this.props.navigation.navigate(userToken !== '1' ? 'Login' : 'HomeSwitch'), 200)
+    };
+    
     componentDidMount() {
-        this.navigate();
+        this._loadData();
         this.animationRotation();
     }
     
-    navigate = () => {
-        setTimeout(() => this.props.navigation.navigate('Login'), 2000)
-    };
     animationRotation = () => {
         Animated.timing(
             this.state.opacity,
@@ -42,7 +45,8 @@ class LoadingPage extends Component {
         );
     }
 }
-LoadingPage.contextType=ThemeContext;
+
+LoadingPage.contextType = ThemeContext;
 
 const styles = StyleSheet.create({
     className: {

@@ -1,5 +1,5 @@
 import {createAppContainer, createSwitchNavigator} from "react-navigation";
-import Login from "../Component/Login";
+import Login from "../Pages/Login";
 import LoadingPage from "../Pages/LoadingPage";
 import RouteStack from "./LoginStackSwitch";
 
